@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import * as Fonts from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './src/helpers/Routes';
 
-export default function App() {
+const App = () => {
+
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+
+  useEffect(() => {
+    async function loadFonts() {
+    SplashScreen.preventAutoHideAsync();
+      //loading Fonts
+      await Fonts.loadAsync({
+        "Play-Bold": require('./assets/fonts/Play-Bold.ttf'),
+        "Play-Regular": require('./assets/fonts/Play-Regular.ttf'),
+      });
+      setIsFontLoaded(true);
+      SplashScreen.hideAsync();
+    }
+    loadFonts();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView className="bg-[#0B0711] flex-1">
+      <StatusBar backgroundColor={'#261D37'} />
+      {isFontLoaded ? (
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
+      ) : (
+        <Text className="items-center justify-center">
+          Lagecy Can't be Load!
+        </Text>
+      )}
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

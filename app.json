@@ -8,8 +8,8 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#fff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.karannnnn_7.EFootUserApprn"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e678f03a-2ec8-4a2d-b1f0-4f8c3c11d48a"
+      }
     }
   }
 }
