@@ -145,7 +145,7 @@ const LoginScreen = ({ navigation }) => {
                   </View>
 
                   <View className="mt-10">
-                    <CButton btnText={'Log In'} onPress={() => console.log('pressed')} />
+                    <CButton btnText={'Log In'} onPress={() => navigation.navigate('home')} />
                   </View>
 
                   <TouchableOpacity onPress={() => navigation.navigate('register')} className="flex-row items-center mt-5">
