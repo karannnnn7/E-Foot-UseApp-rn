@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
@@ -10,7 +10,7 @@ import { TextInput, Switch } from 'react-native-paper';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const RegisterScreen = ({navigation}) => {
+const RegisterScreen = ({ navigation }) => {
 
     const [showPassword, setShowPassword] = useState(true);
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -21,6 +21,7 @@ const RegisterScreen = ({navigation}) => {
     const [selectCountry, setSelectCountry] = useState("Select Country");
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
     const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+    const isSmallScreen = Dimensions.get('screen').height > 850;
     const [userName, setUserName] = useState("");
     const [userNameError, setUserNameError] = useState("");
     const [email, setEmail] = useState("");
@@ -127,7 +128,7 @@ const RegisterScreen = ({navigation}) => {
         }
     };
 
-   
+
 
 
     return (
@@ -318,7 +319,7 @@ const RegisterScreen = ({navigation}) => {
                                                 <DownArrowSvg />
                                             </TouchableOpacity>
 
-                                            <Modal
+                                            {isSmallScreen ? (<Modal
                                                 // animationType="slide"
                                                 transparent={true}
                                                 visible={wlRankModalvisible}
@@ -331,7 +332,7 @@ const RegisterScreen = ({navigation}) => {
                                                     <View className="h-full w-full bg-[#000000bf]" />
                                                 </TouchableOpacity>
 
-                                                <View className="absolute bottom-64 bg-[#261D37] w-96 left-4 rounded-2xl" >
+                                                <View className={`absolute bottom-64 bg-[#261D37] w-96 left-4 rounded-2xl`} >
                                                     <View className="p-3 mt-3">
                                                         <View className="flex-row items-center justify-between mx-5">
                                                             <Text className="text-white text-xl font-PlayBold">WL Rank</Text>
@@ -379,7 +380,68 @@ const RegisterScreen = ({navigation}) => {
 
                                                     </View>
                                                 </View>
-                                            </Modal>
+                                            </Modal>) : (<Modal
+                                                // animationType="slide"
+                                                transparent={true}
+                                                visible={wlRankModalvisible}
+                                            // onRequestClose={() => {
+                                            //   setVisible(!visible);
+                                            // }}
+                                            >
+
+                                                <TouchableOpacity onPress={hideModal}>
+                                                    <View className="h-full w-full bg-[#000000bf]" />
+                                                </TouchableOpacity>
+
+                                                <View className={`absolute bottom-64 bg-[#261D37] w-96 left-[5px] rounded-2xl`} >
+                                                    <View className="p-3 mt-3">
+                                                        <View className="flex-row items-center justify-between mx-5">
+                                                            <Text className="text-white text-xl font-PlayBold">WL Rank</Text>
+                                                            <TouchableOpacity onPress={() => hideModal()}>
+                                                                <CloseSvg />
+                                                            </TouchableOpacity>
+                                                        </View>
+
+                                                        <View className="my-5 mx-5">
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectRank('NO WINS')
+                                                                hideModal()
+                                                            }}>
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">NO WINS</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectRank('0 - 5 WINS')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">0 - 5 WINS</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectRank('5 - 10 WINS')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">5 - 10 WINS</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectRank('10 - 15 WINS')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">10 - 15 WINS</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectRank('15+ WINS')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">15+ WINS</Text>
+                                                            </TouchableOpacity>
+                                                        </View>
+
+                                                    </View>
+                                                </View>
+                                            </Modal>)}
 
                                             <Text className="font-PlayBold text-white text-base mt-5">Country</Text>
                                             <TouchableOpacity onPress={() => setCountryModalVisible(!countryModalvisible)} className="p-3 border border-[#D1CBD8] mt-2 rounded-sm flex-row items-center justify-between">
@@ -387,7 +449,7 @@ const RegisterScreen = ({navigation}) => {
                                                 <DownArrowSvg />
                                             </TouchableOpacity>
 
-                                            <Modal
+                                            {isSmallScreen ? (<Modal
                                                 // animationType="slide"
                                                 transparent={true}
                                                 visible={countryModalvisible}
@@ -511,7 +573,131 @@ const RegisterScreen = ({navigation}) => {
 
                                                     </View>
                                                 </View>
-                                            </Modal>
+                                            </Modal>) : (<Modal
+                                                // animationType="slide"
+                                                transparent={true}
+                                                visible={countryModalvisible}
+                                            // onRequestClose={() => {
+                                            //   setVisible(!visible);
+                                            // }}
+                                            >
+
+                                                <TouchableOpacity onPress={hideModal}>
+                                                    <View className="h-full w-full bg-[#000000bf]" />
+                                                </TouchableOpacity>
+
+                                                <View className="absolute top-1  bg-[#261D37] w-96 left-[5px] rounded-2xl">
+                                                    <View className="p-3 mt-3">
+                                                        <View className="flex-row items-center justify-between mx-5">
+                                                            <Text className="text-white text-xl font-PlayBold">Country</Text>
+                                                            <TouchableOpacity onPress={() => hideModal()}>
+                                                                <CloseSvg />
+                                                            </TouchableOpacity>
+                                                        </View>
+
+                                                        <View className="my-5 mx-5">
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Afghanistan')
+                                                                hideModal()
+                                                            }}>
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Afghanistan</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Algeria')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Algeria</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Argentina')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Argentina</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Bahamas')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Bahamas</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Bangladesh')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Bangladesh</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Canada')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Canada</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Denmark')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Denmark</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Egypt')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Egypt</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Fiji')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Fiji</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Finland')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Finland</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Germany')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Germany</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('India')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">India</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('Netherlands')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">Netherlands</Text>
+                                                            </TouchableOpacity>
+
+                                                            <TouchableOpacity onPress={() => {
+                                                                setSelectCountry('New Zealand')
+                                                                hideModal()
+                                                            }} className="mt-5">
+                                                                <Text className="font-PlayBold text-lg text-[#D1CBD8]">New Zealand</Text>
+                                                            </TouchableOpacity>
+                                                        </View>
+
+                                                    </View>
+                                                </View>
+                                            </Modal>)}
 
                                         </View>
 
@@ -534,11 +720,15 @@ const RegisterScreen = ({navigation}) => {
                                             <Text className="text-white font-PlayBold text-base underline">Log in instead</Text>
                                         </TouchableOpacity>
 
-                                        <View className="flex-row mt-5 w-[310px]">
+                                        {isSmallScreen ? (<View className="flex-row mt-5 w-[310px]">
                                             <Text className="font-PlayBold -mt-1 text-sm text-[#1890FF]">Note:</Text>
 
                                             <Text className="font-PlayRegular text-xs text-[#1890FF]"> Players must have residence in any of the following territories: Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland, Türkiye, Ukraine, United Kingdom.</Text>
-                                        </View>
+                                        </View>) : (<View className="flex-row mt-5 w-[289px]">
+                                            <Text className="font-PlayBold -mt-1 text-sm text-[#1890FF]">Note:</Text>
+
+                                            <Text className="font-PlayRegular text-xs text-[#1890FF]"> Players must have residence in any of the following territories: Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland, Türkiye, Ukraine, United Kingdom.</Text>
+                                        </View>)}
 
                                     </View>
                                 </View>

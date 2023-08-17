@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import DrawerMenuSvg from '../../assets/svg/Drawer.svg';
 import NotificationSvg from '../../assets/svg/Notification.svg';
@@ -14,7 +14,10 @@ import TrophySvg from '../../assets/svg/Trophy.svg';
 import RankSvg from '../../assets/svg/Rank.svg';
 import { TextInput } from 'react-native-paper';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+
+    const isSmallScreen = Dimensions.get('screen').height > 850;
+
     return (
         <>
             <View className="bg-[#0B0711] h-full">
@@ -51,7 +54,7 @@ const HomeScreen = () => {
                         <Text className="font-PlayBold text-xl text-[#D1CBD8]">Upcoming games</Text>
                     </View>
 
-                    <View className="mt-5">
+                    {isSmallScreen ? (<View className="mt-5">
                         <View className="items-center">
                             <Image source={require('../../assets/Pic-1.png')} />
                         </View>
@@ -73,9 +76,31 @@ const HomeScreen = () => {
                                 <RightArrowSvg />
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </View>) : (<View className="mt-5">
+                        <View className="items-center">
+                            <Image source={require('../../assets/Pic-1.png')} />
+                        </View>
 
-                    <View className="mt-10 mx-5 flex-row items-center justify-between">
+                        <View className="opacity-90 bg-[#261D37] mx-[7px] p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]">
+                            <View>
+                                <Text className="font-PlayBold text-base text-[#D1CBD8]">FREE play 1Vs1 (training)</Text>
+
+                                <Text className="font-PlayRegular text-base text-[#D1CBD8]">Admin efoot | PS5 </Text>
+
+                                <Text className="font-PlayRegular text-sm text-[#D1CBD8]">26-05-23; 04:56</Text>
+                            </View>
+
+                            <TouchableOpacity onPress={() => console.log('pressed')} className='h-10 items-center justify-center w-16'>
+                                <LinearGradient
+                                    colors={['#4A00E8', '#3B3EFF']}
+                                    className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
+                                />
+                                <RightArrowSvg />
+                            </TouchableOpacity>
+                        </View>
+                    </View>)}
+
+                    <View className="mt-10 mx-4 flex-row items-center justify-between">
                         <View className="flex-row items-center space-x-2">
                             <GameSvg />
                             <Text className="font-PlayBold text-xl text-[#D1CBD8]">Games available (2)</Text>
@@ -86,7 +111,7 @@ const HomeScreen = () => {
                         </TouchableOpacity>
                     </View>
 
-                    <View className="mt-5 mx-5 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
+                    {isSmallScreen ? (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
                         <View>
                             <Image source={require('../../assets/Pic-2.png')} />
                         </View>
@@ -104,11 +129,29 @@ const HomeScreen = () => {
                                 <Text className="font-PlayBold text-sm text-[#FFFFFF]">Join Match</Text>
                             </TouchableOpacity>
                         </View>
-                    </View>
-
-                    <View className="mt-5 mx-5 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
+                    </View>) : (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
                         <View>
-                            <Image source={require('../../assets/Pic-3.png')} />
+                            <Image source={require('../../assets/Pic-2.png')} />
+                        </View>
+
+                        <View>
+                            <Text className="font-PlayBold text-sm text-[#D1CBD8]">FREE play 1Vs1 (training)</Text>
+                            <Text className="font-PlayRegular text-sm text-[#D1CBD8]">Admin efoot | PS5 </Text>
+                            <Text className="font-PlayRegular text-xs text-[#D1CBD8]">26-05-23; 04:56</Text>
+
+                            <TouchableOpacity onPress={() => console.log('pressed')} className='h-10 items-center justify-center w-28 mt-3'>
+                                <LinearGradient
+                                    colors={['#4A00E8', '#3B3EFF']}
+                                    className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
+                                />
+                                <Text className="font-PlayBold text-sm text-[#FFFFFF]">Join Match</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>)}
+
+                    {isSmallScreen ? (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
+                        <View>
+                            <Image source={require('../../assets/Pic-2.png')} />
                         </View>
 
                         <View>
@@ -124,7 +167,27 @@ const HomeScreen = () => {
                                 <Text className="font-PlayBold text-sm text-[#FFFFFF]">Join Match</Text>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </View>) : (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
+                        <View>
+                            <Image source={require('../../assets/Pic-3.png')} />
+                        </View>
+
+                        <View>
+                            <Text className="font-PlayBold text-sm text-[#D1CBD8]">FREE play 1Vs1 (training)</Text>
+                            <Text className="font-PlayRegular text-sm text-[#D1CBD8]">Admin efoot | PS5 </Text>
+                            <Text className="font-PlayRegular text-xs text-[#D1CBD8]">26-05-23; 04:56</Text>
+
+                            <TouchableOpacity onPress={() => console.log('pressed')} className='h-10 items-center justify-center w-28 mt-3'>
+                                <LinearGradient
+                                    colors={['#4A00E8', '#3B3EFF']}
+                                    className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
+                                />
+                                <Text className="font-PlayBold text-sm text-[#FFFFFF]">Join Match</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>)}
+
+                    
 
                     <View className="mt-5 mx-5 flex-row items-center space-x-2">
                         <OnlineUserSvg />

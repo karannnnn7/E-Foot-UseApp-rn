@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
@@ -12,6 +12,7 @@ import CButton from '../components/CButton';
 const LoginScreen = ({ navigation }) => {
 
   const [showPassword, setShowPassword] = useState(true);
+  const isSmallScreen = Dimensions.get('screen').height > 850;
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -165,9 +166,15 @@ const LoginScreen = ({ navigation }) => {
                     </TouchableOpacity>
                   </View>
 
-                  <View className="absolute bottom-7 right-6">
-                    <Text className="font-PlayRegular text-white text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
-                  </View>
+                  {isSmallScreen ? (
+                    <View className="absolute bottom-7 right-6">
+                      <Text className="font-PlayRegular text-white text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
+                    </View>
+                  ) : (
+                    <View className="absolute bottom-7 right-7">
+                      <Text className="font-PlayRegular text-white text-sm">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
+                    </View>
+                  )}
                 </View>
               </View>
             </TouchableOpacity>
