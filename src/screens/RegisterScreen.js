@@ -10,7 +10,7 @@ import { TextInput, Switch } from 'react-native-paper';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}) => {
 
     const [showPassword, setShowPassword] = useState(true);
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -526,7 +526,7 @@ const RegisterScreen = () => {
                                         </View>
 
                                         <View className="mt-7">
-                                            <CButton btnText={'Sign Up'} onPress={() => console.log('pressed')} />
+                                            <CButton btnText={'Sign Up'} onPress={() => navigation.navigate('home')} />
                                         </View>
 
                                         <TouchableOpacity onPress={() => navigation.navigate('login')} className="flex-row items-center justify-center mt-5">
