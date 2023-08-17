@@ -8,8 +8,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        PlayBold: "Play-Bold",
-        PlayRegular: "Play-Regular",
+        ChakraPetchBold: "ChakraPetch-Bold",
+        ChakraPetchBoldItalic: "ChakraPetch-BoldItalic",
+        ChakraPetchItalic: "ChakraPetch-Italic",
+        ChakraPetchLight: "ChakraPetch-Light",
+        ChakraPetchLightItalic: "ChakraPetch-LightItalic",
+        ChakraPetchMedium: "ChakraPetch-Medium",
+        ChakraPetchMediumItalic: "ChakraPetch-MediumItalic",
+        ChakraPetchSemiBold: "ChakraPetch-SemiBold",
+        ChakraPetchSemiBoldItalic: "ChakraPetch-SemiBoldItalic",
       },
     },
   },

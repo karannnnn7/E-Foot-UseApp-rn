@@ -61,12 +61,12 @@ const ForgotPasswordScreen = ({navigation}) => {
                             </View>
                         </View>
 
-                        <Text className="font-PlayBold text-2xl text-white mt-10">Forgot Password? 🔐</Text>
+                        <Text className="font-ChakraPetchBold text-2xl text-white mt-10">Forgot Password? 🔐</Text>
 
-                        <Text className="mt-4 font-PlayRegular text-base text-[#D1CBD8]">Enter your email and we will send you all the instructions to rest your password</Text>
+                        <Text className="mt-4 font-ChakraPetchMedium text-base text-[#D1CBD8]">Enter your email and we will send you all the instructions to rest your password</Text>
 
                         <View className="mt-7">
-                            <Text className="font-PlayBold text-white text-base">Your Email</Text>
+                            <Text className="font-ChakraPetchSemiBold text-white text-base">Your Email</Text>
                             <TextInput
                                 value={email}
                                 onChangeText={handleEmailChanged}
@@ -91,7 +91,7 @@ const ForgotPasswordScreen = ({navigation}) => {
                         </View>
 
                         <TouchableOpacity onPress={() => navigation.navigate('login')} className="mt-8 items-center">
-                            <Text className="font-PlayBold text-base text-[#FFFFFF] underline">Back to login</Text>
+                            <Text className="font-ChakraPetchSemiBold text-base text-[#FFFFFF] underline">Back to login</Text>
                         </TouchableOpacity>
 
                     </View>

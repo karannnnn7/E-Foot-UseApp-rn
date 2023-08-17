@@ -11,17 +11,25 @@ const App = () => {
 
   useEffect(() => {
     async function loadFonts() {
-    SplashScreen.preventAutoHideAsync();
-      //loading Fonts
+      SplashScreen.preventAutoHideAsync();
+      //Loading Fonts
       await Fonts.loadAsync({
-        "Play-Bold": require('./assets/fonts/Play-Bold.ttf'),
-        "Play-Regular": require('./assets/fonts/Play-Regular.ttf'),
+        'ChakraPetch-Bold': require('./assets/fonts/ChakraPetch-Bold.ttf'),
+        'ChakraPetch-BoldItalic': require('./assets/fonts/ChakraPetch-BoldItalic.ttf'),
+        'ChakraPetch-Italic': require('./assets/fonts/ChakraPetch-Italic.ttf'),
+        'ChakraPetch-Light': require('./assets/fonts/ChakraPetch-Light.ttf'),
+        'ChakraPetch-LightItalic': require('./assets/fonts/ChakraPetch-LightItalic.ttf'),
+        'ChakraPetch-Medium': require('./assets/fonts/ChakraPetch-Medium.ttf'),
+        'ChakraPetch-MediumItalic': require('./assets/fonts/ChakraPetch-MediumItalic.ttf'),
+        'ChakraPetch-SemiBold': require('./assets/fonts/ChakraPetch-SemiBold.ttf'),
+        'ChakraPetch-SemiBoldItalic': require('./assets/fonts/ChakraPetch-SemiBoldItalic.ttf'),
       });
+
       setIsFontLoaded(true);
       SplashScreen.hideAsync();
     }
     loadFonts();
-  }, []);
+  }, [])
 
   return (
     <SafeAreaView className="bg-[#0B0711] flex-1">

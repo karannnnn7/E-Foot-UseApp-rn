@@ -93,10 +93,10 @@ const LoginScreen = ({ navigation }) => {
                     </View>
                   </View>
 
-                  <Text className="font-PlayBold text-2xl text-white mt-10">Welcome! Log In to Start .</Text>
+                  <Text className="font-ChakraPetchBold text-2xl text-white mt-10">Welcome! Log In to Start .</Text>
 
                   <View className="mt-5">
-                    <Text className="font-PlayBold text-white text-base">Email/Username</Text>
+                    <Text className="font-ChakraPetchSemiBold text-white text-base">Email/Username</Text>
                     <TextInput
                       value={email}
                       onChangeText={handleEmailChanged}
@@ -114,7 +114,7 @@ const LoginScreen = ({ navigation }) => {
                       null
                     )}
 
-                    <Text className="font-PlayBold text-white text-base mt-5">Password</Text>
+                    <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">Password</Text>
                     <TextInput
                       value={password}
                       onChangeText={handlePasswordChanged}
@@ -141,7 +141,7 @@ const LoginScreen = ({ navigation }) => {
                     )}
 
                     <TouchableOpacity onPress={() => navigation.navigate('forgotPassword')} className="mt-3 items-end">
-                      <Text className="text-white text-base font-PlayBold underline">Forgot password?</Text>
+                      <Text className="text-white text-base font-ChakraPetchSemiBold underline">Forgot password?</Text>
                     </TouchableOpacity>
                   </View>
 
@@ -150,25 +150,25 @@ const LoginScreen = ({ navigation }) => {
                   </View>
 
                   <TouchableOpacity onPress={() => navigation.navigate('register')} className="flex-row items-center mt-5">
-                    <Text className="text-white font-PlayRegular text-base">New on our platform? </Text>
-                    <Text className="text-white font-PlayBold text-base underline">Create  a new account </Text>
+                    <Text className="text-white font-ChakraPetchMedium text-base">New on our platform? </Text>
+                    <Text className="text-white font-ChakraPetchMedium text-base underline">Create  a new account </Text>
                   </TouchableOpacity>
 
                   <View className="flex-row items-center justify-between mt-7">
                     <TouchableOpacity onPress={() => console.log('pressed')} className="flex-row items-center border border-[#D1CBD8] p-3 rounded-lg space-x-2">
-                      <Text className="font-PlayBold text-white text-base">Login with </Text>
+                      <Text className="font-ChakraPetchSemiBold text-white text-base">Login with </Text>
                       <GoogleSvg />
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => console.log('pressed')} className="flex-row items-center border border-[#D1CBD8] p-3 rounded-lg space-x-2">
-                      <Text className="font-PlayBold text-white text-base">Login with </Text>
+                      <Text className="font-ChakraPetchSemiBold text-white text-base">Login with </Text>
                       <FaceBookSvg />
                     </TouchableOpacity>
                   </View>
 
                   {isSmallScreen ? (
                     <View className="absolute bottom-7 right-6">
-                      <Text className="font-PlayRegular text-white text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
+                      <Text className="font-ChakraPetchLight text-white text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
                     </View>
                   ) : (
                     <View className="absolute bottom-7 right-7">
