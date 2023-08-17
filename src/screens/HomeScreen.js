@@ -13,7 +13,7 @@ import FilterSvg from '../../assets/svg/Filter.svg';
 import TrophySvg from '../../assets/svg/Trophy.svg';
 import RankSvg from '../../assets/svg/Rank.svg';
 import HideLine from '../../assets/svg/HideLine.svg';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 
 const HomeScreen = ({ navigation }) => {
 
