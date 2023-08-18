@@ -36,6 +36,11 @@ const HomeScreen = ({ navigation }) => {
         setanimationValue(new Animated.Value(1));
     };
 
+    //For OpenDrawer with Custom Button
+    const openDrawer = () => {
+        navigation.openDrawer();
+    };
+
     return (
         <>
             <View className="bg-[#0B0711] h-full">
@@ -43,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
 
                 {/* Header */}
                 <View className="flex-row items-center justify-between mx-5 mt-5">
-                    <TouchableOpacity onPress={() => console.log('pressed')}>
+                    <TouchableOpacity onPress={openDrawer}>
                         <DrawerMenuSvg />
                     </TouchableOpacity>
 
@@ -315,7 +320,7 @@ const HomeScreen = ({ navigation }) => {
                                     </TouchableOpacity>
 
                                     {isSmallScreen ? (<View className="my-10 mx-5 flex-row items-center justify-between">
-                                        <TouchableOpacity className=" items-center border border-[#D1CBD8] p-3 rounded-lg w-40">
+                                        <TouchableOpacity onPress={() => hideModal(true)} className=" items-center border border-[#D1CBD8] p-3 rounded-lg w-40">
                                             <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Cancel</Text>
                                         </TouchableOpacity>
 
@@ -327,7 +332,7 @@ const HomeScreen = ({ navigation }) => {
                                             <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Apply</Text>
                                         </TouchableOpacity>
                                     </View>) : (<View className="my-10 mx-5 flex-row items-center justify-between space-x-5">
-                                        <TouchableOpacity className=" items-center border border-[#D1CBD8] p-3 rounded-lg w-40">
+                                        <TouchableOpacity onPress={() => hideModal(true)} className=" items-center border border-[#D1CBD8] p-3 rounded-lg w-40">
                                             <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Cancel</Text>
                                         </TouchableOpacity>
 

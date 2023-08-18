@@ -3,6 +3,7 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
+import MainScreen from "../screens/MainScreen";
 
 const Routes = () => {
 
@@ -10,13 +11,14 @@ const Routes = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName={'login'}
+            initialRouteName={'main'}
             screenOptions={{ headerShown: false }}
         >
             <Stack.Screen name="login" component={LoginScreen} />
             <Stack.Screen name="register" component={RegisterScreen} />
             <Stack.Screen name="home" component={HomeScreen} />
             <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
+            <Stack.Screen name="main" component={MainScreen} />
         </Stack.Navigator>
     );
 };
