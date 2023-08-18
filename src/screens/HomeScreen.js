@@ -14,6 +14,9 @@ import TrophySvg from '../../assets/svg/Trophy.svg';
 import RankSvg from '../../assets/svg/Rank.svg';
 import HideLine from '../../assets/svg/HideLine.svg';
 import { TextInput } from 'react-native-paper';
+import MainScreen from './MainScreen';
+import Drawer from '../components/Drawer';
+import BottomTabs from '../components/BottomTabs';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -44,7 +47,6 @@ const HomeScreen = ({ navigation }) => {
     return (
         <>
             <View className="bg-[#0B0711] h-full">
-
 
                 {/* Header */}
                 <View className="flex-row items-center justify-between mx-5 mt-5">
@@ -412,6 +414,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>
                 </ScrollView>
+
             </View>
         </>
     )

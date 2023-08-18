@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import Drawer from '../components/Drawer';
+import { View } from 'react-native';
+import BottomTabs from '../components/BottomTabs';
 
 const MainScreen = () => {
   return (
     <View className="flex-1">
-        <Drawer />
+        <BottomTabs />
     </View>
   )
 }
