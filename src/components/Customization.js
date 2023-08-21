@@ -21,10 +21,10 @@ const Customization = ({ navigation }) => {
         <>
             <View className="bg-[#261D37] h-full">
                 <View className="flex-row items-center justify-between">
-                    <View className="mt-5 mx-3 flex-row items-center space-x-2">
+                    <TouchableOpacity onPress={() => navigation.navigate('main')} className="mt-5 mx-3 flex-row items-center space-x-2">
                         <DrawerLogoSvg />
                         <Text className="font-ChakraPetchBold text-3xl text-[#D1CBD8] mt-2">E-Foot.NL</Text>
-                    </View>
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={closeDrawer} className="mt-5 mr-3">
                         <CloseSvg />
@@ -37,12 +37,15 @@ const Customization = ({ navigation }) => {
                         <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8]">My profile</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity className="flex-row items-center space-x-3 my-5">
+                    <TouchableOpacity onPress={() => navigation.navigate('myMatches')} className="flex-row items-center space-x-3 my-5">
                         <MyMatchSvg />
                         <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8]">My Matches</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity className="flex-row items-center space-x-3 my-5">
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('contectUs')
+                        closeDrawer
+                    }} className="flex-row items-center space-x-3 my-5">
                         <ContectUsSvg />
                         <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8]">Contact Us</Text>
                     </TouchableOpacity>
@@ -76,7 +79,7 @@ const Customization = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
 
-                    <View className="items-center mt-16"> 
+                    <View className="items-center mt-16">
                         <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Made with  💙 Adept Digitals</Text>
                     </View>
                 </View>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Animated } from 'react-native';
-import CommonHeader from '../components/CommonHeader';
+import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
+import CommonHeader from '../components/CommonHeader';
 import TournamentCupSvg from '../../assets/svg/TournamentCup.svg';
 import SearchSvg from '../../assets/svg/Search.svg';
 import FilterSvg from '../../assets/svg/Filter.svg';
@@ -10,7 +11,6 @@ import Pic4Svg from '../../assets/svg/Pic-4.svg';
 import Pic5Svg from '../../assets/svg/Pic-5.svg';
 import Pic6Svg from '../../assets/svg/Pic-6.svg';
 import PPSvg from '../../assets/svg/PP.svg';
-import { TextInput } from 'react-native-paper';
 
 const StartGameTab = ({ navigation }) => {
 

@@ -2,6 +2,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "../screens/HomeScreen";
 import Customization from "./Customization";
 import MainScreen from "../screens/MainScreen";
+import ContextUs from "../screens/ContextUs";
+import MyMatches from "../screens/MyMatches";
 
 
 const Drawer = () => {
@@ -16,6 +18,8 @@ const Drawer = () => {
         >
             <Drawer.Screen name="home" component={HomeScreen} />
             <Drawer.Screen name="main" component={MainScreen} />
+            <Drawer.Screen name="contectUs" component={ContextUs} />
+            <Drawer.Screen name="myMatches" component={MyMatches} />
         </Drawer.Navigator>
     );
 };

@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "usesIcloudStorage": true
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +32,7 @@
       "eas": {
         "projectId": "e678f03a-2ec8-4a2d-b1f0-4f8c3c11d48a"
       }
-    }
+    },
+    "plugins": ["expo-document-picker"]
   }
 }

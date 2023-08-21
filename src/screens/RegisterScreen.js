@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions } from 'react-native';
+import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
@@ -69,8 +69,8 @@ const RegisterScreen = ({ navigation }) => {
         setanimationValue(new Animated.Value(1));
     };
 
+    
     //Validation
-
     const handleUserNameChanged = (text) => {
         setUserName(text);
         if (text.length < 6) {
