@@ -67,7 +67,9 @@ const BottomTabs = () => {
 
                         case 'game':
                             iconName = (
-                                <NewGameSvg />
+                                <View className="absolute bottom-0 shadow-sm shadow-[#4517F1]">
+                                    <NewGameSvg />
+                                </View>
                             );
 
                             break;
