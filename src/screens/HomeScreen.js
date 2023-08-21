@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Modal, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import DrawerMenuSvg from '../../assets/svg/Drawer.svg';
-import NotificationSvg from '../../assets/svg/Notification.svg';
-import FlagSvg from '../../assets/svg/Flag.svg';
-import ProfilePicSvg from '../../assets/svg/ProfilePic.svg';
 import GameSvg from '../../assets/svg/Game.svg';
 import RightArrowSvg from '../../assets/svg/RightArrow.svg';
 import OnlineUserSvg from '../../assets/svg/OnlineUser.svg';
@@ -13,10 +9,14 @@ import FilterSvg from '../../assets/svg/Filter.svg';
 import TrophySvg from '../../assets/svg/Trophy.svg';
 import RankSvg from '../../assets/svg/Rank.svg';
 import HideLine from '../../assets/svg/HideLine.svg';
+import Pic1Svg from '../../assets/svg/Pic-1.svg';
+import Pic2Svg from '../../assets/svg/Pic-2.svg';
+import Pic3Svg from '../../assets/svg/Pic-3.svg';
+import PPic1Svg from '../../assets/svg/PPic-1.svg';
+import PPic2Svg from '../../assets/svg/PPic-2.svg';
+import PPic3Svg from '../../assets/svg/PPic-3.svg';
 import { TextInput } from 'react-native-paper';
-import MainScreen from './MainScreen';
-import Drawer from '../components/Drawer';
-import BottomTabs from '../components/BottomTabs';
+import CommonHeader from '../components/CommonHeader';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -39,39 +39,12 @@ const HomeScreen = ({ navigation }) => {
         setanimationValue(new Animated.Value(1));
     };
 
-    //For OpenDrawer with Custom Button
-    const openDrawer = () => {
-        navigation.openDrawer();
-    };
-
     return (
         <>
             <View className="bg-[#0B0711] h-full">
 
                 {/* Header */}
-                <View className="flex-row items-center justify-between mx-5 mt-5">
-                    <TouchableOpacity onPress={openDrawer}>
-                        <DrawerMenuSvg />
-                    </TouchableOpacity>
-
-                    <View className="flex-row items-center space-x-5">
-                        <TouchableOpacity className="bg-transparent bg-[#140055] border border-[#3B3EFF] rounded-xl p-3">
-                            <Text className="text-white text-sm font-ChakraPetchBold">0 - 5 WINS</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <NotificationSvg />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <FlagSvg />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <ProfilePicSvg />
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <CommonHeader navigation={navigation} />
 
 
                 <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-5 h-full">
@@ -82,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
 
                     {isSmallScreen ? (<View className="mt-5">
                         <View className="items-center">
-                            <Image source={require('../../assets/Pic-1.png')} />
+                            <Pic1Svg />
                         </View>
 
                         <View className="opacity-90 bg-[#261D37] mx-4 p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]">
@@ -104,7 +77,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>) : (<View className="mt-5">
                         <View className="items-center">
-                            <Image source={require('../../assets/Pic-1.png')} />
+                            <Pic1Svg />
                         </View>
 
                         <View className="opacity-90 bg-[#261D37] mx-[7px] p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]">
@@ -139,7 +112,7 @@ const HomeScreen = ({ navigation }) => {
 
                     {isSmallScreen ? (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
                         <View>
-                            <Image source={require('../../assets/Pic-2.png')} />
+                            <Pic2Svg />
                         </View>
 
                         <View>
@@ -157,7 +130,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>) : (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
                         <View>
-                            <Image source={require('../../assets/Pic-2.png')} />
+                            <Pic2Svg />
                         </View>
 
                         <View>
@@ -177,7 +150,7 @@ const HomeScreen = ({ navigation }) => {
 
                     {isSmallScreen ? (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
                         <View>
-                            <Image source={require('../../assets/Pic-2.png')} />
+                            <Pic3Svg />
                         </View>
 
                         <View>
@@ -195,7 +168,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>) : (<View className="mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between">
                         <View>
-                            <Image source={require('../../assets/Pic-3.png')} />
+                            <Pic3Svg />
                         </View>
 
                         <View>
@@ -354,7 +327,7 @@ const HomeScreen = ({ navigation }) => {
                     <View className="mt-5 mx-5 bg-[#261D37] p-3 rounded-lg">
                         <View className="flex-row items-center justify-between">
                             <View className="flex-row items-center space-x-3">
-                                <Image source={require('../../assets/PPic-1.png')} />
+                                <PPic1Svg />
                                 <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Patric Haris</Text>
                             </View>
 
@@ -375,7 +348,7 @@ const HomeScreen = ({ navigation }) => {
                     <View className="mt-5 mx-5 bg-[#261D37] p-3 rounded-lg">
                         <View className="flex-row items-center justify-between">
                             <View className="flex-row items-center space-x-3">
-                                <Image source={require('../../assets/PPic-2.png')} />
+                                <PPic2Svg />
                                 <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Patric Haris</Text>
                             </View>
 
@@ -396,7 +369,7 @@ const HomeScreen = ({ navigation }) => {
                     <View className="mt-5 mx-5 bg-[#261D37] p-3 rounded-lg">
                         <View className="flex-row items-center justify-between">
                             <View className="flex-row items-center space-x-3">
-                                <Image source={require('../../assets/PPic-3.png')} />
+                                <PPic3Svg />
                                 <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Patric Haris</Text>
                             </View>
 
@@ -413,6 +386,8 @@ const HomeScreen = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
+
+                    <View className="mt-10" />
                 </ScrollView>
 
             </View>

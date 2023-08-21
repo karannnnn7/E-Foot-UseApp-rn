@@ -4,6 +4,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import MainScreen from "../screens/MainScreen";
+import Drawer from "../components/Drawer";
 
 const Routes = () => {
 
@@ -11,14 +12,14 @@ const Routes = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName={'main'}
+            initialRouteName={'drawer'}
             screenOptions={{ headerShown: false }}
         >
             <Stack.Screen name="login" component={LoginScreen} />
             <Stack.Screen name="register" component={RegisterScreen} />
             <Stack.Screen name="home" component={HomeScreen} />
             <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
-            <Stack.Screen name="main" component={MainScreen} />
+            <Stack.Screen name="drawer" component={Drawer} />
         </Stack.Navigator>
     );
 };
