@@ -32,7 +32,7 @@ const Customization = ({ navigation }) => {
                 </View>
 
                 <View className="mx-5 mt-10">
-                    <TouchableOpacity className="flex-row items-center space-x-3 my-5">
+                    <TouchableOpacity onPress={() => navigation.navigate('myProfile')} className="flex-row items-center space-x-3 my-5">
                         <MyProfileSvg />
                         <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8]">My profile</Text>
                     </TouchableOpacity>
