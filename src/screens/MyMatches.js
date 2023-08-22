@@ -140,7 +140,7 @@ const MyMatches = ({ navigation }) => {
                                             </TouchableOpacity>
                                         </View>
 
-                                        <View className="bg-[#4d442c] mt-5 mx-5 p-2 rounded-lg">
+                                        <View className="bg-[#332d1c] mt-5 mx-5 p-2 rounded-lg">
                                             <Text className="font-ChakraPetchBold text-sm text-[#FFC107]">Note:</Text>
                                             <Text className="font-ChakraPetchLight text-sm text-[#FFC107]">Upload screenshot or score image of game to resolve dispute. Make sure scores are visible properly Uploaded image will be used for inspecting scores. Once uploaded you can't reupload it again</Text>
                                         </View>

@@ -63,6 +63,7 @@ const RegisterScreen = ({ navigation }) => {
             useNativeDriver: true,
         }).start();
     };
+    
     const hideModal = () => {
         setCountryModalVisible(false);
         setWlRankModalVisible(false);

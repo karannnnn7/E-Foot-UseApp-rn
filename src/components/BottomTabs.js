@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dimensions, Platform, View } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import DashBoardTab from "../screens/DashBoardTab";
-import MyMatchesTab from "../screens/MyMatchesTab";
 import StartGameTab from "../screens/StartGameTab";
 import ChatTab from "../screens/ChatTab";
 import HomeSvg from '../../assets/svg/Home.svg';
@@ -15,6 +14,7 @@ import ActiveCupSvg from '../../assets/svg/ActiveCup.svg';
 import ChatSvg from '../../assets/svg/Chat.svg';
 import ActiveChatSvg from '../../assets/svg/ActiveChat.svg';
 import TabIcon from "./TabIcon";
+import MyMatches from "../screens/MyMatches";
 
 
 const BottomTabs = () => {
@@ -24,6 +24,7 @@ const BottomTabs = () => {
     const { height, width } = Dimensions.get('window');
     const isiPhoneSE = Platform.OS === 'ios' && height === 667 && width === 375;
     const isLargeScreen = width > 480;
+    const isSmallScreen = Dimensions.get('screen').height > 850;
 
     return (
         <Tab.Navigator
@@ -67,7 +68,7 @@ const BottomTabs = () => {
 
                         case 'game':
                             iconName = (
-                                <View className="absolute bottom-0 shadow-sm shadow-[#4517F1]">
+                                <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} shadow-sm shadow-[#4517F1]`}>
                                     <NewGameSvg />
                                 </View>
                             );
@@ -158,7 +159,7 @@ const BottomTabs = () => {
             />
             <Tab.Screen
                 name="game"
-                component={MyMatchesTab}
+                component={MyMatches}
             />
             <Tab.Screen
                 name="StartGame"
