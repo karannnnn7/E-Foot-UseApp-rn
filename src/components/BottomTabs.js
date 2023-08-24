@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dimensions, Platform, View } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import DashBoardTab from "../screens/DashBoardTab";
-import StartGameTab from "../screens/StartGameTab";
 import ChatTab from "../screens/ChatTab";
 import HomeSvg from '../../assets/svg/Home.svg';
 import ActiveHomeSvg from '../../assets/svg/ActiveHome.svg';
@@ -15,6 +14,8 @@ import ChatSvg from '../../assets/svg/Chat.svg';
 import ActiveChatSvg from '../../assets/svg/ActiveChat.svg';
 import TabIcon from "./TabIcon";
 import MyMatches from "../screens/MyMatches";
+import TournamentScreen from "../screens/TournamentScreen";
+import StartGameTab from "../screens/StartGameTab";
 
 
 const BottomTabs = () => {
@@ -66,7 +67,7 @@ const BottomTabs = () => {
 
                             break;
 
-                        case 'game':
+                        case 'startGame':
                             iconName = (
                                 <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} shadow-sm shadow-[#4517F1]`}>
                                     <NewGameSvg />
@@ -75,7 +76,7 @@ const BottomTabs = () => {
 
                             break;
 
-                        case 'StartGame':
+                        case 'tournament':
                             iconName = (
                                 <TabIcon
                                     isActive={focused}
@@ -158,12 +159,12 @@ const BottomTabs = () => {
                 component={DashBoardTab}
             />
             <Tab.Screen
-                name="game"
-                component={MyMatches}
+                name="startGame"
+                component={StartGameTab}
             />
             <Tab.Screen
-                name="StartGame"
-                component={StartGameTab}
+                name="tournament"
+                component={TournamentScreen}
             />
             <Tab.Screen
                 name="chat"

@@ -34,7 +34,7 @@ const CommonHeader = ({ navigation }) => {
                         <FlagSvg />
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('myProfile')}>
                         <ProfilePicSvg />
                     </TouchableOpacity>
                 </View>
