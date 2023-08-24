@@ -16,7 +16,7 @@ const CommonHeader = ({ navigation }) => {
 
     return (
         <View>
-            <View className="flex-row items-center justify-between mx-5 mb-5">
+            <View className="flex-row items-center justify-between mx-5 my-5">
                 <TouchableOpacity onPress={openDrawer}>
                     <DrawerMenuSvg />
                 </TouchableOpacity>

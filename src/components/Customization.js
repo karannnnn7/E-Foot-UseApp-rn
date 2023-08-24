@@ -50,7 +50,7 @@ const Customization = ({ navigation }) => {
                         <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8]">Contact Us</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity className="flex-row items-center space-x-3 my-5">
+                    <TouchableOpacity onPress={() => navigation.navigate('howToPlay')} className="flex-row items-center space-x-3 my-5">
                         <HowToPlaySvg />
                         <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8]">How to play?</Text>
                     </TouchableOpacity>
