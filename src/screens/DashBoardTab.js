@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import CommonHeader from '../components/CommonHeader';
 import DashBoardHeaderSvg from '../../assets/svg/DashBoardHeader.svg';
@@ -7,6 +7,8 @@ import GuideSvg from '../../assets/svg/Guide.svg';
 import ShowRankSvg from '../../assets/svg/ShowRank.svg';
 import CoinSvg from '../../assets/svg/Coin.svg';
 import SmallLogoSvg from '../../assets/svg/SmallLogo.svg'
+import PencilSvg from '../../assets/svg/Pencil.svg';
+import AddChatSvg from '../../assets/svg/AddChat.svg';
 
 const DashBoardTab = ({ navigation }) => {
 
@@ -31,6 +33,8 @@ const DashBoardTab = ({ navigation }) => {
 
   //Calculate the members of lossGames and use it to set the height of the Progres Bar
   const LossGamesProgressBarHeight = `${(loss / maxLoss) * 100}%`
+
+  const isSmallScreen = Dimensions.get('screen').height > 850;
 
 
   return (
@@ -186,39 +190,123 @@ const DashBoardTab = ({ navigation }) => {
 
                 <View>
                   <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Opponent</Text>
-                  <View className="mt-8 items-center">
+                  <View className="mt-9 items-center">
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
                   </View>
 
-                  <View className="mt-8 items-center">
+                  <View className="mt-9 items-center">
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
                   </View>
 
-                  <View className="mt-8 items-center">
+                  <View className="mt-9 items-center">
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
                   </View>
 
-                  <View className="mt-8 items-center">
+                  <View className="mt-9 items-center">
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
                   </View>
                 </View>
 
                 <View>
                   <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Status</Text>
-                  <View className="mt-8 items-center">
+                  <View className="mt-10 items-center">
                     <Text className="font-ChakraPetchMedium text-sm text-[#54D62C]">Win</Text>
                   </View>
 
-                  <View className="mt-8 items-center">
+                  <View className="mt-10 items-center">
                     <Text className="font-ChakraPetchMedium text-sm text-[#FF4842]">Win</Text>
                   </View>
 
-                  <View className="mt-8 items-center">
+                  <View className="mt-10 items-center">
                     <Text className="font-ChakraPetchMedium text-sm text-[#54D62C]">Win</Text>
                   </View>
 
-                  <View className="mt-8 items-center">
+                  <View className="mt-10 items-center">
                     <Text className="font-ChakraPetchMedium text-sm text-[#54D62C]">Win</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            <View className="mt-5 bg-[#261D37] h-auto p-5 rounded-lg">
+              <View className="flex-row items-center justify-between">
+                <View className="flex-row items-center space-x-3">
+                  <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">User Timeline</Text>
+                  <TouchableOpacity>
+                    <GuideSvg />
+                  </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity>
+                  <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8] underline">Show all</Text>
+                </TouchableOpacity>
+              </View>
+
+              <View className="flex-1 flex-row space-x-5 mt-5">
+                <View>
+                  <View className="h-8 w-8 rounded-full bg-[#1890FF1F] items-center justify-center">
+                    <PencilSvg />
+                  </View>
+                  <View className="items-center">
+                    <Text className="text-[#1890FF1F]">|</Text>
+                    <Text className="text-[#1890FF1F]">|</Text>
+                    <Text className="text-[#1890FF1F]">|</Text>
+                    <Text className="text-[#1890FF1F]">|</Text>
+                    <Text className="text-[#1890FF1F]">|</Text>
+                  </View>
+
+                  <View className="h-8 w-8 rounded-full bg-[#FFC1071F] items-center justify-center">
+                    <AddChatSvg />
+                  </View>
+                  <View className="items-center">
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                  </View>
+
+                  <View className="h-8 w-8 rounded-full bg-[#FFC1071F] items-center justify-center">
+                    <AddChatSvg />
+                  </View>
+                  <View className="items-center">
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1071F]">|</Text>
+                  </View>
+
+                  <View className="h-8 w-8 rounded-full bg-[#1890FF1F] items-center justify-center">
+                    <PencilSvg />
+                  </View>
+                </View>
+
+                <View>
+                  <View>
+                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Profile Updated</Text>
+                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">Monday  (12 June)</Text>
+                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You updated your profile picture</Text>
+                  </View>
+
+                  <View className={`${isSmallScreen ? 'mt-10' : 'mt-12'} w-72`}>
+                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Added In room</Text>
+                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">12 hours ago</Text>
+                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You have been added to the play room
+                      by Sam.</Text>
+                  </View>
+
+                  <View className={`${isSmallScreen ? 'mt-5' : 'mt-8'} w-72`}>
+                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Added In room</Text>
+                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">12 hours ago</Text>
+                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You have been added to the play room
+                      by Sam.</Text>
+                  </View>
+
+                  <View className={`${isSmallScreen ? 'mt-3' : 'mt-8'}`}>
+                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Profile Updated</Text>
+                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">Monday  (12 June)</Text>
+                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You updated your profile picture</Text>
                   </View>
                 </View>
               </View>
