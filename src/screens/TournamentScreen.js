@@ -83,9 +83,9 @@ const TournamentScreen = ({ navigation }) => {
 
               <View className="absolute bottom-0 bg-[#261D37] w-full rounded-t-2xl" >
                 <View className="p-3 mt-3">
-                  <View className="items-center">
+                  <TouchableOpacity onPress={() => hideModal()} className="items-center">
                     <HideLine />
-                  </View>
+                  </TouchableOpacity>
 
 
                   <View className="flex-row items-center justify-center space-x-3 my-5">

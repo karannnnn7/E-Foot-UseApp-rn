@@ -210,7 +210,7 @@ const MyProfileScreen = ({ navigation }) => {
                     </View>
                   </View>
 
-                  <View className="bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center justify-between">
+                  <View className="bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center  space-x-7">
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">https://myprofilelink.efoot.NL.098.Win...</Text>
                     <TouchableOpacity>
                       <CopyLinkSvg />
