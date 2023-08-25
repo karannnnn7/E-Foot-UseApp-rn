@@ -19,7 +19,133 @@ import NewChallengersTab from './RenderTabs/NewChallengersTab';
 const ChatTab = ({ navigation }) => {
 
   const isSmallScreen = Dimensions.get('screen').height > 840;
-  const [isselectedTab, setIsSelectedTab] = useState("NewChat");
+  const [isselectedTab, setIsSelectedTab] = useState("");
+  const [selected, setSelected] = useState('');
+
+  //For Changing Tabs
+  const renderChats = () => {
+    switch (isselectedTab) {
+      case 'NewChat':
+        return <NewChat />;
+
+      case 'NewChallengers':
+        return <NewChallengersTab />
+
+      default:
+        return <View>
+          <TouchableOpacity className="flex-row items-center justify-between mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP1Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jenny Wilson</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+              </View>
+            </View>
+
+            <View className="items-center space-y-2">
+              <Text className="font-ChakraPetchMedium text-xs text-[#33D49D]">11:20 pm</Text>
+              <View className="bg-[#33D49D] w-5 h-5 rounded-full items-center justify-center">
+                <Text className="text-[#FFFFFF]">2</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP2Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Robert Fox</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okii</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP3Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Eleneor Salsabil</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Great job!!</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP4Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jacob Jonas</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">You won!</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP5Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jenny Wilson</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Oh c’on</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP6Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Cooper wilson</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP7Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Rebekaa winson</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="mt-5">
+            <View className="flex-row items-center space-x-3">
+              <View>
+                <DP3Svg />
+              </View>
+
+              <View>
+                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Rebekaa winson</Text>
+                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>;
+    };
+  };
 
   return (
     <>
@@ -48,128 +174,23 @@ const ChatTab = ({ navigation }) => {
                 </View>
               </View>
 
-              <TouchableOpacity onPress={() => setIsSelectedTab('NewChallengers')} className={`${isselectedTab ? 'bg-[#261D37]' : 'bg-[#4A00E8]'} p-4 rounded-lg mt-1`}>
+              <TouchableOpacity onPress={() => {
+                setIsSelectedTab('NewChallengers')
+                setSelected('NewChallengers')
+              }} className={`${selected === 'NewChallengers' ? 'bg-[#4A00E8]' : 'bg-[#261D37]'} p-4 rounded-lg mt-1`}>
                 <NewChallengersSvg />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => setIsSelectedTab('NewChat')} className={`${isselectedTab ? 'bg-[#261D37]' : 'bg-[#4A00E8]'} p-4 rounded-lg mt-1`}>
+              <TouchableOpacity onPress={() => {
+                setIsSelectedTab('NewChat')
+                setSelected('NewChat')
+              }} className={`${selected === 'NewChat' ? 'bg-[#4A00E8]' : 'bg-[#261D37]'} p-4 rounded-lg mt-1`}>
                 <NewChatSvg />
               </TouchableOpacity>
             </View>
 
-            {isselectedTab == 'NewChat' ? (<NewChat />) : (<NewChallengersTab />)}
-
-            <View>
-              <TouchableOpacity className="flex-row items-center justify-between mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP1Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jenny Wilson</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
-                  </View>
-                </View>
-
-                <View className="items-center space-y-2">
-                  <Text className="font-ChakraPetchMedium text-xs text-[#33D49D]">11:20 pm</Text>
-                  <View className="bg-[#33D49D] w-5 h-5 rounded-full items-center justify-center">
-                    <Text className="text-[#FFFFFF]">2</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP2Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Robert Fox</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okii</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP3Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Eleneor Salsabil</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Great job!!</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP4Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jacob Jonas</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">You won!</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP5Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jenny Wilson</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Oh c’on</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP6Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Cooper wilson</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP7Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Rebekaa winson</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity className="mt-5">
-                <View className="flex-row items-center space-x-3">
-                  <View>
-                    <DP3Svg />
-                  </View>
-
-                  <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Rebekaa winson</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
+            <View className="flex-1">
+              {renderChats()}
             </View>
           </View>
 
