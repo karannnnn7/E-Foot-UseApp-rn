@@ -22,9 +22,9 @@ const CommonHeader = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <View className="flex-row items-center space-x-5">
-                    <TouchableOpacity className="bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3">
+                    <View className="bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3">
                         <Text className="text-white text-sm font-ChakraPetchBold">0 - 5 WINS</Text>
-                    </TouchableOpacity>
+                    </View>
 
                     <TouchableOpacity>
                         <NotificationSvg />
