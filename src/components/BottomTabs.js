@@ -69,7 +69,7 @@ const BottomTabs = () => {
 
                         case 'startGame':
                             iconName = (
-                                <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} shadow-sm shadow-[#4517F1]`}>
+                                <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} ${isLargeScreen ? 'bottom-0' : '-bottom-7'} shadow-sm shadow-[#4517F1]`}>
                                     <NewGameSvg />
                                 </View>
                             );

@@ -53,6 +53,7 @@ const MyProfileScreen = ({ navigation }) => {
   const [isSwitchOneOn, setIsSwitchOneOn] = useState(false);
   const [isSwitchTwoOn, setIsSwitchTwoOn] = useState(false);
   const isSmallScreen = Dimensions.get('screen').height > 850;
+  const isLargeScreen = Dimensions.get('screen').width > 480;
 
   const onToggleSwitchOne = () => setIsSwitchOneOn(!isSwitchOneOn);
   const onToggleSwitchTwo = () => setIsSwitchTwoOn(!isSwitchTwoOn);
@@ -703,7 +704,7 @@ const MyProfileScreen = ({ navigation }) => {
                     {isUserPreferencesOpen && (
                       <Animated.View className="bg-[#261D37] h-auto rounded-b-lg p-3">
                         <View>
-                          <View className={`flex-row items-center justify-between ${isSmallScreen ? 'w-[345px]' : 'w-[276px]'} space-x-4`}>
+                          <View className={`flex-row items-center justify-between ${isSmallScreen ? 'w-[345px]' : 'w-[276px]'} ${isLargeScreen ? 'w-[345px]' : 'w-[277px]'} space-x-4`}>
                             <Text className="font-ChakraPetchLight text-[17px] text-[#D1CBD8]">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
 
                             <Switch

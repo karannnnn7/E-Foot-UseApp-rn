@@ -53,7 +53,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP2Svg />
@@ -66,7 +66,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP3Svg />
@@ -79,7 +79,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP4Svg />
@@ -92,7 +92,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP5Svg />
@@ -105,7 +105,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP6Svg />
@@ -118,7 +118,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP7Svg />
@@ -131,7 +131,7 @@ const ChatTab = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity className="mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP3Svg />

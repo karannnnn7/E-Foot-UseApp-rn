@@ -1,34 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
 import BackArrowSvg from '../../assets/svg/BackArrow.svg';
 import ChatDp1Svg from '../../assets/svg/ChatDp1.svg';
 import MenuSvg from '../../assets/svg/Menu.svg';
 
 const ChatingScreen = ({ navigation }) => {
 
-    const [messages, setMessages] = useState([]);
-
-    useEffect(() => {
-        setMessages([
-            {
-                _id: 1,
-                text: 'Hello developer',
-                createdAt: new Date(),
-                user: {
-                    _id: 2,
-                    name: 'React Native',
-                    avatar: 'https://placeimg.com/140/140/any',
-                },
-            },
-        ]);
-    }, []);
-
-    const onSend = useCallback((newMessages = []) => {
-        setMessages(previousMessages =>
-            GiftedChat.append(previousMessages, newMessages),
-        );
-    }, []);
 
     return (
         <>
@@ -36,7 +13,7 @@ const ChatingScreen = ({ navigation }) => {
                 <View>
                     <View className="flex-row items-center justify-between mx-5 mt-5">
                         <View className="flex-row items-center space-x-5">
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
                                 <BackArrowSvg />
                             </TouchableOpacity>
 
@@ -55,16 +32,6 @@ const ChatingScreen = ({ navigation }) => {
                     </View>
 
                     <View className="border-b mt-2 border-[#D1CBD8]" />
-
-                    <View className="flex-1">
-                        <GiftedChat
-                            messages={messages}
-                            onSend={newMessages => onSend(newMessages)}
-                            user={{
-                                _id: 1,
-                            }}
-                        />
-                    </View>
                 </View>
             </View>
         </>
