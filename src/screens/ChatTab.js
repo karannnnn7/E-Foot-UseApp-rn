@@ -33,7 +33,7 @@ const ChatTab = ({ navigation }) => {
 
       default:
         return <View>
-          <TouchableOpacity className="flex-row items-center justify-between mt-5">
+          <TouchableOpacity onPress={() => navigation.navigate('chating')} className="flex-row items-center justify-between mt-5">
             <View className="flex-row items-center space-x-3">
               <View>
                 <DP1Svg />

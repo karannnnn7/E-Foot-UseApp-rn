@@ -5,9 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import CommonHeader from '../components/CommonHeader';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ProfileHeaderSvg from '../../assets/svg/ProfileHeader.svg';
-import FrameSvg from '../../assets/svg/Frame.svg';
-import Frame1Svg from '../../assets/svg/Frame1.svg';
-import Frame2Svg from '../../assets/svg/Frame2.svg';
+import ShieldSvg from '../../assets/svg/shield.svg';
 import DpSvg from '../../assets/svg/DP.svg';
 import CopyLinkSvg from '../../assets/svg/CopyLink.svg';
 import UserSvg from '../../assets/svg/User.svg';
@@ -21,6 +19,10 @@ import EditSvg from '../../assets/svg/Edit.svg';
 import ISvg from '../../assets/svg/I.svg';
 import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
+import TrophySvg from '../../assets/svg/Trophy.svg';
+import NewYouTubeSvg from '../../assets/svg/NewYouTube.svg';
+import NewChatSocialSvg from '../../assets/svg/NewChatSocial.svg';
+import NewInstagramSvg from '../../assets/svg/NewInstagram.svg';
 
 const MyProfileScreen = ({ navigation }) => {
 
@@ -204,13 +206,36 @@ const MyProfileScreen = ({ navigation }) => {
                   </View>
 
                   <View className="items-center mt-5">
-                    <Frame1Svg />
-                    <View className="absolute">
-                      <Frame2Svg />
+                    <ShieldSvg />
+                    <View className="absolute top-10">
+                      <DpSvg />
+
+                      <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8] text-center mt-5">Darshit Shah</Text>
+
+                      <View className="bg-[#FFC1071F] border border-[#FFC107] mx-5 p-2 flex-row items-center justify-center space-x-3 rounded-lg mt-3">
+                        <TrophySvg />
+                        <Text className="text-[#FFC107] font-ChakraPetchBold text-xl">12</Text>
+                      </View>
+
+                      <View className="flex-row items-center justify-around mt-5">
+                        <TouchableOpacity>
+                          <NewYouTubeSvg />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
+                          <NewChatSocialSvg />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
+                          <NewInstagramSvg />
+                        </TouchableOpacity>
+                      </View>
                     </View>
+
+                    
                   </View>
 
-                  <View className="bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center  space-x-7">
+                  <View className={`bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center ${isSmallScreen ? 'space-x-7' : 'space-x-3'}`}>
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">https://myprofilelink.efoot.NL.098.Win...</Text>
                     <TouchableOpacity>
                       <CopyLinkSvg />

@@ -4,6 +4,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import Drawer from "../components/Drawer";
+import ChatingScreen from "../screens/ChatingScreen";
 
 const Routes = () => {
 
@@ -19,6 +20,7 @@ const Routes = () => {
             <Stack.Screen name="home" component={HomeScreen} />
             <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
             <Stack.Screen name="drawer" component={Drawer} />
+            <Stack.Screen name="chating" component={ChatingScreen} />
         </Stack.Navigator>
     );
 };
