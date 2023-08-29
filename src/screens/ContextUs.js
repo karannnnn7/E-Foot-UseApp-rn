@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import CommonHeader from '../components/CommonHeader';
 import ContextUsHeaderSvg from '../../assets/svg/ContectUsHeader.svg';
@@ -142,7 +142,10 @@ const ContextUs = ({ navigation }) => {
                                         <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Send Message</Text>
                                     </TouchableOpacity>
                                 ) : (
-                                    <TouchableOpacity onPress={() => console.log('pressed')} className='h-12  items-center justify-center w-full mt-7 bg-[#98959A] rounded-lg'>
+                                    <TouchableOpacity onPress={() => {
+                                        console.log('pressed');
+                                        Alert('We will contect you soon!');
+                                        }} className='h-12  items-center justify-center w-full mt-7 bg-[#98959A] rounded-lg'>
                                         <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Send Message</Text>
                                     </TouchableOpacity>
                                 )}

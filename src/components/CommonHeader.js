@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import DrawerMenuSvg from '../../assets/svg/Drawer.svg';
 import NotificationSvg from '../../assets/svg/Notification.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import ProfilePicSvg from '../../assets/svg/ProfilePic.svg';
+import ProfileIconSvg from '../../assets/svg/ProfileIcon.svg';
+import LightIconSvg from '../../assets/svg/LightIcon.svg';
+import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 
 
-const CommonHeader = ({ navigation }) => {
+const CommonHeader = ({ navigation, onPress }) => {
 
+    const [modalVisible, setModalVisible] = useState(false);
 
     //For OpenDrawer with Custom Button
     const openDrawer = () => {
         navigation.openDrawer();
     };
+
 
     return (
         <View>
@@ -34,9 +39,24 @@ const CommonHeader = ({ navigation }) => {
                         <FlagSvg />
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.navigate('myProfile')}>
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <ProfilePicSvg />
                     </TouchableOpacity>
+
+                    {modalVisible && (
+                        <View className="bg-[#261D37] w-24 absolute right-0 top-11 rounded-lg flex-row items-center justify-around">
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate('myProfile')
+                                setModalVisible(false)
+                            }} className="items-center my-2">
+                                <ProfileIconSvg />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={onPress} className="my-3 items-center">
+                                <LightIconSvg />
+                            </TouchableOpacity>
+                        </View>
+                    )}
                 </View>
             </View>
         </View>

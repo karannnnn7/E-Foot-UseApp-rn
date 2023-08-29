@@ -69,7 +69,7 @@ const BottomTabs = () => {
 
                         case 'startGame':
                             iconName = (
-                                <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} ${isLargeScreen ? 'bottom-0' : '-bottom-7'} shadow-sm shadow-[#4517F1]`}>
+                                <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} shadow-sm shadow-[#4517F1]`}>
                                     <NewGameSvg />
                                 </View>
                             );
@@ -134,18 +134,18 @@ const BottomTabs = () => {
                     backgroundColor: '#261D37',
                     height:
                         Platform.OS === 'android'
-                            ? 55
+                            ? 60
                             : isiPhoneSE
                                 ? 55
 
                                 : isLargeScreen
                                     ? 60
-                                    : 83,
+                                    : 63,
                     paddingLeft: 5,
                     paddingRight: 5,
                 },
                 tabBarItemStyle: {
-                    marginBottom: Platform.OS === 'android' ? 3 : 0,
+                    marginBottom: Platform.OS === 'android' ? 3 : -10,
                 },
             })}
             initialRouteName="home"

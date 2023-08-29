@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import BackArrowSvg from '../../assets/svg/BackArrow.svg';
 import ChatDp1Svg from '../../assets/svg/ChatDp1.svg';
@@ -6,11 +6,10 @@ import MenuSvg from '../../assets/svg/Menu.svg';
 
 const ChatingScreen = ({ navigation }) => {
 
-
     return (
         <>
             <View className="bg-[#0B0711] h-full">
-                <View>
+                <View className="bg-[#261D37] pb-5">
                     <View className="flex-row items-center justify-between mx-5 mt-5">
                         <View className="flex-row items-center space-x-5">
                             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -30,8 +29,6 @@ const ChatingScreen = ({ navigation }) => {
                             <MenuSvg />
                         </TouchableOpacity>
                     </View>
-
-                    <View className="border-b mt-2 border-[#D1CBD8]" />
                 </View>
             </View>
         </>
