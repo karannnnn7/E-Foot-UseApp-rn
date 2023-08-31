@@ -128,8 +128,6 @@ const BottomTabs = () => {
                 },
                 headerShown: false,
                 tabBarLabel: '',
-                tabBarActiveTintColor: '#fff',
-                tabBarInactiveTintColor: 'gray',
                 tabBarStyle: {
                     backgroundColor: '#261D37',
                     height:

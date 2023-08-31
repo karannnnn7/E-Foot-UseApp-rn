@@ -152,9 +152,9 @@ const ChatTab = ({ navigation }) => {
       <View className="bg-[#0B0711] h-full">
         <CommonHeader navigation={navigation} />
 
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="h-full">
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
           <View className="mx-5">
-            <View className="flex-row items-center space-x-3 mt-5">
+            <View className="flex-row items-center space-x-3">
               <ChatHeaderSvg />
 
               <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">Challenge a player</Text>

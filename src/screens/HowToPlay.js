@@ -19,9 +19,9 @@ const HowToPlay = ({ navigation }) => {
             <View className="bg-[#0B0711] h-full">
                 <CommonHeader navigation={navigation} />
 
-                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="h-full">
+                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
                     <View>
-                        <View className="flex-row items-center space-x-3 mt-5 mx-5">
+                        <View className="flex-row items-center space-x-3 mx-5">
                             <HowToPlayHeaderSvg />
                             <Text className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">How to play?</Text>
                         </View>

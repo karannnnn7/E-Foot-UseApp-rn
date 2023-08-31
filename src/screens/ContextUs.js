@@ -75,7 +75,7 @@ const ContextUs = ({ navigation }) => {
                             className="flex-grow"
                         >
 
-                            <View className="mt-10 mx-5">
+                            <View className="mt-3 mx-5">
                                 <View className="flex-row items-center space-x-3">
                                     <ContextUsHeaderSvg />
                                     <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Contact Us</Text>

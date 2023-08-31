@@ -21,12 +21,13 @@ import PPic1Svg from '../../assets/svg/PPic-1.svg';
 import PPic2Svg from '../../assets/svg/PPic-2.svg';
 import PPic3Svg from '../../assets/svg/PPic-3.svg';
 import CommonHeader from '../components/CommonHeader';
+import useTheme from '../components/useTheme';
 
 const HomeScreen = ({ navigation }) => {
 
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [visible, setVisible] = useState(false);
-    const [isDarkTheme, setIsDarkTheme] = useState(true);
+    const {isDarkTheme} = useTheme();
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
 
 
@@ -39,38 +40,33 @@ const HomeScreen = ({ navigation }) => {
             useNativeDriver: true,
         }).start();
     };
+    
     const hideModal = () => {
         setVisible(false);
         setanimationValue(new Animated.Value(1));
     };
 
-    const toggleTheme = () => {
-        setIsDarkTheme(prevTheme => !prevTheme);
-    };
 
     return (
         <>
-            <View className={`${isDarkTheme ? 'bg-[#0B0711]' : 'bg-[#EAEAEB]'} h-full`}>
- 
+            <View className={`${isDarkTheme ? 'bg-[#EAEAEB]' : 'bg-[#0B0711]'} h-full`}>
+
                 {/* Header */}
-                <CommonHeader navigation={navigation} onPress={() => {
-                    toggleTheme
-                    setIsDarkTheme(!isDarkTheme)
-                }} />
+                <CommonHeader navigation={navigation} />
 
 
-                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-5 h-full">
-                    <View className="mt-10 mx-5 flex-row items-center space-x-2">
-                        {isDarkTheme ? (<GameSvg />) : (<GameLightSvg />)}
-                        <Text className={`font-ChakraPetchBold text-xl ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Upcoming games</Text>
+                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
+                    <View className="mx-5 flex-row items-center space-x-2">
+                        <GameSvg />
+                        <Text className={`font-ChakraPetchBold text-xl text-[#D1CBD8]`}>Upcoming games</Text>
                     </View>
 
-                    {isSmallScreen ? (<View className="mt-5">
+                    <View className="mt-5">
                         <View className="items-center">
                             <Pic1Svg />
                         </View>
 
-                        <View className="opacity-90 bg-[#261D37] mx-4 p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]">
+                        <View className={`opacity-90 bg-[#261D37] ${isSmallScreen ? 'mx-4' : 'mx-[7px]'} p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]`}>
                             <View>
                                 <Text className="font-ChakraPetchSemiBold text-base text-[#D1CBD8]">FREE play 1Vs1 (training)</Text>
 
@@ -87,50 +83,28 @@ const HomeScreen = ({ navigation }) => {
                                 <RightArrowSvg />
                             </TouchableOpacity>
                         </View>
-                    </View>) : (<View className="mt-5">
-                        <View className="items-center">
-                            <Pic1Svg />
-                        </View>
-
-                        <View className="opacity-90 bg-[#261D37] mx-[7px] p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]">
-                            <View>
-                                <Text className="font-ChakraPetchSemiBold text-base text-[#D1CBD8]">FREE play 1Vs1 (training)</Text>
-
-                                <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Admin efoot | PS5 </Text>
-
-                                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">26-05-23; 04:56</Text>
-                            </View>
-
-                            <TouchableOpacity onPress={() => console.log('pressed')} className='h-10 items-center justify-center w-16'>
-                                <LinearGradient
-                                    colors={['#4A00E8', '#3B3EFF']}
-                                    className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
-                                />
-                                <RightArrowSvg />
-                            </TouchableOpacity>
-                        </View>
-                    </View>)}
+                    </View>
 
                     <View className="mt-10 mx-4 flex-row items-center justify-between">
                         <View className="flex-row items-center space-x-2">
-                            {isDarkTheme ? (<GameSvg />) : (<GameLightSvg />)}
-                            <Text className={`font-ChakraPetchBold text-xl ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Games available (2)</Text>
+                            <GameSvg />
+                            <Text className={`font-ChakraPetchBold text-xl text-[#D1CBD8]`}>Games available (2)</Text>
                         </View>
 
                         <TouchableOpacity onPress={() => console.log('pressed')}>
-                            <Text className={`font-ChakraPetchBold text-base ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'} underline`}>Show all</Text>
+                            <Text className={`font-ChakraPetchBold text-base text-[#D1CBD8] underline`}>Show all</Text>
                         </TouchableOpacity>
                     </View>
 
-                    <View className={`mt-5 mx-4 ${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} p-4 rounded-lg flex-row items-center justify-between`}>
+                    <View className={`mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between`}>
                         <View>
                             <Pic2Svg />
                         </View>
 
                         <View>
-                            <Text className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>FREE play 1Vs1 (training)</Text>
-                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'} ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Admin efoot | PS5 </Text>
-                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'} ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>26-05-23; 04:56</Text>
+                            <Text className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} text-[#D1CBD8]`}>FREE play 1Vs1 (training)</Text>
+                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'} text-[#D1CBD8]`}>Admin efoot | PS5 </Text>
+                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'} text-[#D1CBD8]`}>26-05-23; 04:56</Text>
 
                             <TouchableOpacity onPress={() => console.log('pressed')} className='h-10 items-center justify-center w-28 mt-3'>
                                 <LinearGradient
@@ -140,17 +114,17 @@ const HomeScreen = ({ navigation }) => {
                                 <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Join Match</Text>
                             </TouchableOpacity>
                         </View>
-                    </View> 
+                    </View>
 
-                    <View className={`mt-5 mx-4 ${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} p-4 rounded-lg flex-row items-center justify-between`}>
+                    <View className={`mt-5 mx-4 bg-[#261D37] p-4 rounded-lg flex-row items-center justify-between`}>
                         <View>
                             <Pic3Svg />
                         </View>
 
                         <View>
-                            <Text className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>FREE play 1Vs1 (training)</Text>
-                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'} ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Admin efoot | PS5 </Text>
-                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'} ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>26-05-23; 04:56</Text>
+                            <Text className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} text-[#D1CBD8]`}>FREE play 1Vs1 (training)</Text>
+                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'} text-[#D1CBD8]`}>Admin efoot | PS5 </Text>
+                            <Text className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'} text-[#D1CBD8]`}>26-05-23; 04:56</Text>
 
                             <TouchableOpacity onPress={() => console.log('pressed')} className='h-10 items-center justify-center w-28 mt-3'>
                                 <LinearGradient
@@ -165,8 +139,8 @@ const HomeScreen = ({ navigation }) => {
 
 
                     <View className="mt-5 mx-5 flex-row items-center space-x-2">
-                        {isDarkTheme ? (<OnlineUserSvg />) : (<OnlineUserLightSvg />)}
-                        <Text className={`font-ChakraPetchBold text-xl ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Online Users (3)</Text>
+                        <OnlineUserSvg />
+                        <Text className={`font-ChakraPetchBold text-xl text-[#D1CBD8]`}>Online Users (3)</Text>
                     </View>
 
                     <View className="mt-5 mx-5 flex-row items-center justify-between">
@@ -174,17 +148,17 @@ const HomeScreen = ({ navigation }) => {
                             <TextInput
                                 mode='outlined'
                                 placeholder='Search users'
-                                placeholderTextColor={`${isDarkTheme ? '#D1CBD8' : '#212B36'}`}
-                                className={`${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} pl-8`}
+                                placeholderTextColor={`#D1CBD8`}
+                                className={`bg-[#261D37] pl-8`}
                             />
 
                             <View className="absolute top-5 left-4">
-                                {isDarkTheme ? (<SearchSvg />) : (<SearchLightSvg />)}
+                                <SearchSvg />
                             </View>
                         </View>
 
-                        <TouchableOpacity onPress={() => setVisible(true)} className={`${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} p-4 rounded-lg mt-1`}>
-                            {isDarkTheme ? (<FilterSvg />) : (<FilterLightSvg />)}
+                        <TouchableOpacity onPress={() => setVisible(true)} className={`bg-[#261D37] p-4 rounded-lg mt-1`}>
+                            <FilterSvg />
                         </TouchableOpacity>
 
                         <Modal
@@ -300,11 +274,11 @@ const HomeScreen = ({ navigation }) => {
                         </Modal>
                     </View>
 
-                    <View className={`mt-5 mx-5 ${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} p-3 rounded-lg`}>
+                    <View className={`mt-5 mx-5 bg-[#261D37] p-3 rounded-lg`}>
                         <View className="flex-row items-center justify-between">
                             <View className="flex-row items-center space-x-3">
                                 <PPic1Svg />
-                                <Text className={`font-ChakraPetchBold text-base ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Patric Haris</Text>
+                                <Text className={`font-ChakraPetchBold text-base text-[#D1CBD8]`}>Patric Haris</Text>
                             </View>
 
                             <View className="flex-row items-center space-x-4">
@@ -321,11 +295,11 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <View className={`mt-5 mx-5 ${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} p-3 rounded-lg`}>
+                    <View className={`mt-5 mx-5 bg-[#261D37] p-3 rounded-lg`}>
                         <View className="flex-row items-center justify-between">
                             <View className="flex-row items-center space-x-3">
                                 <PPic2Svg />
-                                <Text className={`font-ChakraPetchBold text-base ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Patric Haris</Text>
+                                <Text className={`font-ChakraPetchBold text-base text-[#D1CBD8]`}>Patric Haris</Text>
                             </View>
 
                             <View className="flex-row items-center space-x-4">
@@ -342,11 +316,11 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <View className={`mt-5 mx-5 ${isDarkTheme ? 'bg-[#261D37]' : 'bg-[#FFFFFF]'} p-3 rounded-lg`}>
+                    <View className={`mt-5 mx-5 bg-[#261D37] p-3 rounded-lg`}>
                         <View className="flex-row items-center justify-between">
                             <View className="flex-row items-center space-x-3">
                                 <PPic3Svg />
-                                <Text className={`font-ChakraPetchBold text-base ${isDarkTheme ? 'text-[#D1CBD8]' : 'text-[#212B36]'}`}>Patric Haris</Text>
+                                <Text className={`font-ChakraPetchBold text-base text-[#D1CBD8]`}>Patric Haris</Text>
                             </View>
 
                             <View className="flex-row items-center space-x-4">

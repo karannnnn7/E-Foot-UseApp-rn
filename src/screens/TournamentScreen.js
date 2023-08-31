@@ -38,8 +38,8 @@ const TournamentScreen = ({ navigation }) => {
 
         <CommonHeader navigation={navigation} />
 
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-5 h-full">
-          <View className="mt-10 mx-5 flex-row items-center justify-between">
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
+          <View className="mx-5 flex-row items-center justify-between">
             <View className="flex-row items-center space-x-3">
               <TournamentCupSvg />
               <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Tournaments (09)</Text>

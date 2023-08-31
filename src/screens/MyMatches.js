@@ -55,7 +55,7 @@ const MyMatches = ({ navigation }) => {
                 <CommonHeader navigation={navigation} />
 
                 <View className="mx-5">
-                    <View className="flex-row items-center space-x-3 mt-10">
+                    <View className="flex-row items-center space-x-3 mt-3">
                         <MyMatchesHeaderSvg />
                         <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">My Matches</Text>
                     </View>
@@ -131,7 +131,7 @@ const MyMatches = ({ navigation }) => {
                         </View>
                     </View>
 
-                        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className=" mt-8 h-full">
+                        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-8 h-full">
                             {renderContent()}
                             <View className="mb-96" />
                         </ScrollView>

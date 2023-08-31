@@ -42,9 +42,9 @@ const DashBoardTab = ({ navigation }) => {
       <View className="bg-[#0B0711] h-full">
         <CommonHeader navigation={navigation} />
 
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="h-full">
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
           <View className="mx-6">
-            <View className="mt-8 flex-row items-center space-x-3">
+            <View className="flex-row items-center space-x-3">
               <DashBoardHeaderSvg />
               <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Dashboard</Text>
             </View>
@@ -248,33 +248,33 @@ const DashBoardTab = ({ navigation }) => {
                     <PencilSvg />
                   </View>
                   <View className="items-center">
-                    <Text className="text-[#1890FF1F]">|</Text>
-                    <Text className="text-[#1890FF1F]">|</Text>
-                    <Text className="text-[#1890FF1F]">|</Text>
-                    <Text className="text-[#1890FF1F]">|</Text>
-                    <Text className="text-[#1890FF1F]">|</Text>
+                    <Text className="text-[#1890FF7A]">|</Text>
+                    <Text className="text-[#1890FF7A]">|</Text>
+                    <Text className="text-[#1890FF7A]">|</Text>
+                    <Text className="text-[#1890FF7A]">|</Text>
+                    <Text className="text-[#1890FF7A]">|</Text>
                   </View>
 
                   <View className="h-8 w-8 rounded-full bg-[#FFC1071F] items-center justify-center">
                     <AddChatSvg />
                   </View>
                   <View className="items-center">
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
                   </View>
 
                   <View className="h-8 w-8 rounded-full bg-[#FFC1071F] items-center justify-center">
                     <AddChatSvg />
                   </View>
                   <View className="items-center">
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
-                    <Text className="text-[#FFC1071F]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
+                    <Text className="text-[#FFC1077A]">|</Text>
                   </View>
 
                   <View className="h-8 w-8 rounded-full bg-[#1890FF1F] items-center justify-center">
@@ -289,14 +289,14 @@ const DashBoardTab = ({ navigation }) => {
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You updated your profile picture</Text>
                   </View>
 
-                  <View className={`${isSmallScreen ? 'mt-10' : 'mt-12'} w-72`}>
+                  <View className={`${isSmallScreen ? 'mt-10' : 'mt-12'} w-64`}>
                     <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Added In room</Text>
                     <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">12 hours ago</Text>
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You have been added to the play room
                       by Sam.</Text>
                   </View>
 
-                  <View className={`${isSmallScreen ? 'mt-5' : 'mt-8'} w-72`}>
+                  <View className={`${isSmallScreen ? 'mt-5' : 'mt-8'} w-64`}>
                     <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Added In room</Text>
                     <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">12 hours ago</Text>
                     <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You have been added to the play room

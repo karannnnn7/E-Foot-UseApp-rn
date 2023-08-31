@@ -199,9 +199,9 @@ const MyProfileScreen = ({ navigation }) => {
               className="flex-grow"
             >
 
-              <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="h-full">
+              <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
                 <View className="mx-5">
-                  <View className="flex-row items-center space-x-3 mt-10">
+                  <View className="flex-row items-center space-x-3">
                     <ProfileHeaderSvg />
                     <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">My Profile</Text>
                   </View>
