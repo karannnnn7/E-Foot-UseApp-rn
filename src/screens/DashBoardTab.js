@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { colors } from '../config/Theme';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import CommonHeader from '../components/CommonHeader';
-import DashBoardHeaderSvg from '../../assets/svg/DashBoardHeader.svg';
+import DashBoardSvg from '../../assets/svg/DashBoard.svg';
+import DashBoardLightSvg from '../../assets/svg/DashBoardLight.svg';
 import GuideSvg from '../../assets/svg/Guide.svg';
+import GuideLightSvg from '../../assets/svg/GuideLight.svg';
 import ShowRankSvg from '../../assets/svg/ShowRank.svg';
 import CoinSvg from '../../assets/svg/Coin.svg';
 import SmallLogoSvg from '../../assets/svg/SmallLogo.svg'
@@ -11,6 +14,9 @@ import PencilSvg from '../../assets/svg/Pencil.svg';
 import AddChatSvg from '../../assets/svg/AddChat.svg';
 
 const DashBoardTab = ({ navigation }) => {
+
+  const theme = { mode: 'light' };
+  let activeColors = colors[theme.mode];
 
   //For Coin Progress Bar
   const coinsCount = 65; //Replace this with your dynamic value
@@ -39,21 +45,21 @@ const DashBoardTab = ({ navigation }) => {
 
   return (
     <>
-      <View className="bg-[#0B0711] h-full">
+      <View style={{ backgroundColor: activeColors.background }} className="h-full">
         <CommonHeader navigation={navigation} />
 
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
           <View className="mx-6">
             <View className="flex-row items-center space-x-3">
-              <DashBoardHeaderSvg />
-              <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Dashboard</Text>
+              {theme.mode === 'dark' ? (<DashBoardSvg width={20} height={20} />) : (<DashBoardLightSvg width={20} height={20} />)}
+              <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">Dashboard</Text>
             </View>
 
-            <View className="mt-5 bg-[#261D37] h-auto p-5 rounded-lg">
+            <View style={{ backgroundColor: activeColors.cardBackground }} className="mt-5 h-auto p-5 rounded-lg">
               <View className="flex-row items-center space-x-3">
-                <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">Challenge Win Overview</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-lg">Challenge Win Overview</Text>
                 <TouchableOpacity>
-                  <GuideSvg />
+                  {theme.mode === 'dark' ? (<GuideSvg />) : (<GuideLightSvg />)}
                 </TouchableOpacity>
               </View>
 
@@ -99,12 +105,12 @@ const DashBoardTab = ({ navigation }) => {
               </View>
             </View>
 
-            <View className="mt-5 bg-[#261D37] h-auto p-5 rounded-lg">
+            <View style={{ backgroundColor: activeColors.cardBackground }} className="mt-5 h-auto p-5 rounded-lg">
               <View className="flex-row items-center justify-between">
                 <View className="flex-row items-center space-x-3">
-                  <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">E-FOOT Coins</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-lg">E-FOOT Coins</Text>
                   <TouchableOpacity>
-                    <GuideSvg />
+                    {theme.mode === 'dark' ? (<GuideSvg />) : (<GuideLightSvg />)}
                   </TouchableOpacity>
                 </View>
 
@@ -121,7 +127,7 @@ const DashBoardTab = ({ navigation }) => {
 
                     </View>
                   </View>
-                  <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8] text-center mt-3">Coins {(coinsCount)}</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm text-center mt-3">Coins {(coinsCount)}</Text>
                 </View>
 
                 <View>
@@ -130,7 +136,7 @@ const DashBoardTab = ({ navigation }) => {
 
                     </View>
                   </View>
-                  <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8] text-center mt-3">Win {(Winners)}</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm text-center mt-3">Win {(Winners)}</Text>
                 </View>
 
                 <View>
@@ -139,76 +145,76 @@ const DashBoardTab = ({ navigation }) => {
 
                     </View>
                   </View>
-                  <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8] text-center mt-3">Loss {(loss)}</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm text-center mt-3">Loss {(loss)}</Text>
                 </View>
               </View>
             </View>
 
-            <View className="mt-5 bg-[#261D37] h-auto p-5 rounded-lg">
+            <View style={{ backgroundColor: activeColors.cardBackground }} className="mt-5 h-auto p-5 rounded-lg">
               <View className="flex-row items-center space-x-3">
-                <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">Last 5 matches</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-lg">Last 5 matches</Text>
                 <TouchableOpacity>
-                  <GuideSvg />
+                  {theme.mode === 'dark' ? (<GuideSvg />) : (<GuideLightSvg />)}
                 </TouchableOpacity>
               </View>
 
               <View className="flex-row items-center justify-between mt-5">
                 <View>
-                  <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Game Name</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Game Name</Text>
                   <View className="mt-3 flex-row items-center space-x-2">
                     <SmallLogoSvg />
                     <View>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Free Play</Text>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">1vs1 (traini...</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Free Play</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">1vs1 (traini...</Text>
                     </View>
                   </View>
 
                   <View className="mt-3 flex-row items-center space-x-2">
                     <SmallLogoSvg />
                     <View>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Free Play</Text>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">1vs1 (traini...</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Free Play</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">1vs1 (traini...</Text>
                     </View>
                   </View>
 
                   <View className="mt-3 flex-row items-center space-x-2">
                     <SmallLogoSvg />
                     <View>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Free Play</Text>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">1vs1 (traini...</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Free Play</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">1vs1 (traini...</Text>
                     </View>
                   </View>
 
                   <View className="mt-3 flex-row items-center space-x-2">
                     <SmallLogoSvg />
                     <View>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Free Play</Text>
-                      <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">1vs1 (traini...</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Free Play</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">1vs1 (traini...</Text>
                     </View>
                   </View>
                 </View>
 
                 <View>
-                  <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Opponent</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Opponent</Text>
                   <View className="mt-9 items-center">
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Jenny wilson</Text>
                   </View>
 
                   <View className="mt-9 items-center">
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Jenny wilson</Text>
                   </View>
 
                   <View className="mt-9 items-center">
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Jenny wilson</Text>
                   </View>
 
                   <View className="mt-9 items-center">
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Jenny wilson</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Jenny wilson</Text>
                   </View>
                 </View>
 
                 <View>
-                  <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Status</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Status</Text>
                   <View className="mt-10 items-center">
                     <Text className="font-ChakraPetchMedium text-sm text-[#54D62C]">Win</Text>
                   </View>
@@ -228,17 +234,17 @@ const DashBoardTab = ({ navigation }) => {
               </View>
             </View>
 
-            <View className="mt-5 bg-[#261D37] h-auto p-5 rounded-lg">
+            <View style={{ backgroundColor: activeColors.cardBackground }} className="mt-5 h-auto p-5 rounded-lg">
               <View className="flex-row items-center justify-between">
                 <View className="flex-row items-center space-x-3">
-                  <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">User Timeline</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-lg">User Timeline</Text>
                   <TouchableOpacity>
-                    <GuideSvg />
+                    {theme.mode === 'dark' ? (<GuideSvg />) : (<GuideLightSvg />)}
                   </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity>
-                  <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8] underline">Show all</Text>
+                  <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl underline">Show all</Text>
                 </TouchableOpacity>
               </View>
 
@@ -284,29 +290,29 @@ const DashBoardTab = ({ navigation }) => {
 
                 <View>
                   <View>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Profile Updated</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">Monday  (12 June)</Text>
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You updated your profile picture</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-2">Monday  (12 June)</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">You updated your profile picture</Text>
                   </View>
 
                   <View className={`${isSmallScreen ? 'mt-10' : 'mt-12'} w-64`}>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Added In room</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">12 hours ago</Text>
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You have been added to the play room
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Added In room</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-2">12 hours ago</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">You have been added to the play room
                       by Sam.</Text>
                   </View>
 
                   <View className={`${isSmallScreen ? 'mt-5' : 'mt-8'} w-64`}>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Added In room</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">12 hours ago</Text>
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You have been added to the play room
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Added In room</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-2">12 hours ago</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">You have been added to the play room
                       by Sam.</Text>
                   </View>
 
                   <View className={`${isSmallScreen ? 'mt-3' : 'mt-8'}`}>
-                    <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Profile Updated</Text>
-                    <Text className="font-ChakraPetchMedium text-sm text-[#919EAB] mt-2">Monday  (12 June)</Text>
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">You updated your profile picture</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-2">Monday  (12 June)</Text>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">You updated your profile picture</Text>
                   </View>
                 </View>
               </View>

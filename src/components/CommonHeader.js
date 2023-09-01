@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { colors } from '../config/Theme';
 import DrawerMenuSvg from '../../assets/svg/Drawer.svg';
+import DrawerMenuLightSvg from '../../assets/svg/DrawerMenuLight.svg';
 import NotificationSvg from '../../assets/svg/Notification.svg';
+import NotificationLightSvg from '../../assets/svg/NotificationLight.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import ProfilePicSvg from '../../assets/svg/ProfilePic.svg';
 import ProfileIconSvg from '../../assets/svg/ProfileIcon.svg';
 import ProfileIconLightSvg from '../../assets/svg/ProfileIconLight.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
-import useTheme from './useTheme';
 
 const CommonHeader = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
-    const {isDarkTheme, toggleTheme} = useTheme();
+    const theme = { mode: 'light' }
+    let activeColors = colors[theme.mode]
+
 
     //For OpenDrawer with Custom Button
     const openDrawer = () => {
@@ -27,16 +31,16 @@ const CommonHeader = ({ navigation }) => {
         <View>
             <View className="flex-row items-center justify-between mx-5 my-5">
                 <TouchableOpacity onPress={openDrawer}>
-                    <DrawerMenuSvg />
+                    {theme.mode === 'dark' ? (<DrawerMenuSvg />) : (<DrawerMenuLightSvg />)}
                 </TouchableOpacity>
 
                 <View className="flex-row items-center space-x-5">
-                    <View className={`bg-transparent ${isDarkTheme ? 'bg-[#EAEAEB]' : 'bg-[#2c2544]'} border border-[#3B3EFF] rounded-xl p-3`}>
-                        <Text className={`${isDarkTheme ? 'text-[#212B36]' : 'text-[#D1CBD8]'} text-sm font-ChakraPetchBold`}>0 - 5 WINS</Text>
+                    <View style={{ backgroundColor: activeColors.cardBackground }} className={`bg-transparent border border-[#3B3EFF] rounded-xl p-3`}>
+                        <Text style={{ color: activeColors.textPrimary }} className={`text-sm font-ChakraPetchBold`}>0 - 5 WINS</Text>
                     </View>
 
-                    <TouchableOpacity>
-                        <NotificationSvg />
+                    <TouchableOpacity onPress={() => navigation.navigate('notification')}>
+                        {theme.mode === 'dark' ? (<NotificationSvg />) : (<NotificationLightSvg />)}
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -59,7 +63,7 @@ const CommonHeader = ({ navigation }) => {
                             <TouchableOpacity onPress={() => {
                                 toggleTheme()
                                 setModalVisible(false)
-                                }} className="my-3 items-center">
+                            }} className="my-3 items-center">
                                 {isDarkTheme ? (<DarkIconSvg />) : (<LightIconSvg />)}
                             </TouchableOpacity>
                         </View>

@@ -4,23 +4,35 @@ import HomeScreen from "../screens/HomeScreen";
 import DashBoardTab from "../screens/DashBoardTab";
 import ChatTab from "../screens/ChatTab";
 import HomeSvg from '../../assets/svg/Home.svg';
+import HomeLightSvg from '../../assets/svg/HomeLight.svg';
 import ActiveHomeSvg from '../../assets/svg/ActiveHome.svg';
+import ActiveHomeLightSvg from '../../assets/svg/ActiveHomeLight.svg';
 import DashBoardSvg from '../../assets/svg/DashBoard.svg';
+import DashBoardLightSvg from '../../assets/svg/DashBoardLight.svg';
 import ActiveDashBoardSvg from '../../assets/svg/ActiveDashBoard.svg';
+import ActiveDashBoardLightSvg from '../../assets/svg/ActiveDashBoardLight.svg';
 import NewGameSvg from '../../assets/svg/NewGame.svg';
+import NewGameLightSvg from '../../assets/svg/NewGameLight.svg';
 import CupSvg from '../../assets/svg/Cup.svg';
+import CupLightSvg from '../../assets/svg/CupLight.svg';
 import ActiveCupSvg from '../../assets/svg/ActiveCup.svg';
+import ActiveCupLightSvg from '../../assets/svg/ActiveCupLight.svg';
 import ChatSvg from '../../assets/svg/Chat.svg';
+import ChatLightSvg from '../../assets/svg/ChatLight.svg';
 import ActiveChatSvg from '../../assets/svg/ActiveChat.svg';
+import ActiveChatLightSvg from '../../assets/svg/ActiveChatLight.svg';
 import TabIcon from "./TabIcon";
 import MyMatches from "../screens/MyMatches";
 import TournamentScreen from "../screens/TournamentScreen";
 import StartGameTab from "../screens/StartGameTab";
+import { colors } from "../config/Theme";
 
 
 const BottomTabs = () => {
 
     const Tab = createBottomTabNavigator();
+    const theme = { mode: 'light' };
+    let activeColors = colors[theme.mode]
 
     const { height, width } = Dimensions.get('window');
     const isiPhoneSE = Platform.OS === 'ios' && height === 667 && width === 375;
@@ -40,10 +52,12 @@ const BottomTabs = () => {
                                     isActive={focused}
                                     icon={
                                         focused ? (
-                                            <ActiveHomeSvg width={23} height={23} />
+                                            <View>
+                                                {theme.mode === 'dark' ? (<ActiveHomeSvg width={23} height={23} />) : (<ActiveHomeLightSvg width={23} height={23} />)}
+                                            </View>
                                         ) : (
                                             <View>
-                                                <HomeSvg width={23} height={23} />
+                                                {theme.mode === 'dark' ? (<HomeSvg width={23} height={23} />) : (<HomeLightSvg width={23} height={23} />)}
                                             </View>
                                         )
                                     }
@@ -57,9 +71,13 @@ const BottomTabs = () => {
                                     isActive={focused}
                                     icon={
                                         focused ? (
-                                            <ActiveDashBoardSvg width={23} height={23} />
+                                            <View>
+                                                {theme.mode === 'dark' ? (<ActiveDashBoardSvg width={23} height={23} />) : (<ActiveDashBoardLightSvg width={23} height={23} />)}
+                                            </View>
                                         ) : (
-                                            <DashBoardSvg width={23} height={23} />
+                                            <View>
+                                                {theme.mode === 'dark' ? (<DashBoardSvg width={23} height={23} />) : (<DashBoardLightSvg width={23} height={23} />)}
+                                            </View>
                                         )
                                     }
                                 />
@@ -70,7 +88,7 @@ const BottomTabs = () => {
                         case 'startGame':
                             iconName = (
                                 <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} shadow-sm shadow-[#4517F1]`}>
-                                    <NewGameSvg />
+                                    {theme.mode === 'dark' ? (<NewGameSvg />) : (<NewGameLightSvg />)}
                                 </View>
                             );
 
@@ -82,9 +100,13 @@ const BottomTabs = () => {
                                     isActive={focused}
                                     icon={
                                         focused ? (
-                                            <ActiveCupSvg width={23} height={23} />
+                                            <View>
+                                                {theme.mode === 'dark' ? (<ActiveCupSvg width={23} height={23} />) : (<ActiveCupLightSvg width={23} height={23} />)}
+                                            </View>
                                         ) : (
-                                            <CupSvg width={23} height={23} />
+                                            <View>
+                                                {theme.mode === 'dark' ? (<CupSvg width={23} height={23} />) : (<CupLightSvg width={23} height={23} />)}
+                                            </View>
                                         )
                                     }
                                 />
@@ -99,11 +121,11 @@ const BottomTabs = () => {
                                     icon={
                                         focused ? (
                                             <View>
-                                                <ActiveChatSvg width={23} height={23} />
+                                                {theme.mode === 'dark' ? (<ActiveChatSvg width={23} height={23} />) : (<ActiveChatLightSvg width={23} height={23} />)}
                                             </View>
                                         ) : (
                                             <View>
-                                                <ChatSvg width={23} height={23} />
+                                                {theme.mode === 'dark' ? (<ChatSvg width={23} height={23} />) : (<ChatLightSvg width={23} height={23} />)}
                                             </View>
                                         )
                                     }
@@ -129,7 +151,7 @@ const BottomTabs = () => {
                 headerShown: false,
                 tabBarLabel: '',
                 tabBarStyle: {
-                    backgroundColor: '#261D37',
+                    backgroundColor: activeColors.cardBackground,
                     height:
                         Platform.OS === 'android'
                             ? 60

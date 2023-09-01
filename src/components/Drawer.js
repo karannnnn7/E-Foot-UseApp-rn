@@ -6,6 +6,7 @@ import ContextUs from "../screens/ContextUs";
 import MyMatches from "../screens/MyMatches";
 import MyProfileScreen from "../screens/MyProfileScreen";
 import HowToPlay from "../screens/HowToPlay";
+import NotificationScreen from "../screens/NotificationScreen";
 
 
 const Drawer = () => {
@@ -24,6 +25,7 @@ const Drawer = () => {
             <Drawer.Screen name="myMatches" component={MyMatches} />
             <Drawer.Screen name="myProfile" component={MyProfileScreen} />
             <Drawer.Screen name="howToPlay" component={HowToPlay} />
+            <Drawer.Screen name="notification" component={NotificationScreen} />
         </Drawer.Navigator>
     );
 };

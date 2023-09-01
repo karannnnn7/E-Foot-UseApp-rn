@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Animated, TouchableOpacity, ScrollView, Modal, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { colors } from '../config/Theme';
 import CommonHeader from '../components/CommonHeader';
-import StartGameHeader from '../../assets/svg/StartGameHeader.svg';
+import StartGameHeaderSvg from '../../assets/svg/StartGameHeader.svg';
+import StartGameHeaderLightSvg from '../../assets/svg/StartGameHeaderLight.svg';
 import RulesSvg from '../../assets/svg/Rules.svg';
+import RulesLightSvg from '../../assets/svg/RulesLight.svg';
 import DownASvg from '../../assets/svg/DownA.svg';
+import DownALightSvg from '../../assets/svg/DownALight.svg';
 import UpASvg from '../../assets/svg/UpA.svg';
+import UpALightSvg from '../../assets/svg/UpALight.svg';
 import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
+import CloseLightSvg from '../../assets/svg/CloseLight.svg';
 
 const StartGameTab = ({ navigation }) => {
 
@@ -22,14 +28,16 @@ const StartGameTab = ({ navigation }) => {
     const [selectGameType, setSelectGameType] = useState("select");
     const [isEnable, setIsEnable] = useState(false)
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
+    const theme = { mode: 'light' };
+    let activeColors = colors[theme.mode];
 
-    useEffect (() => {
+    useEffect(() => {
         if (selectConsole === 'select' || selectGameMode === 'select' || selectGameType === 'select') {
-            setIsEnable (false);
+            setIsEnable(false);
         } else {
-            setIsEnable (true);
+            setIsEnable(true);
         }
-    }, [ selectConsole, selectGameMode, selectGameType ])
+    }, [selectConsole, selectGameMode, selectGameType])
 
     const handleRulesOpen = () => {
         setIsRulesOpen(!isRulesOpen);
@@ -72,37 +80,41 @@ const StartGameTab = ({ navigation }) => {
 
     return (
         <>
-            <View className="bg-[#0B0711] h-full">
+            <View style={{ backgroundColor: activeColors.background }} className="h-full">
                 <CommonHeader navigation={navigation} />
 
                 <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
                     <View className="mx-5">
                         <View className="flex-row items-center space-x-3">
-                            <StartGameHeader />
-                            <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Start Game</Text>
+                            {theme.mode === 'dark' ? (<StartGameHeaderSvg />) : (<StartGameHeaderLightSvg />)}
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">Start Game</Text>
                         </View>
 
                         <View>
-                            <TouchableOpacity activeOpacity={1.0} onPress={handleRulesOpen} className={`bg-[#261D37] p-3 flex-row items-center mt-5 justify-between ${isRulesOpen ? 'rounded-t-lg' : 'rounded-lg'}`}>
+                            <TouchableOpacity activeOpacity={1.0} onPress={handleRulesOpen} style={{ backgroundColor: activeColors.cardBackground }} className={`p-3 flex-row items-center mt-5 justify-between ${isRulesOpen ? 'rounded-t-lg' : 'rounded-lg'}`}>
                                 <View className="flex-row items-center space-x-3 ml-3">
-                                    <RulesSvg />
-                                    <Text className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">Rules</Text>
+                                    {theme.mode === 'dark' ? (<RulesSvg />) : (<RulesLightSvg />)}
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">Rules</Text>
                                 </View>
 
                                 <View className="mr-3">
-                                    {isRulesOpen ? (<UpASvg />) : (<DownASvg />)}
+                                    {isRulesOpen ? (<View>
+                                        {theme.mode === 'dark' ? (<UpASvg />) : (<UpALightSvg />)}
+                                    </View>) : (<View>
+                                        {theme.mode === 'dark' ? (<DownASvg />) : (<DownALightSvg />)}
+                                    </View>)}
                                 </View>
                             </TouchableOpacity>
 
                             {isRulesOpen && (
-                                <Animated.View className="bg-[#261D37] h-auto rounded-b-lg p-3">
+                                <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                                     <View className="mx-3">
-                                        <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">Challenge Rules only applicable when entering E-FOOT ARENA Game Mode Please go through it carefully.</Text>
+                                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">Challenge Rules only applicable when entering E-FOOT ARENA Game Mode Please go through it carefully.</Text>
                                     </View>
 
                                     <View className="mx-3 mt-7">
-                                        <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Type: Friendly | Half Length: 6 Mins</Text>
-                                        <Text className="font-ChakraPetchBold text-base text-[#D1CBD8] mt-3">Game Speed: Normal | Squad Type: Online</Text>
+                                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Type: Friendly | Half Length: 6 Mins</Text>
+                                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base mt-3">Game Speed: Normal | Squad Type: Online</Text>
                                     </View>
 
                                     <View className="bg-[#FFC1071F] mt-5 mx-3 p-2 rounded-lg w-52">
@@ -110,7 +122,7 @@ const StartGameTab = ({ navigation }) => {
                                     </View>
 
                                     <View className="mx-3 mt-5">
-                                        <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">It’s each player’s responsibility to check the connection and latency of its opponent</Text>
+                                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">It’s each player’s responsibility to check the connection and latency of its opponent</Text>
                                     </View>
 
                                     <View className="bg-[#FFC1071F] mt-5 mx-3 p-2 rounded-lg w-auto">
@@ -120,13 +132,13 @@ const StartGameTab = ({ navigation }) => {
                             )}
                         </View>
 
-                        <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8] mt-8">Select your preferences and play!</Text>
+                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl mt-8">Select your preferences and play!</Text>
 
-                        <View className="mt-5 bg-[#261D37] h-auto p-5 rounded-lg">
-                            <Text className="font-ChakraPetchSemiBold text-[#D1CBD8] text-base mt-5">Console</Text>
+                        <View style={{ backgroundColor: activeColors.cardBackground }} className="mt-5 h-auto p-5 rounded-lg">
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-base mt-5">Console</Text>
                             <TouchableOpacity onPress={() => setIsConsoleModalVisible(!isConsoleModalVisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
-                                <Text className="text-white">{selectConsole}</Text>
-                                <DownArrowSvg />
+                                <Text style={{ color: activeColors.textPrimary }} >{selectConsole}</Text>
+                                {theme.mode === 'dark' ? (<DownArrowSvg />) : (<DownALightSvg />)}
                             </TouchableOpacity>
 
                             <Modal
@@ -142,11 +154,11 @@ const StartGameTab = ({ navigation }) => {
                                     <View className="h-full w-full bg-[#000000bf]" />
                                 </TouchableOpacity>
 
-                                <View className={`absolute bottom-64 bg-[#261D37] w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
+                                <View style={{ backgroundColor: activeColors.cardBackground }} className={`absolute bottom-64 w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
                                     <View className="p-3 mt-3">
                                         <View className="items-end mx-5">
                                             <TouchableOpacity onPress={() => hideModal()}>
-                                                <CloseSvg />
+                                                {theme.mode === 'dark' ? (<CloseSvg />) : (<CloseLightSvg />)}
                                             </TouchableOpacity>
                                         </View>
 
@@ -155,38 +167,38 @@ const StartGameTab = ({ navigation }) => {
                                                 setSelectConsole('Vipa')
                                                 hideModal()
                                             }}>
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Vipa</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Vipa</Text>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectConsole('PS5')
                                                 hideModal()
                                             }} className="mt-4">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">PS5</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">PS5</Text>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectConsole('Xbox')
                                                 hideModal()
                                             }} className="mt-4">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Xbox</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Xbox</Text>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectConsole('PC')
                                                 hideModal()
                                             }} className="mt-4">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">PC</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">PC</Text>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
                                 </View>
                             </Modal>
 
-                            <Text className="font-ChakraPetchSemiBold text-[#D1CBD8] text-base mt-5">Game Mode</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-base mt-5">Game Mode</Text>
                             <TouchableOpacity onPress={() => setIsGameModeModalVisible(!isGameModeModalVisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
-                                <Text className="text-white">{selectGameMode}</Text>
-                                <DownArrowSvg />
+                                <Text style={{ color: activeColors.textPrimary }}>{selectGameMode}</Text>
+                                {theme.mode === 'dark' ? (<DownArrowSvg />) : (<DownALightSvg />)}
                             </TouchableOpacity>
 
                             <Modal
@@ -202,11 +214,11 @@ const StartGameTab = ({ navigation }) => {
                                     <View className="h-full w-full bg-[#000000bf]" />
                                 </TouchableOpacity>
 
-                                <View className={`absolute bottom-64 bg-[#261D37] w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
+                                <View style={{ backgroundColor: activeColors.cardBackground }} className={`absolute bottom-64 w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
                                     <View className="p-3 mt-3">
                                         <View className="items-end mx-5">
                                             <TouchableOpacity onPress={() => hideModal()}>
-                                                <CloseSvg />
+                                                {theme.mode === 'dark' ? (<CloseSvg />) : (<CloseLightSvg />)}
                                             </TouchableOpacity>
                                         </View>
 
@@ -215,38 +227,38 @@ const StartGameTab = ({ navigation }) => {
                                                 setSelectGameMode('Test 1')
                                                 hideModal()
                                             }}>
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Test 1</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Test 1</Text>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectGameMode('Test 2')
                                                 hideModal()
                                             }} className="mt-4">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Test 2</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Test 2</Text>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectGameMode('Test 3')
                                                 hideModal()
                                             }} className="mt-4">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Test 3</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Test 3</Text>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectGameMode('Test 4')
                                                 hideModal()
                                             }} className="mt-4">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Test 4</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Test 4</Text>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
                                 </View>
                             </Modal>
 
-                            <Text className="font-ChakraPetchSemiBold text-[#D1CBD8] text-base mt-5">Select challenge type</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-base mt-5">Select challenge type</Text>
                             <TouchableOpacity onPress={() => setIsGameTypeModalVisible(!isGameTypeModalVisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
                                 <Text className="text-white">{selectGameType}</Text>
-                                <DownArrowSvg />
+                                {theme.mode === 'dark' ? (<DownArrowSvg />) : (<DownALightSvg />)}
                             </TouchableOpacity>
 
                             <Modal
@@ -262,22 +274,22 @@ const StartGameTab = ({ navigation }) => {
                                     <View className="h-full w-full bg-[#000000bf]" />
                                 </TouchableOpacity>
 
-                                <View className={`absolute bottom-64 bg-[#261D37] w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
+                                <View style={{ backgroundColor: activeColors.background }} className={`absolute bottom-64 w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
                                     <View className="p-3 mt-3">
                                         <View className="items-end mx-5">
                                             <TouchableOpacity onPress={() => hideModal()}>
-                                                <CloseSvg />
+                                                {theme.mode === 'dark' ? (<CloseSvg />) : (<CloseLightSvg />)}
                                             </TouchableOpacity>
                                         </View>
 
                                         <View className="my-5 mx-5">
-                                            <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">FUT 1vs1</Text>
+                                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">FUT 1vs1</Text>
 
                                             <TouchableOpacity onPress={() => {
                                                 setSelectGameType('Real Team 1vs1')
                                                 hideModal()
                                             }} className="mt-3">
-                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Real Team 1vs1</Text>
+                                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">Real Team 1vs1</Text>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
@@ -285,15 +297,15 @@ const StartGameTab = ({ navigation }) => {
                             </Modal>
 
                             <View className="items-center">
-                                {isEnable ? (<TouchableOpacity  className={`h-12 items-center justify-center ${isSmallScreen ? 'w-[335px]' : 'w-[315px]'} mt-7`}>
+                                {isEnable ? (<TouchableOpacity className={`h-12 items-center justify-center ${isSmallScreen ? 'w-[335px]' : 'w-[315px]'} mt-7`}>
                                     <LinearGradient
                                         colors={['#4A00E8', '#3B3EFF']}
                                         className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
                                     />
                                     <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Lets Go!</Text>
                                 </TouchableOpacity>) : (<TouchableOpacity onPress={() => console.log('pressed')} className='h-12  items-center justify-center w-full mt-7 bg-[#98959A] rounded-lg'>
-                                        <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Lets Go!</Text>
-                                    </TouchableOpacity>)}
+                                    <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Lets Go!</Text>
+                                </TouchableOpacity>)}
                             </View>
                         </View>
                     </View>
