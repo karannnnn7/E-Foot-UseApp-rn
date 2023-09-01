@@ -1,20 +1,26 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import { colors } from '../config/Theme';
 import CommonHeader from '../components/CommonHeader';
 import SearchSvg from '../../assets/svg/Search.svg';
+import SearchLightSvg from '../../assets/svg/SearchLight.svg';
 import NotificationSignSvg from '../../assets/svg/NotificationSign.svg';
 
 const NotificationScreen = ({ navigation }) => {
+
+    const theme = { mode: 'light' };
+    let activeColors = colors[theme.mode];
+
     return (
         <>
-            <View className="bg-[#0B0711] h-full">
+            <View style={{ backgroundColor: activeColors.background }} className="h-full">
                 <CommonHeader navigation={navigation} />
 
                 <View className="mx-5">
                     <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="h-full mt-3">
                         <View>
-                            <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Notifications</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">Notifications</Text>
                         </View>
 
                         <View>
@@ -22,17 +28,18 @@ const NotificationScreen = ({ navigation }) => {
                                 mode='outlined'
                                 placeholder='Search notification'
                                 outlineColor='#0B0711'
-                                placeholderTextColor={`#D1CBD8`}
-                                className={`bg-[#261D37] pl-8`}
+                                placeholderTextColor={colors.textPrimary}
+                                className={`pl-8`}
+                                style={{ backgroundColor: activeColors.cardBackground }}
                             />
 
                             <View className="absolute top-5 left-4">
-                                <SearchSvg />
+                                {theme.mode === 'dark' ? (<SearchSvg />) : (<SearchLightSvg />)}
                             </View>
                         </View>
 
-                        <View className="bg-[#261D37] h-auto mt-5 p-5 rounded-lg">
-                            <Text className="font-ChakraPetchMedium text-lg text-[#D1CBD8]">New</Text>
+                        <View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto mt-5 p-5 rounded-lg">
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-lg text-[#D1CBD8]">New</Text>
 
                             <View className="bg-[#352A4B] p-3 mt-3 -mx-5">
                                 <TouchableOpacity className="flex-row items-start space-x-4">
@@ -72,7 +79,7 @@ const NotificationScreen = ({ navigation }) => {
                                 </TouchableOpacity>
                             </View>
 
-                            <Text className="font-Cha-kraPetchMedium text-lg text-[#D1CBD8] mt-5">Earlier</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-Cha-kraPetchMedium text-lg mt-5">Earlier</Text>
 
                             <TouchableOpacity className="flex-row items-start space-x-4 mt-7">
                                 <View className="bg-[#1890FF1F] rounded-full p-3">
@@ -80,9 +87,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">11 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">11 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -92,9 +99,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">12 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">12 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -104,9 +111,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">21 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">21 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -116,9 +123,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">21 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">21 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -128,9 +135,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">21 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">21 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -140,9 +147,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">21 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">21 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -152,9 +159,9 @@ const NotificationScreen = ({ navigation }) => {
                                 </View>
 
                                 <View>
-                                    <Text className="font-ChakraPetchBold text-base text-white">Profile Updated</Text>
-                                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8] mt-1">You updated your profile picture</Text>
-                                    <Text className="font-ChakraPetchMedium text-xs text-[#D1CBD8]">21 hours ago</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Profile Updated</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-1">You updated your profile picture</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xs">21 hours ago</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>

@@ -22,7 +22,6 @@ import ChatLightSvg from '../../assets/svg/ChatLight.svg';
 import ActiveChatSvg from '../../assets/svg/ActiveChat.svg';
 import ActiveChatLightSvg from '../../assets/svg/ActiveChatLight.svg';
 import TabIcon from "./TabIcon";
-import MyMatches from "../screens/MyMatches";
 import TournamentScreen from "../screens/TournamentScreen";
 import StartGameTab from "../screens/StartGameTab";
 import { colors } from "../config/Theme";

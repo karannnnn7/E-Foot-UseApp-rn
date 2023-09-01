@@ -2,23 +2,33 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Animated, KeyboardAvoidingView, Keyboard, Dimensions, Modal } from 'react-native';
 import { Switch, TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
+import { colors } from '../config/Theme';
 import CommonHeader from '../components/CommonHeader';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import ProfileHeaderSvg from '../../assets/svg/ProfileHeader.svg';
+import MyProfileSvg from '../../assets/svg/MyProfile.svg';
+import MyProfileLightSvg from '../../assets/svg/MyProfileLight.svg';
 import ShieldSvg from '../../assets/svg/shield.svg';
+import ShieldLightSvg from '../../assets/svg/shieldLight.svg';
 import DpSvg from '../../assets/svg/DP.svg';
 import CopyLinkSvg from '../../assets/svg/CopyLink.svg';
 import UserSvg from '../../assets/svg/User.svg';
+import UserLightSvg from '../../assets/svg/UserLight.svg';
 import LinkSvg from '../../assets/svg/Link.svg';
+import LinkLightSvg from '../../assets/svg/LinkLight.svg';
 import LockSvg from '../../assets/svg/Lock.svg';
+import LockLightSvg from '../../assets/svg/LockLight.svg';
 import BellSvg from '../../assets/svg/Bell.svg';
-import DownASvg from '../../assets/svg/DownA.svg';
+import BellLightSvg from '../../assets/svg/BellLight.svg';
 import UpASvg from '../../assets/svg/UpA.svg';
+import UpALightSvg from '../../assets/svg/UpALight.svg';
+import DownASvg from '../../assets/svg/DownA.svg';
+import DownALightSvg from '../../assets/svg/DownALight.svg';
 import EditDPSvg from '../../assets/svg/EditDP.svg';
 import EditSvg from '../../assets/svg/Edit.svg';
 import ISvg from '../../assets/svg/I.svg';
 import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
+import CloseLightSvg from '../../assets/svg/CloseLight.svg';
 import TrophySvg from '../../assets/svg/Trophy.svg';
 import NewYouTubeSvg from '../../assets/svg/NewYouTube.svg';
 import NewChatSocialSvg from '../../assets/svg/NewChatSocial.svg';
@@ -54,6 +64,8 @@ const MyProfileScreen = ({ navigation }) => {
   const [isSwitchTwoOn, setIsSwitchTwoOn] = useState(false);
   const isSmallScreen = Dimensions.get('screen').height > 850;
   const isLargeScreen = Dimensions.get('screen').width > 480;
+  const theme = { mode: 'light' };
+  let activeColors = colors[theme.mode];
 
   const onToggleSwitchOne = () => setIsSwitchOneOn(!isSwitchOneOn);
   const onToggleSwitchTwo = () => setIsSwitchTwoOn(!isSwitchTwoOn);
@@ -179,7 +191,7 @@ const MyProfileScreen = ({ navigation }) => {
 
   return (
     <>
-      <View className="bg-[#0B0711] h-full">
+      <View style={{ backgroundColor: activeColors.background }} className="h-full">
         <CommonHeader navigation={navigation} />
 
         <KeyboardAvoidingView
@@ -202,12 +214,12 @@ const MyProfileScreen = ({ navigation }) => {
               <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
                 <View className="mx-5">
                   <View className="flex-row items-center space-x-3">
-                    <ProfileHeaderSvg />
-                    <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">My Profile</Text>
+                    {theme.mode === 'dark' ? (<MyProfileSvg width={23} height={23} />) : (<MyProfileLightSvg width={23} height={23} />)}
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">My Profile</Text>
                   </View>
 
                   <View className="items-center mt-5">
-                    <ShieldSvg />
+                    {theme.mode === 'dark' ? (<ShieldSvg />) : (<ShieldLightSvg />)}
                     <View className="absolute top-10">
                       <DpSvg />
 
@@ -233,7 +245,7 @@ const MyProfileScreen = ({ navigation }) => {
                       </View>
                     </View>
 
-                    
+
                   </View>
 
                   <View className={`bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center ${isSmallScreen ? 'space-x-7' : 'space-x-3'}`}>
@@ -244,21 +256,25 @@ const MyProfileScreen = ({ navigation }) => {
                   </View>
 
                   <View className="mt-5">
-                    <TouchableOpacity activeOpacity={1.0} onPress={handleGenralDropdown} className={`bg-[#261D37] p-3 flex-row items-center justify-between ${isGeneralOpen ? 'rounded-t-lg' : 'rounded-lg'}`}>
+                    <TouchableOpacity activeOpacity={1.0} onPress={handleGenralDropdown} style={{ backgroundColor: activeColors.cardBackground }} className={`p-3 flex-row items-center justify-between ${isGeneralOpen ? 'rounded-t-lg' : 'rounded-lg'}`}>
                       <View className="flex-row items-center space-x-3 ml-3">
-                        <UserSvg />
-                        <Text className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">General</Text>
+                        {theme.mode === 'dark' ? (<UserSvg />) : (<UserLightSvg />)}
+                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xl">General</Text>
                       </View>
 
                       <View className="mr-3">
-                        {isGeneralOpen ? (<UpASvg />) : (<DownASvg />)}
+                        {isGeneralOpen ? (<View>
+                          {theme.mode === 'dark' ? (<UpASvg />) : (<UpALightSvg />)}
+                        </View>) : (<View>
+                          {theme.mode === 'dark' ? (<DownASvg />) : (<DownALightSvg />)}
+                        </View>)}
                       </View>
                     </TouchableOpacity>
 
                     {isGeneralOpen && (
-                      <Animated.View className="bg-[#261D37] h-auto rounded-b-lg p-3">
+                      <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                         <View>
-                          <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8] mx-3">Profile picture</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mx-3">Profile picture</Text>
 
                           <View className="items-center mt-3">
                             <EditDPSvg />
@@ -274,12 +290,12 @@ const MyProfileScreen = ({ navigation }) => {
                           </View>
 
                           <View className="mt-5">
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm">User name</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">User name</Text>
                             <TextInput
                               value={userName}
                               onChangeText={handleUserNameChanged}
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='Alen Maxwell'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
@@ -291,12 +307,12 @@ const MyProfileScreen = ({ navigation }) => {
                               null
                             )}
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">E-mail</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">E-mail</Text>
                             <TextInput
                               value={email}
                               onChangeText={handleEmailChanged}
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='Alenmaxwell@gmail.com'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
@@ -309,12 +325,12 @@ const MyProfileScreen = ({ navigation }) => {
                               null
                             )}
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">First Name</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">First Name</Text>
                             <TextInput
                               value={firstName}
                               onChangeText={handleFirstnameChanged}
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='Alen'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
@@ -326,12 +342,12 @@ const MyProfileScreen = ({ navigation }) => {
                               null
                             )}
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Last Name</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Last Name</Text>
                             <TextInput
                               value={lastName}
                               onChangeText={handleLastnameChanged}
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='Maxwell'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
@@ -343,7 +359,7 @@ const MyProfileScreen = ({ navigation }) => {
                               null
                             )}
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Birth Date</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Birth Date</Text>
                             <TouchableOpacity onPress={showDatepicker} className="p-4 border border-[#D1CBD8] mt-1 rounded-sm">
                               <Text className="text-white">{selectedDate.toDateString()}</Text>
                             </TouchableOpacity>
@@ -357,30 +373,30 @@ const MyProfileScreen = ({ navigation }) => {
                               />
                             )}
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Twitch account</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Twitch account</Text>
                             <TextInput
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='https://twitch.com'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
                               textColor='#fff'
                             />
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Instagram account</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Instagram account</Text>
                             <TextInput
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='https://instagram.com'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
                               textColor='#fff'
                             />
 
-                            <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Youtube account</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Youtube account</Text>
                             <TextInput
                               mode='outlined'
-                              className="bg-[#261D37]"
+                              style={{ backgroundColor: activeColors.cardBackground }}
                               placeholder='https://youtube.com'
                               activeOutlineColor='#D1CBD8'
                               outlineColor='#D1CBD8'
@@ -391,36 +407,40 @@ const MyProfileScreen = ({ navigation }) => {
                       </Animated.View>
                     )}
 
-                    <TouchableOpacity activeOpacity={1.0} onPress={handleGameIdDropdown} className={`bg-[#261D37] p-3 flex-row items-center justify-between ${isGameIDOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
+                    <TouchableOpacity activeOpacity={1.0} onPress={handleGameIdDropdown} style={{ backgroundColor: activeColors.cardBackground }} className={`p-3 flex-row items-center justify-between ${isGameIDOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
                       <View className="flex-row items-center space-x-3 ml-3">
-                        <LinkSvg />
-                        <Text className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">Game Id & Rank</Text>
+                        {theme.mode === 'dark' ? (<LinkSvg />) : (<LinkLightSvg />)}
+                        <Text style={{ backgroundColor: activeColors.cardBackground }} className="font-ChakraPetchMedium text-xl">Game Id & Rank</Text>
                       </View>
 
                       <View className="mr-3">
-                        {isGameIDOpen ? (<UpASvg />) : (<DownASvg />)}
+                        {isGeneralOpen ? (<View>
+                          {theme.mode === 'dark' ? (<UpASvg />) : (<UpALightSvg />)}
+                        </View>) : (<View>
+                          {theme.mode === 'dark' ? (<DownASvg />) : (<DownALightSvg />)}
+                        </View>)}
                       </View>
                     </TouchableOpacity>
 
                     {isGameIDOpen && (
-                      <Animated.View className="bg-[#261D37] h-auto rounded-b-lg p-3">
+                      <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                         <View>
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm">Playstation ID</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Playstation ID</Text>
                           <TextInput
                             mode='outlined'
                             keyboardType='phone-pad'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='123'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
                             textColor='#D1CBD8'
                           />
 
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Xbox ID</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Xbox ID</Text>
                           <TextInput
                             mode='outlined'
                             keyboardType='phone-pad'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='321'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
@@ -557,10 +577,10 @@ const MyProfileScreen = ({ navigation }) => {
                             </View>
                           </Modal>)}
 
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">EA ID</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">EA ID</Text>
                           <TextInput
                             mode='outlined'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='12313'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
@@ -568,10 +588,10 @@ const MyProfileScreen = ({ navigation }) => {
                             textColor='#fff'
                           />
 
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Esport Team</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Esport Team</Text>
                           <TextInput
                             mode='outlined'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='E-FOOT.GG'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
@@ -591,25 +611,29 @@ const MyProfileScreen = ({ navigation }) => {
                       </Animated.View>
                     )}
 
-                    <TouchableOpacity activeOpacity={1.0} onPress={handleChangePasswordDropdown} className={`bg-[#261D37] p-3 flex-row items-center justify-between ${isChangePasswordOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
+                    <TouchableOpacity activeOpacity={1.0} onPress={handleChangePasswordDropdown} style={{ backgroundColor: activeColors.cardBackground }} className={`p-3 flex-row items-center justify-between ${isChangePasswordOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
                       <View className="flex-row items-center space-x-3 ml-3">
-                        <LockSvg />
-                        <Text className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">Change Password</Text>
+                        {theme.mode === 'dark' ? (<LockSvg />) : (<LockLightSvg />)}
+                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xl">Change Password</Text>
                       </View>
 
                       <View className="mr-3">
-                        {isChangePasswordOpen ? (<UpASvg />) : (<DownASvg />)}
+                        {isGeneralOpen ? (<View>
+                          {theme.mode === 'dark' ? (<UpASvg />) : (<UpALightSvg />)}
+                        </View>) : (<View>
+                          {theme.mode === 'dark' ? (<DownASvg />) : (<DownALightSvg />)}
+                        </View>)}
                       </View>
                     </TouchableOpacity>
 
                     {isChangePasswordOpen && (
-                      <Animated.View className="bg-[#261D37] h-auto rounded-b-lg p-3">
+                      <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                         <View>
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm">Old Password</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Old Password</Text>
                           <TextInput
                             value={oldPassword}
                             mode='outlined'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='ALenmaxwell345'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
@@ -625,12 +649,12 @@ const MyProfileScreen = ({ navigation }) => {
                             }
                           />
 
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Password</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Password</Text>
                           <TextInput
                             value={password}
                             onChangeText={handlePasswordChanged}
                             mode='outlined'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='**********'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
@@ -651,12 +675,12 @@ const MyProfileScreen = ({ navigation }) => {
                             null
                           )}
 
-                          <Text className="font-ChakraPetchMedium text-[#D1CBD8] text-sm mt-5">Confirm new Password</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">Confirm new Password</Text>
                           <TextInput
                             value={confirmPassword}
                             onChangeText={handleConfirmPasswordChanged}
                             mode='outlined'
-                            className="bg-[#261D37]"
+                            style={{ backgroundColor: activeColors.cardBackground }}
                             placeholder='**********'
                             activeOutlineColor='#D1CBD8'
                             outlineColor='#D1CBD8'
@@ -690,22 +714,26 @@ const MyProfileScreen = ({ navigation }) => {
                       </Animated.View>
                     )}
 
-                    <TouchableOpacity activeOpacity={1.0} onPress={handleUserPreferencesDropdown} className={`bg-[#261D37] p-3 flex-row items-center justify-between ${isUserPreferencesOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
+                    <TouchableOpacity activeOpacity={1.0} onPress={handleUserPreferencesDropdown} style={{ backgroundColor: activeColors.cardBackground }} className={`p-3 flex-row items-center justify-between ${isUserPreferencesOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
                       <View className="flex-row items-center space-x-3 ml-3">
-                        <BellSvg />
-                        <Text className="font-ChakraPetchMedium text-xl text-[#D1CBD8]">User preferences</Text>
+                        {theme.mode === 'dark' ? (<BellSvg />) : (<BellLightSvg />)}
+                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xl">User preferences</Text>
                       </View>
 
                       <View className="mr-3">
-                        {isUserPreferencesOpen ? (<UpASvg />) : (<DownASvg />)}
+                        {isGeneralOpen ? (<View>
+                          {theme.mode === 'dark' ? (<UpASvg />) : (<UpALightSvg />)}
+                        </View>) : (<View>
+                          {theme.mode === 'dark' ? (<DownASvg />) : (<DownALightSvg />)}
+                        </View>)}
                       </View>
                     </TouchableOpacity>
 
                     {isUserPreferencesOpen && (
-                      <Animated.View className="bg-[#261D37] h-auto rounded-b-lg p-3">
+                      <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                         <View>
                           <View className={`flex-row items-center justify-between ${isSmallScreen ? 'w-[345px]' : 'w-[276px]'} ${isLargeScreen ? 'w-[345px]' : 'w-[277px]'} space-x-4`}>
-                            <Text className="font-ChakraPetchLight text-[17px] text-[#D1CBD8]">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-[17px]">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
 
                             <Switch
                               value={isSwitchOneOn}
@@ -715,7 +743,7 @@ const MyProfileScreen = ({ navigation }) => {
                           </View>
 
                           <View className="mt-5 flex-row items-center justify-between w-[285px] space-x-3">
-                            <Text className="font-ChakraPetchLight text-[17px] text-[#D1CBD8]">Challenge (You will get notification for challenge invite challenge accepted and result)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-[17px]">Challenge (You will get notification for challenge invite challenge accepted and result)</Text>
 
                             <Switch
                               value={isSwitchTwoOn}
@@ -740,7 +768,7 @@ const MyProfileScreen = ({ navigation }) => {
                 </View>
               </ScrollView>
             </TouchableOpacity>
-            
+
             <View className="mt-10" />
           </ScrollView>
         </KeyboardAvoidingView>

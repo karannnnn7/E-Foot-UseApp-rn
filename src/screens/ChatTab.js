@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ImageComponent, ScrollView } from 'react-native';
-import CommonHeader from '../components/CommonHeader';
-import ChatHeaderSvg from '../../assets/svg/ChatHeader.svg';
-import SearchSvg from '../../assets/svg/Search.svg';
 import { TextInput } from 'react-native-paper';
+import { colors } from '../config/Theme';
+import CommonHeader from '../components/CommonHeader';
+import ChatSvg from '../../assets/svg/Chat.svg';
+import ChatLightSvg from '../../assets/svg/ChatLight.svg';
+import SearchSvg from '../../assets/svg/Search.svg';
+import SearchLightSvg from '../../assets/svg/SearchLight.svg';
 import NewChallengersSvg from '../../assets/svg/NewChallengers.svg';
 import NewChatSvg from '../../assets/svg/NewChat.svg';
 import DP1Svg from '../../assets/svg/DP-1.svg';
@@ -21,6 +24,8 @@ const ChatTab = ({ navigation }) => {
   const isSmallScreen = Dimensions.get('screen').height > 840;
   const [isselectedTab, setIsSelectedTab] = useState("");
   const [selected, setSelected] = useState('');
+  const theme = { mode: 'light' };
+  let activeColors = colors[theme.mode];
 
   //For Changing Tabs
   const renderChats = () => {
@@ -40,8 +45,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jenny Wilson</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Jenny Wilson</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Okay Done. </Text>
               </View>
             </View>
 
@@ -60,8 +65,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Robert Fox</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okii</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Robert Fox</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Okii</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -73,8 +78,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Eleneor Salsabil</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Great job!!</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Eleneor Salsabil</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Great job!!</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -86,8 +91,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jacob Jonas</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">You won!</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Jacob Jonas</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">You won!</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -99,8 +104,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Jenny Wilson</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Oh c’on</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Jenny Wilson</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Oh c’on</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -112,8 +117,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Cooper wilson</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Cooper wilson</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Okay Done. </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -125,8 +130,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Rebekaa winson</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Rebekaa winson</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Okay Done. </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -138,8 +143,8 @@ const ChatTab = ({ navigation }) => {
               </View>
 
               <View>
-                <Text className="font-ChakraPetchBold text-base text-[#D1CBD8]">Rebekaa winson</Text>
-                <Text className="font-ChakraPetchMedium text-sm text-[#D1CBD8]">Okay Done. </Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Rebekaa winson</Text>
+                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm">Okay Done. </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -149,15 +154,15 @@ const ChatTab = ({ navigation }) => {
 
   return (
     <>
-      <View className="bg-[#0B0711] h-full">
+      <View style={{ backgroundColor: activeColors.background }} className="h-full">
         <CommonHeader navigation={navigation} />
 
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
           <View className="mx-5">
             <View className="flex-row items-center space-x-3">
-              <ChatHeaderSvg />
+              {theme.mode === 'dark' ? (<ChatSvg width={21} height={21} />) : (<ChatLightSvg width={21} height={21} />)}
 
-              <Text className="font-ChakraPetchBold text-lg text-[#D1CBD8]">Challenge a player</Text>
+              <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-lg">Challenge a player</Text>
             </View>
 
             <View className="mt-5 flex-row items-center space-x-5">
@@ -165,12 +170,12 @@ const ChatTab = ({ navigation }) => {
                 <TextInput
                   mode='outlined'
                   placeholder='Search users'
-                  placeholderTextColor={'#D1CBD8'}
-                  className="bg-[#261D37] pl-8"
+                  placeholderTextColor={colors.textPrimary}
+                  style={{ backgroundColor: activeColors.cardBackground, paddingLeft: 32 }}
                 />
 
                 <View className="absolute top-5 left-4">
-                  <SearchSvg />
+                  {theme.mode === 'dark' ? (<SearchSvg />) : (<SearchLightSvg />)}
                 </View>
               </View>
 
