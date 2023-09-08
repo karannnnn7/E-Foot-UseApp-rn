@@ -30,9 +30,12 @@ import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import CloseLightSvg from '../../assets/svg/CloseLight.svg';
 import TrophySvg from '../../assets/svg/Trophy.svg';
-import NewYouTubeSvg from '../../assets/svg/NewYouTube.svg';
-import NewChatSocialSvg from '../../assets/svg/NewChatSocial.svg';
-import NewInstagramSvg from '../../assets/svg/NewInstagram.svg';
+import YouTubeSvg from '../../assets/svg/YouTube.svg';
+import YouTubeLightSvg from '../../assets/svg/YouTubeLight.svg';
+import ChatsSvg from '../../assets/svg/Chats.svg';
+import ChatsLightSvg from '../../assets/svg/ChatsLight.svg';
+import InstagramSvg from '../../assets/svg/Instagram.svg';
+import InstagramLightSvg from '../../assets/svg/InstagramLight.svg';
 
 const MyProfileScreen = ({ navigation }) => {
 
@@ -223,7 +226,7 @@ const MyProfileScreen = ({ navigation }) => {
                     <View className="absolute top-10">
                       <DpSvg />
 
-                      <Text className="font-ChakraPetchMedium text-2xl text-[#D1CBD8] text-center mt-5">Darshit Shah</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-2xl text-center mt-5">Darshit Shah</Text>
 
                       <View className="bg-[#FFC1071F] border border-[#FFC107] mx-5 p-2 flex-row items-center justify-center space-x-3 rounded-lg mt-3">
                         <TrophySvg />
@@ -232,15 +235,15 @@ const MyProfileScreen = ({ navigation }) => {
 
                       <View className="flex-row items-center justify-around mt-5">
                         <TouchableOpacity>
-                          <NewYouTubeSvg />
+                          {theme.mode === 'dark' ? (<YouTubeSvg width={32} height={32} />) : (<YouTubeLightSvg width={32} height={32} />)}
                         </TouchableOpacity>
 
                         <TouchableOpacity>
-                          <NewChatSocialSvg />
+                          {theme.mode === 'dark' ? (<ChatsSvg width={32} height={32} />) : (<ChatsLightSvg width={32} height={32} />)}
                         </TouchableOpacity>
 
                         <TouchableOpacity>
-                          <NewInstagramSvg />
+                          {theme.mode === 'dark' ? (<InstagramSvg width={31} height={31} />) : (<InstagramLightSvg width={31} height={31} />)}
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -410,7 +413,7 @@ const MyProfileScreen = ({ navigation }) => {
                     <TouchableOpacity activeOpacity={1.0} onPress={handleGameIdDropdown} style={{ backgroundColor: activeColors.cardBackground }} className={`p-3 flex-row items-center justify-between ${isGameIDOpen ? 'rounded-t-lg' : 'rounded-lg'} mt-5`}>
                       <View className="flex-row items-center space-x-3 ml-3">
                         {theme.mode === 'dark' ? (<LinkSvg />) : (<LinkLightSvg />)}
-                        <Text style={{ backgroundColor: activeColors.cardBackground }} className="font-ChakraPetchMedium text-xl">Game Id & Rank</Text>
+                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-xl">Game Id & Rank</Text>
                       </View>
 
                       <View className="mr-3">

@@ -5,12 +5,12 @@ import DashBoardTab from "../screens/DashBoardTab";
 import ChatTab from "../screens/ChatTab";
 import HomeSvg from '../../assets/svg/Home.svg';
 import HomeLightSvg from '../../assets/svg/HomeLight.svg';
-import ActiveHomeSvg from '../../assets/svg/ActiveHome.svg';
 import ActiveHomeLightSvg from '../../assets/svg/ActiveHomeLight.svg';
 import DashBoardSvg from '../../assets/svg/DashBoard.svg';
 import DashBoardLightSvg from '../../assets/svg/DashBoardLight.svg';
-import ActiveDashBoardSvg from '../../assets/svg/ActiveDashBoard.svg';
 import ActiveDashBoardLightSvg from '../../assets/svg/ActiveDashBoardLight.svg';
+import ActiveNewGameSvg from '../../assets/svg/ActiveNewGame.svg';
+import ActiveNewGameLightSvg from '../../assets/svg/ActiveNewGameLight.svg';
 import NewGameSvg from '../../assets/svg/NewGame.svg';
 import NewGameLightSvg from '../../assets/svg/NewGameLight.svg';
 import CupSvg from '../../assets/svg/Cup.svg';
@@ -52,7 +52,7 @@ const BottomTabs = () => {
                                     icon={
                                         focused ? (
                                             <View>
-                                                {theme.mode === 'dark' ? (<ActiveHomeSvg width={23} height={23} />) : (<ActiveHomeLightSvg width={23} height={23} />)}
+                                                <ActiveHomeLightSvg width={23} height={23} />
                                             </View>
                                         ) : (
                                             <View>
@@ -71,7 +71,7 @@ const BottomTabs = () => {
                                     icon={
                                         focused ? (
                                             <View>
-                                                {theme.mode === 'dark' ? (<ActiveDashBoardSvg width={23} height={23} />) : (<ActiveDashBoardLightSvg width={23} height={23} />)}
+                                                <ActiveDashBoardLightSvg width={23} height={23} />
                                             </View>
                                         ) : (
                                             <View>
@@ -86,9 +86,20 @@ const BottomTabs = () => {
 
                         case 'startGame':
                             iconName = (
-                                <View className={`absolute ${isSmallScreen ? 'bottom-0' : '-bottom-8'} shadow-sm shadow-[#4517F1]`}>
-                                    {theme.mode === 'dark' ? (<NewGameSvg />) : (<NewGameLightSvg />)}
-                                </View>
+                                <TabIcon
+                                    isActive={focused}
+                                    icon={
+                                        focused ? (
+                                            <View className={`absolute ${isSmallScreen ? '-bottom-14' : '-bottom-14'} -left-14 shadow-sm shadow-[#4517F1]`}>
+                                                {theme.mode === 'dark' ? (<ActiveNewGameSvg />) : (<ActiveNewGameLightSvg />)}
+                                            </View>
+                                        ) : (
+                                            <View className={`absolute ${isSmallScreen ? '-bottom-14' : '-bottom-14'} -left-14 shadow-sm shadow-[#4517F1]`}>
+                                                {theme.mode === 'dark' ? (<NewGameSvg />) : (<NewGameLightSvg />)}
+                                            </View>
+                                        )
+                                    }
+                                />
                             );
 
                             break;

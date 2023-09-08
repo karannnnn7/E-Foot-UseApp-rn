@@ -150,8 +150,7 @@ const HomeScreen = ({ navigation }) => {
                                 mode='outlined'
                                 placeholder='Search users'
                                 placeholderTextColor={colors.textPrimary}
-                                className={`pl-8`}
-                                style={{ backgroundColor: activeColors.cardBackground }}
+                                style={{ backgroundColor: activeColors.cardBackground, paddingLeft: 32 }}
                             />
 
                             <View className="absolute top-5 left-4">

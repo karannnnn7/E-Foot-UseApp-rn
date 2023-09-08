@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import { colors } from '../config/Theme';
 import CommonHeader from '../components/CommonHeader';
-import MyMatchesHeaderSvg from '../../assets/svg/MyMatchesHeader.svg';
+import MyMatchSvg from '../../assets/svg/MyMatch.svg';
+import MyMatchLightSvg from '../../assets/svg/MyMatchLight.svg';
 import SearchSvg from '../../assets/svg/Search.svg';
+import SearchLightSvg from '../../assets/svg/SearchLight.svg';
 import FilterSvg from '../../assets/svg/Filter.svg';
+import FilterLightSvg from '../../assets/svg/FilterLight.svg';
 import PendingTab from './RenderTabs/PendingTab';
 import AcceptedTab from './RenderTabs/AcceptedTab';
 import DisputeTab from './RenderTabs/DisputeTab';
@@ -17,6 +21,8 @@ const MyMatches = ({ navigation }) => {
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [selected, setSelected] = useState('Pending (10)');
     const [activeTabName, setActiveTabName] = useState('Pending (10)');
+    const theme = { mode: 'light' };
+    let activeColors = colors[theme.mode];
 
 
 
@@ -51,13 +57,13 @@ const MyMatches = ({ navigation }) => {
 
     return (
         <>
-            <View className="bg-[#0B0711] h-full">
+            <View style={{ backgroundColor: activeColors.background }} className="h-full">
                 <CommonHeader navigation={navigation} />
 
                 <View className="mx-5">
                     <View className="flex-row items-center space-x-3 mt-3">
-                        <MyMatchesHeaderSvg />
-                        <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">My Matches</Text>
+                        {theme.mode === 'dark' ? (<MyMatchSvg width={24} height={24} />) : (<MyMatchLightSvg width={24} height={24} />)}
+                        <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">My Matches</Text>
                     </View>
 
                     <View className="mt-3">
@@ -67,19 +73,19 @@ const MyMatches = ({ navigation }) => {
                                     mode='outlined'
                                     placeholder='Search users'
                                     placeholderTextColor={'#D1CBD8'}
-                                    className="bg-[#261D37] pl-8"
+                                    style={{ backgroundColor: activeColors.cardBackground, paddingLeft: 32 }}
                                 />
 
                                 <View className="absolute top-5 left-4">
-                                    <SearchSvg />
+                                    {theme.mode === 'dark' ? (<SearchSvg />) : (<SearchLightSvg />)}
                                 </View>
                             </View>
 
-                            <TouchableOpacity onPress={() => console.log('pressed')} className="bg-[#261D37] p-4 rounded-lg mt-1">
-                                <FilterSvg />
+                            <TouchableOpacity onPress={() => console.log('pressed')} style={{ backgroundColor: activeColors.cardBackground }} className="p-4 rounded-lg mt-1">
+                                {theme.mode === 'dark' ? (<FilterSvg />) : (<FilterLightSvg />)}
                             </TouchableOpacity>
 
-                            
+
                         </View>
                     </View>
 
@@ -88,22 +94,25 @@ const MyMatches = ({ navigation }) => {
                             <TouchableOpacity onPress={() => {
                                 setSelected('Pending (10)')
                                 setActiveTabName('Pending (10)')
-                            }} className={`p-3 rounded-lg ${selected === 'Pending (10)' ? 'bg-[#171ad4]' : 'bg-[#261D37]'}`}>
-                                <Text className="font-ChakraPetchBold text-sm text-[#D1DCD8]">Pending (10)</Text>
+                            }} style={{ backgroundColor: `${selected === 'Pending (10)' ? '#171ad4' : activeColors.cardBackground}` }}
+                                className={`p-3 rounded-lg `}>
+                                <Text style={{ color: `${selected === 'Pending (10)' ? '#D1CBD8' : activeColors.textPrimary}` }} className="font-ChakraPetchBold text-sm">Pending (10)</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => {
                                 setSelected('Accepted (10)')
                                 setActiveTabName('Accepted (10)')
-                            }} className={`p-3 rounded-lg ${selected === 'Accepted (10)' ? 'bg-[#171ad4]' : 'bg-[#261D37]'}`}>
-                                <Text className="font-ChakraPetchBold text-sm text-[#D1DCD8]">Accepted (10)</Text>
+                            }} style={{ backgroundColor: `${selected === 'Accepted (10)' ? '#171ad4' : activeColors.cardBackground}` }}
+                                className={`p-3 rounded-lg`}>
+                                <Text style={{ color: `${selected === 'Accepted (10)' ? '#D1CBD8' : activeColors.textPrimary}` }} className="font-ChakraPetchBold text-sm">Accepted (10)</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => {
                                 setSelected('Dispute (7)')
                                 setActiveTabName('Dispute (7)')
-                            }} className={`p-3 rounded-lg ${selected === 'Dispute (7)' ? 'bg-[#171ad4]' : 'bg-[#261D37]'}`}>
-                                <Text className="font-ChakraPetchBold text-sm text-[#D1DCD8]">Dispute (7)</Text>
+                            }} style={{ backgroundColor: `${selected === 'Dispute (7)' ? '#171ad4' : activeColors.cardBackground}` }}
+                                className={`p-3 rounded-lg`}>
+                                <Text style={{ color: `${selected === 'Dispute (7)' ? '#D1CBD8' : activeColors.textPrimary}` }} className="font-ChakraPetchBold text-sm">Dispute (7)</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -111,32 +120,35 @@ const MyMatches = ({ navigation }) => {
                             <TouchableOpacity onPress={() => {
                                 setSelected('Win (9)')
                                 setActiveTabName('Win (9)')
-                            }} className={`p-3 rounded-lg ${selected === 'Win (9)' ? 'bg-[#171ad4]' : 'bg-[#261D37]'}`}>
-                                <Text className="font-ChakraPetchBold text-sm text-[#D1DCD8]">Win (9)</Text>
+                            }} style={{ backgroundColor: `${selected === 'Win (9)' ? '#171ad4' : activeColors.cardBackground}` }}
+                                className={`p-3 rounded-lg`}>
+                                <Text style={{ color: `${selected === 'Win (9)' ? '#D1CBD8' : activeColors.textPrimary}` }} className="font-ChakraPetchBold text-sm">Win (9)</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => {
                                 setSelected('lose (9)')
                                 setActiveTabName('lose (9)')
-                            }} className={`p-3 rounded-lg ${selected === 'lose (9)' ? 'bg-[#171ad4]' : 'bg-[#261D37]'}`}>
-                                <Text className="font-ChakraPetchBold text-sm text-[#D1DCD8]">lose (9)</Text>
+                            }} style={{ backgroundColor: `${selected === 'lose (9)' ? '#171ad4' : activeColors.cardBackground}` }}
+                                className={`p-3 rounded-lg`}>
+                                <Text style={{ color: `${selected === 'lose (9)' ? '#D1CBD8' : activeColors.textPrimary}` }} className="font-ChakraPetchBold text-sm">lose (9)</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => {
                                 setSelected('Draw (10)')
                                 setActiveTabName('Draw (10)')
-                            }} className={`p-3 rounded-lg ${selected === 'Draw (10)' ? 'bg-[#171ad4]' : 'bg-[#261D37]'}`}>
-                                <Text className="font-ChakraPetchBold text-sm text-[#D1DCD8]">Draw (10)</Text>
+                            }} style={{ backgroundColor: `${selected === 'Draw (10)' ? '#171ad4' : activeColors.cardBackground}` }}
+                                className={`p-3 rounded-lg`}>
+                                <Text style={{ color: `${selected === 'Draw (10)' ? '#D1CBD8' : activeColors.textPrimary}` }} className="font-ChakraPetchBold text-sm">Draw (10)</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
 
-                        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-8 h-full">
-                            {renderContent()}
-                            <View className="mb-96" />
-                        </ScrollView>
+                    <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-8 h-full">
+                        {renderContent()}
+                        <View className="mb-96" />
+                    </ScrollView>
                 </View>
-            </View>
+            </View >
         </>
     )
 }

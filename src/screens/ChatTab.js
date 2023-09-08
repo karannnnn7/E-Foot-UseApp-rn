@@ -8,7 +8,9 @@ import ChatLightSvg from '../../assets/svg/ChatLight.svg';
 import SearchSvg from '../../assets/svg/Search.svg';
 import SearchLightSvg from '../../assets/svg/SearchLight.svg';
 import NewChallengersSvg from '../../assets/svg/NewChallengers.svg';
+import NewChallengersLightSvg from '../../assets/svg/NewChallengersLight.svg';
 import NewChatSvg from '../../assets/svg/NewChat.svg';
+import NewChatLightSvg from '../../assets/svg/NewChatLight.svg';
 import DP1Svg from '../../assets/svg/DP-1.svg';
 import DP2Svg from '../../assets/svg/DP-2.svg';
 import DP3Svg from '../../assets/svg/DP-3.svg';
@@ -182,15 +184,17 @@ const ChatTab = ({ navigation }) => {
               <TouchableOpacity onPress={() => {
                 setIsSelectedTab('NewChallengers')
                 setSelected('NewChallengers')
-              }} className={`${selected === 'NewChallengers' ? 'bg-[#4A00E8]' : 'bg-[#261D37]'} p-4 rounded-lg mt-1`}>
-                <NewChallengersSvg />
+              }} style={{ backgroundColor: `${selected === 'NewChallengers' ? '#4A00E8' : activeColors.cardBackground}` }}
+                className={`p-4 rounded-lg mt-1`}>
+                {theme.mode === 'dark' ? (<NewChallengersSvg />) : (<NewChallengersLightSvg />)}
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => {
                 setIsSelectedTab('NewChat')
                 setSelected('NewChat')
-              }} className={`${selected === 'NewChat' ? 'bg-[#4A00E8]' : 'bg-[#261D37]'} p-4 rounded-lg mt-1`}>
-                <NewChatSvg />
+              }} style={{ backgroundColor: `${selected === 'NewChat' ? '#4A00E8' : activeColors.cardBackground}` }}
+                className={`p-4 rounded-lg mt-1`}>
+                {theme.mode === 'dark' ? (<NewChatSvg />) : (<NewChatLightSvg />)}
               </TouchableOpacity>
             </View>
 

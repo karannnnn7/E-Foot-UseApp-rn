@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import CommonHeader from '../components/CommonHeader';
-import ContextUsHeaderSvg from '../../assets/svg/ContectUsHeader.svg';
-import Pic7Svg from '../../assets/svg/Pic-7.svg';
 import { TextInput } from 'react-native-paper';
+import { colors } from '../config/Theme';
+import CommonHeader from '../components/CommonHeader';
+import ContectUsSvg from '../../assets/svg/ContectUs.svg';
+import ContectUsLightSvg from '../../assets/svg/ContectUsLight.svg';
+import Pic7Svg from '../../assets/svg/Pic-7.svg';
+import Pic7LightSvg from '../../assets/svg/Pic-7Light.svg';
 
 const ContextUs = ({ navigation }) => {
 
@@ -13,6 +16,8 @@ const ContextUs = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
+    const theme = { mode: 'light' };
+    let activeColors = colors[theme.mode];
 
     useEffect(() => {
         if (NameError || emailError || Name.trim() === '' || email.trim() === '') {
@@ -55,7 +60,7 @@ const ContextUs = ({ navigation }) => {
 
     return (
         <>
-            <View className="bg-[#0B0711] h-full">
+            <View style={{ backgroundColor: activeColors.background }} className="h-full">
                 <CommonHeader navigation={navigation} />
 
                 <KeyboardAvoidingView
@@ -77,21 +82,21 @@ const ContextUs = ({ navigation }) => {
 
                             <View className="mt-3 mx-5">
                                 <View className="flex-row items-center space-x-3">
-                                    <ContextUsHeaderSvg />
-                                    <Text className="font-ChakraPetchBold text-xl text-[#D1CBD8]">Contact Us</Text>
+                                    {theme.mode === 'dark' ? (<ContectUsSvg width={23} height={23} />) : (<ContectUsLightSvg width={23} height={23} />)}
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">Contact Us</Text>
                                 </View>
 
                                 <View className="items-center mt-14">
-                                    <Pic7Svg />
+                                    {theme.mode === 'dark' ? (<Pic7Svg />) : (<Pic7LightSvg />)}
                                 </View>
 
                                 <View className="mt-10">
-                                    <Text className="font-ChakraPetchBold text-base text-[#FFFFFF]">Your Name</Text>
+                                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchBold text-base">Your Name</Text>
                                     <TextInput
                                         value={Name}
                                         onChangeText={handleNameChanged}
                                         mode='outlined'
-                                        className="bg-[#0B0711]"
+                                        style={{ backgroundColor: activeColors.cardBackground }}
                                         placeholder='Enter your name'
                                         activeOutlineColor='#D1CBD8'
                                         outlineColor='#D1CBD8'
@@ -103,12 +108,12 @@ const ContextUs = ({ navigation }) => {
                                         null
                                     )}
 
-                                    <Text className="font-ChakraPetchBold text-base text-[#FFFFFF] mt-5">Email</Text>
+                                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchBold text-base mt-5">Email</Text>
                                     <TextInput
                                         value={email}
                                         onChangeText={handleEmailChanged}
                                         mode='outlined'
-                                        className="bg-[#0B0711]"
+                                        style={{ backgroundColor: activeColors.cardBackground }}
                                         placeholder='Enter your email'
                                         activeOutlineColor='#D1CBD8'
                                         outlineColor='#D1CBD8'
@@ -121,10 +126,10 @@ const ContextUs = ({ navigation }) => {
                                         null
                                     )}
 
-                                    <Text className="font-ChakraPetchBold text-base text-[#FFFFFF] mt-5">Your Message</Text>
+                                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchBold text-base mt-5">Your Message</Text>
                                     <TextInput
                                         mode='outlined'
-                                        className="bg-[#0B0711]"
+                                        style={{ backgroundColor: activeColors.cardBackground }}
                                         placeholder='Write your message here....'
                                         activeOutlineColor='#D1CBD8'
                                         outlineColor='#D1CBD8'
@@ -145,7 +150,7 @@ const ContextUs = ({ navigation }) => {
                                     <TouchableOpacity onPress={() => {
                                         console.log('pressed');
                                         Alert('We will contect you soon!');
-                                        }} className='h-12  items-center justify-center w-full mt-7 bg-[#98959A] rounded-lg'>
+                                    }} className='h-12  items-center justify-center w-full mt-7 bg-[#98959A] rounded-lg'>
                                         <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Send Message</Text>
                                     </TouchableOpacity>
                                 )}
