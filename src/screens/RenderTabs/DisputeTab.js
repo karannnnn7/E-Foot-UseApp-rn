@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Modal, Dimensions, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../config/Theme';
+import { ThemeContext } from '../../context/ThemeContext';
 import * as DocumentPicker from 'expo-document-picker';
 import SmallLogoSvg from '../../../assets/svg/SmallLogo.svg';
 import PPSvg from '../../../assets/svg/PP.svg';
@@ -14,7 +15,8 @@ const DisputeTab = () => {
   const [visible, setVisible] = useState(false);
   const [animationValue, setanimationValue] = useState(new Animated.Value(1));
   const [isDocumentUploaded, setIsDocumentUploaded] = useState(false);
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
   // For modal

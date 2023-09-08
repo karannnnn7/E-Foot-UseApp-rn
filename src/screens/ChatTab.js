@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ImageComponent, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import ChatSvg from '../../assets/svg/Chat.svg';
 import ChatLightSvg from '../../assets/svg/ChatLight.svg';
@@ -26,7 +27,8 @@ const ChatTab = ({ navigation }) => {
   const isSmallScreen = Dimensions.get('screen').height > 840;
   const [isselectedTab, setIsSelectedTab] = useState("");
   const [selected, setSelected] = useState('');
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
   //For Changing Tabs

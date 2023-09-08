@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import MyMatchSvg from '../../assets/svg/MyMatch.svg';
 import MyMatchLightSvg from '../../assets/svg/MyMatchLight.svg';
@@ -21,7 +22,8 @@ const MyMatches = ({ navigation }) => {
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [selected, setSelected] = useState('Pending (10)');
     const [activeTabName, setActiveTabName] = useState('Pending (10)');
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
 

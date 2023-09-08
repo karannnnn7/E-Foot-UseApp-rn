@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ScrollView, Animated, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../config/Theme';
+import { ThemeContext } from '../../context/ThemeContext';
 import DP1Svg from '../../../assets/svg/DP-1.svg';
 import CloseSvg from '../../../assets/svg/Close.svg';
 import CloseLightSvg from '../../../assets/svg/CloseLight.svg';
@@ -11,7 +12,8 @@ const NewChat = () => {
   const isSmallScreen = Dimensions.get('screen').height > 840;
   const [isVisible, setIsVisible] = useState(false);
   const [animationValue, setanimationValue] = useState(new Animated.Value(1));
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
 

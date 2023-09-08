@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, Animated, TouchableOpacity, ScrollView, Modal, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import StartGameHeaderSvg from '../../assets/svg/StartGameHeader.svg';
 import StartGameHeaderLightSvg from '../../assets/svg/StartGameHeaderLight.svg';
@@ -28,7 +29,8 @@ const StartGameTab = ({ navigation }) => {
     const [selectGameType, setSelectGameType] = useState("select");
     const [isEnable, setIsEnable] = useState(false)
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     useEffect(() => {

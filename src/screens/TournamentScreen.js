@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Animated } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import CupSvg from '../../assets/svg/Cup.svg';
 import CupLightSvg from '../../assets/svg/CupLight.svg';
@@ -21,7 +22,8 @@ const TournamentScreen = ({ navigation }) => {
   const isSmallScreen = Dimensions.get('screen').height > 850;
   const [visible, setVisible] = useState(false);
   const [animationValue, setanimationValue] = useState(new Animated.Value(1));
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let acticeColors = colors[theme.mode];
 
   // For modal

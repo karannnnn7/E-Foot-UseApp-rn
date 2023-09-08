@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import DrawerLogoSvg from '../../assets/svg/DrawerLogo.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import CloseLightSvg from '../../assets/svg/CloseLight.svg';
@@ -23,7 +24,8 @@ import InstagramLightSvg from '../../assets/svg/InstagramLight.svg';
 
 const Customization = ({ navigation }) => {
 
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     const closeDrawer = () => {

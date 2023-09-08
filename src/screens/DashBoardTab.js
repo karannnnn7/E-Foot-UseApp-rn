@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import CommonHeader from '../components/CommonHeader';
 import DashBoardSvg from '../../assets/svg/DashBoard.svg';
@@ -15,7 +16,8 @@ import AddChatSvg from '../../assets/svg/AddChat.svg';
 
 const DashBoardTab = ({ navigation }) => {
 
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
   //For Coin Progress Bar

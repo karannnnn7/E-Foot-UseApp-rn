@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Modal, Animated, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../config/Theme';
+import { ThemeContext } from '../../context/ThemeContext';
 import DP1Svg from '../../../assets/svg/DP-1.svg';
 import ChatPopupSvg from '../../../assets/svg/ChatPopup.svg';
 import ChatPopupLightSvg from '../../../assets/svg/ChatPopupLight.svg';
@@ -12,7 +13,8 @@ const NewChallengersTab = () => {
   const isSmallScreen = Dimensions.get('screen').height > 850;
   const [isVisible, setIsVisible] = useState(false);
   const [animationValue, setanimationValue] = useState(new Animated.Value(1));
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
   // For modal

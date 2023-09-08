@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
 import { colors } from '../../config/Theme';
+import { ThemeContext } from '../../context/ThemeContext';
 import SmallLogoSvg from '../../../assets/svg/SmallLogo.svg';
 import PPSvg from '../../../assets/svg/PP.svg';
 
 const WinTab = () => {
 
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
   return (

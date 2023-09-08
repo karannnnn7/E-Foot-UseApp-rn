@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../config/Theme';
+import { ThemeContext } from '../../context/ThemeContext';
 import SmallLogoSvg from '../../../assets/svg/SmallLogo.svg';
 import PPSvg from '../../../assets/svg/PP.svg';
 
 const PendingTab = () => {
 
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     return (

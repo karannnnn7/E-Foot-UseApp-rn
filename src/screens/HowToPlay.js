@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, ScrollView, ImageComponent, Dimensions } from 'react-native';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import HowToPlaySvg from '../../assets/svg/HowToPlay.svg';
 import HowToPlayLightSvg from '../../assets/svg/HowToPlayLight.svg';
@@ -15,7 +16,8 @@ import Pic13Svg from '../../assets/svg/Pic-13.svg';
 const HowToPlay = ({ navigation }) => {
 
     const isSmallScreen = Dimensions.get('screen').height > 840;
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     return (

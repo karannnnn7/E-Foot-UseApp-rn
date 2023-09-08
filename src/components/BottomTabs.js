@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dimensions, Platform, View } from "react-native";
+import { colors } from "../config/Theme";
+import { ThemeContext } from "../context/ThemeContext";
 import HomeScreen from "../screens/HomeScreen";
 import DashBoardTab from "../screens/DashBoardTab";
 import ChatTab from "../screens/ChatTab";
@@ -24,14 +27,14 @@ import ActiveChatLightSvg from '../../assets/svg/ActiveChatLight.svg';
 import TabIcon from "./TabIcon";
 import TournamentScreen from "../screens/TournamentScreen";
 import StartGameTab from "../screens/StartGameTab";
-import { colors } from "../config/Theme";
 
 
 const BottomTabs = () => {
 
     const Tab = createBottomTabNavigator();
-    const theme = { mode: 'light' };
-    let activeColors = colors[theme.mode]
+    // const theme = { mode: 'light' };
+    const {theme} = useContext(ThemeContext);
+    let activeColors = colors[theme.mode];
 
     const { height, width } = Dimensions.get('window');
     const isiPhoneSE = Platform.OS === 'ios' && height === 667 && width === 375;

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Dimensions, Modal, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import GameSvg from '../../assets/svg/Game.svg';
 import GameLightSvg from '../../assets/svg/GameLight.svg';
 import RightArrowSvg from '../../assets/svg/RightArrow.svg';
@@ -28,7 +29,8 @@ const HomeScreen = ({ navigation }) => {
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [visible, setVisible] = useState(false);
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
-    const theme = { mode: "light" }
+    // const theme = { mode: "light" }
+    const {theme} = useContext(ThemeContext);
     let activeColors = colors[theme.mode]
 
 

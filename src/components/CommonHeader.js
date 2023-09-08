@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import DrawerMenuSvg from '../../assets/svg/Drawer.svg';
 import DrawerMenuLightSvg from '../../assets/svg/DrawerMenuLight.svg';
 import NotificationSvg from '../../assets/svg/Notification.svg';
@@ -15,9 +16,16 @@ import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 const CommonHeader = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
-    const theme = { mode: 'light' }
-    let activeColors = colors[theme.mode]
 
+    // const theme = { mode: 'light' }
+    const { theme, updateTheme } = useContext(ThemeContext);
+    let activeColors = colors[theme.mode];
+
+    const [isActive, setIsActive] = useState(theme.mode === 'dark');
+    const handleTheme = () => {
+        updateTheme();
+        setIsActive((previousState) => !previousState);
+    };
 
     //For OpenDrawer with Custom Button
     const openDrawer = () => {
@@ -52,19 +60,19 @@ const CommonHeader = ({ navigation }) => {
                     </TouchableOpacity>
 
                     {modalVisible && (
-                        <View className={`${isDarkTheme ? 'bg-[#FFFFFF]' : 'bg-[#261D37]'} w-24 absolute right-0 top-11 rounded-lg flex-row items-center justify-around`}>
+                        <View style={{ backgroundColor: activeColors.cardBackground }} className={`w-24 absolute right-0 top-11 rounded-lg flex-row items-center justify-around`}>
                             <TouchableOpacity onPress={() => {
                                 navigation.navigate('myProfile')
                                 setModalVisible(false)
                             }} className="items-center my-2">
-                                {isDarkTheme ? (<ProfileIconLightSvg />) : (<ProfileIconSvg />)}
+                                {theme.mode === 'dark' ? (<ProfileIconSvg />) : (<ProfileIconLightSvg />)}
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => {
-                                toggleTheme()
-                                setModalVisible(false)
+                                handleTheme()
+                                setIsActive(!isActive)
                             }} className="my-3 items-center">
-                                {isDarkTheme ? (<DarkIconSvg />) : (<LightIconSvg />)}
+                                {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
                             </TouchableOpacity>
                         </View>
                     )}

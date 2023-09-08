@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import SearchSvg from '../../assets/svg/Search.svg';
 import SearchLightSvg from '../../assets/svg/SearchLight.svg';
@@ -9,7 +10,8 @@ import NotificationSignSvg from '../../assets/svg/NotificationSign.svg';
 
 const NotificationScreen = ({ navigation }) => {
 
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     return (

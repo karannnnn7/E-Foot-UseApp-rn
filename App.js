@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import * as Fonts from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
 import Routes from './src/helpers/Routes';
+import { ThemeContext } from './src/context/ThemeContext';
 
 const App = () => {
 
   const [isFontLoaded, setIsFontLoaded] = useState(false);
+  const [theme, setTheme] = useState({ mode: 'light' });
+
+  const updateTheme = (newTheme) => {
+    if (!newTheme) {
+      let mode;
+      mode = theme.mode === 'dark' ? 'light' : 'dark';
+      newTheme = { mode };
+    }
+
+    setTheme(newTheme);
+  };
 
   useEffect(() => {
     async function loadFonts() {
@@ -32,18 +44,20 @@ const App = () => {
   }, [])
 
   return (
-    <SafeAreaView className="bg-[#0B0711] flex-1">
-      <StatusBar backgroundColor={'#261D37'} />
-      {isFontLoaded ? (
-        <NavigationContainer>
-          <Routes />
-        </NavigationContainer>
-      ) : (
-        <Text className="items-center justify-center">
-          Lagecy Can't be Load!
-        </Text>
-      )}
-    </SafeAreaView>
+    <ThemeContext.Provider value={{ theme, updateTheme }}>
+      <SafeAreaView className="bg-[#0B0711] flex-1">
+        <StatusBar backgroundColor={'#261D37'} />
+        {isFontLoaded ? (
+          <NavigationContainer>
+            <Routes />
+          </NavigationContainer>
+        ) : (
+          <Text className="items-center justify-center">
+            Lagecy Can't be Load!
+          </Text>
+        )}
+      </SafeAreaView>
+    </ThemeContext.Provider>
   );
 }
 

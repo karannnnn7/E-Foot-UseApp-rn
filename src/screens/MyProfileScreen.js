@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Animated, KeyboardAvoidingView, Keyboard, Dimensions, Modal } from 'react-native';
 import { Switch, TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MyProfileSvg from '../../assets/svg/MyProfile.svg';
@@ -67,7 +68,8 @@ const MyProfileScreen = ({ navigation }) => {
   const [isSwitchTwoOn, setIsSwitchTwoOn] = useState(false);
   const isSmallScreen = Dimensions.get('screen').height > 850;
   const isLargeScreen = Dimensions.get('screen').width > 480;
-  const theme = { mode: 'light' };
+  // const theme = { mode: 'light' };
+  const { theme } = useContext(ThemeContext);
   let activeColors = colors[theme.mode];
 
   const onToggleSwitchOne = () => setIsSwitchOneOn(!isSwitchOneOn);

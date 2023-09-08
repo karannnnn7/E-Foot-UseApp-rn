@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
+import { ThemeContext } from '../context/ThemeContext';
 import CommonHeader from '../components/CommonHeader';
 import ContectUsSvg from '../../assets/svg/ContectUs.svg';
 import ContectUsLightSvg from '../../assets/svg/ContectUsLight.svg';
@@ -16,7 +17,8 @@ const ContextUs = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
-    const theme = { mode: 'light' };
+    // const theme = { mode: 'light' };
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     useEffect(() => {
