@@ -452,13 +452,13 @@ const MyProfileScreen = ({ navigation }) => {
                             textColor='#D1CBD8'
                           />
 
-                          <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">WL Rank</Text>
+                          <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-base mt-5">WL Rank</Text>
                           <TouchableOpacity onPress={() => setWlRankModalVisible(!wlRankModalvisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
-                            <Text className="text-white">{selectRank}</Text>
+                            <Text style={{ color: activeColors.texxtTernory }}>{selectRank}</Text>
                             <DownArrowSvg />
                           </TouchableOpacity>
 
-                          {isSmallScreen ? (<Modal
+                          <Modal
                             // animationType="slide"
                             transparent={true}
                             visible={wlRankModalvisible}
@@ -471,12 +471,12 @@ const MyProfileScreen = ({ navigation }) => {
                               <View className="h-full w-full bg-[#000000bf]" />
                             </TouchableOpacity>
 
-                            <View className={`absolute bottom-64 bg-[#261D37] w-96 left-4 rounded-2xl`} >
+                            <View style={{ backgroundColor: activeColors.cardBackground }} className={`absolute bottom-64 w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
                               <View className="p-3 mt-3">
                                 <View className="flex-row items-center justify-between mx-5">
-                                  <Text className="text-white text-xl font-ChakraPetchBold">WL Rank</Text>
+                                  <Text style={{ color: activeColors.texxtTernory }} className="text-xl font-ChakraPetchBold">WL Rank</Text>
                                   <TouchableOpacity onPress={() => hideModal()}>
-                                    <CloseSvg />
+                                    {theme.mode === 'dark' ? (<CloseSvg />) : (<CloseLightSvg />)}
                                   </TouchableOpacity>
                                 </View>
 
@@ -485,102 +485,41 @@ const MyProfileScreen = ({ navigation }) => {
                                     setSelectRank('NO WINS')
                                     hideModal()
                                   }}>
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">NO WINS</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">NO WINS</Text>
                                   </TouchableOpacity>
 
                                   <TouchableOpacity onPress={() => {
                                     setSelectRank('0 - 5 WINS')
                                     hideModal()
                                   }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">0 - 5 WINS</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">0 - 5 WINS</Text>
                                   </TouchableOpacity>
 
                                   <TouchableOpacity onPress={() => {
                                     setSelectRank('5 - 10 WINS')
                                     hideModal()
                                   }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">5 - 10 WINS</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">5 - 10 WINS</Text>
                                   </TouchableOpacity>
 
                                   <TouchableOpacity onPress={() => {
                                     setSelectRank('10 - 15 WINS')
                                     hideModal()
                                   }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">10 - 15 WINS</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">10 - 15 WINS</Text>
                                   </TouchableOpacity>
 
                                   <TouchableOpacity onPress={() => {
                                     setSelectRank('15+ WINS')
                                     hideModal()
                                   }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">15+ WINS</Text>
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-lg">15+ WINS</Text>
                                   </TouchableOpacity>
                                 </View>
 
                               </View>
                             </View>
-                          </Modal>) : (<Modal
-                            // animationType="slide"
-                            transparent={true}
-                            visible={wlRankModalvisible}
-                          // onRequestClose={() => {
-                          //   setVisible(!visible);
-                          // }}
-                          >
-
-                            <TouchableOpacity onPress={hideModal}>
-                              <View className="h-full w-full bg-[#000000bf]" />
-                            </TouchableOpacity>
-
-                            <View className={`absolute bottom-64 bg-[#261D37] w-96 left-[5px] rounded-2xl`} >
-                              <View className="p-3 mt-3">
-                                <View className="flex-row items-center justify-between mx-5">
-                                  <Text className="text-white text-xl font-ChakraPetchBold">WL Rank</Text>
-                                  <TouchableOpacity onPress={() => hideModal()}>
-                                    <CloseSvg />
-                                  </TouchableOpacity>
-                                </View>
-
-                                <View className="my-5 mx-5">
-                                  <TouchableOpacity onPress={() => {
-                                    setSelectRank('NO WINS')
-                                    hideModal()
-                                  }}>
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">NO WINS</Text>
-                                  </TouchableOpacity>
-
-                                  <TouchableOpacity onPress={() => {
-                                    setSelectRank('0 - 5 WINS')
-                                    hideModal()
-                                  }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">0 - 5 WINS</Text>
-                                  </TouchableOpacity>
-
-                                  <TouchableOpacity onPress={() => {
-                                    setSelectRank('5 - 10 WINS')
-                                    hideModal()
-                                  }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">5 - 10 WINS</Text>
-                                  </TouchableOpacity>
-
-                                  <TouchableOpacity onPress={() => {
-                                    setSelectRank('10 - 15 WINS')
-                                    hideModal()
-                                  }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">10 - 15 WINS</Text>
-                                  </TouchableOpacity>
-
-                                  <TouchableOpacity onPress={() => {
-                                    setSelectRank('15+ WINS')
-                                    hideModal()
-                                  }} className="mt-4">
-                                    <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">15+ WINS</Text>
-                                  </TouchableOpacity>
-                                </View>
-
-                              </View>
-                            </View>
-                          </Modal>)}
+                          </Modal>
 
                           <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-5">EA ID</Text>
                           <TextInput

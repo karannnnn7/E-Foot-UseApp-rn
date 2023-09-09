@@ -9,7 +9,7 @@ import { ThemeContext } from './src/context/ThemeContext';
 const App = () => {
 
   const [isFontLoaded, setIsFontLoaded] = useState(false);
-  const [theme, setTheme] = useState({ mode: 'light' });
+  const [theme, setTheme] = useState({ mode: 'dark' });
 
   const updateTheme = (newTheme) => {
     if (!newTheme) {

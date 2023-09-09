@@ -71,6 +71,7 @@ const CommonHeader = ({ navigation }) => {
                             <TouchableOpacity onPress={() => {
                                 handleTheme()
                                 setIsActive(!isActive)
+                                setModalVisible(false)
                             }} className="my-3 items-center">
                                 {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
                             </TouchableOpacity>
