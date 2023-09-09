@@ -27,10 +27,11 @@ import CommonHeader from '../components/CommonHeader';
 const HomeScreen = ({ navigation }) => {
 
     const isSmallScreen = Dimensions.get('screen').height > 850;
+    const isLargeScreen = Dimensions.get('screen').width > 470;
     const [visible, setVisible] = useState(false);
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
     // const theme = { mode: "light" }
-    const {theme} = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode]
 
 
@@ -99,13 +100,13 @@ const HomeScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{ backgroundColor: activeColors.cardBackground }} className={`mt-5 mx-4  p-4 rounded-lg flex-row items-center justify-between`}>
+                    <View style={{ backgroundColor: activeColors.cardBackground }} className={`mt-5 mx-4 p-4 rounded-lg flex-row items-center justify-between`}>
                         <View>
                             <Pic2Svg />
                         </View>
 
                         <View>
-                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'}`}>FREE play 1Vs1 (training)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} ${isLargeScreen ? 'text-base' : 'text-sm'} `}>FREE play 1Vs1 (training)</Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'}`}>Admin efoot | PS5 </Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'}`}>26-05-23; 04:56</Text>
 
@@ -125,7 +126,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'}`}>FREE play 1Vs1 (training)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} ${isLargeScreen ? 'text-base' : 'text-sm'}`}>FREE play 1Vs1 (training)</Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'}`}>Admin efoot | PS5 </Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'}`}>26-05-23; 04:56</Text>
 
