@@ -169,8 +169,8 @@ const ChatTab = ({ navigation }) => {
               <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-lg">Challenge a player</Text>
             </View>
 
-            <View className="mt-5 flex-row items-center space-x-5">
-              <View className={`${isSmallScreen ? 'w-[240px]' : 'w-[220px]'}`}>
+            <View className="mt-5 flex-row items-center justify-between space-x-5">
+              <View className={`md: max-lg: ${isSmallScreen ? 'w-7/12' : 'w-56'} `}>
                 <TextInput
                   mode='outlined'
                   placeholder='Search users'

@@ -59,7 +59,7 @@ const TournamentScreen = ({ navigation }) => {
           </View>
 
           <View className="mt-5 mx-5 flex-row items-center justify-between">
-            <View className="w-[295px]">
+            <View className={`md: max-lg: w-3/4`}>
               <TextInput
                 mode='outlined'
                 placeholder='Search users'

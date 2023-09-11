@@ -27,7 +27,6 @@ import CommonHeader from '../components/CommonHeader';
 const HomeScreen = ({ navigation }) => {
 
     const isSmallScreen = Dimensions.get('screen').height > 850;
-    const isLargeScreen = Dimensions.get('screen').width > 470;
     const [visible, setVisible] = useState(false);
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
     // const theme = { mode: "light" }
@@ -70,7 +69,7 @@ const HomeScreen = ({ navigation }) => {
                             <Pic1Svg />
                         </View>
 
-                        <View className={`opacity-90 bg-[#261D37] ${isSmallScreen ? 'mx-4' : 'mx-[7px]'} p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]`}>
+                        <View className={`opacity-90 bg-[#261D37] md: ${isSmallScreen ? 'mx-4' : 'mx-1'} p-5 rounded-md absolute bottom-0 flex-row items-center justify-between w-[381px] border border-[#3B3EFF]`}>
                             <View>
                                 <Text className="font-ChakraPetchSemiBold text-base text-[#D1CBD8]">FREE play 1Vs1 (training)</Text>
 
@@ -106,7 +105,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} ${isLargeScreen ? 'text-base' : 'text-sm'} `}>FREE play 1Vs1 (training)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold md: max-lg ${isSmallScreen ? 'text-base' : 'text-sm'} `}>FREE play 1Vs1 (training)</Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'}`}>Admin efoot | PS5 </Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'}`}>26-05-23; 04:56</Text>
 
@@ -126,7 +125,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold ${isSmallScreen ? 'text-base' : 'text-sm'} ${isLargeScreen ? 'text-base' : 'text-sm'}`}>FREE play 1Vs1 (training)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold md: max-lg: ${isSmallScreen ? 'text-base' : 'text-sm'}`}>FREE play 1Vs1 (training)</Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'}`}>Admin efoot | PS5 </Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'}`}>26-05-23; 04:56</Text>
 
@@ -148,7 +147,7 @@ const HomeScreen = ({ navigation }) => {
                     </View>
 
                     <View className="mt-5 mx-5 flex-row items-center justify-between">
-                        <View className={`${isLargeScreen ? 'w-[295px]' : 'w-[285px]'}`}>
+                        <View className={`md: max-lg: w-3/4`}>
                             <TextInput
                                 mode='outlined'
                                 placeholder='Search users'
