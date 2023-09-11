@@ -175,6 +175,7 @@ const ChatTab = ({ navigation }) => {
                   mode='outlined'
                   placeholder='Search users'
                   placeholderTextColor={colors.textPrimary}
+                  textColor={colors.textPrimary}
                   style={{ backgroundColor: activeColors.cardBackground, paddingLeft: 32 }}
                 />
 

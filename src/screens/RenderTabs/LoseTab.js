@@ -31,7 +31,7 @@ const LoseTab = () => {
             </View>
           </View>
 
-          <View className="mt-3 mx-5 flex-row items-center justify-between">
+          <View className="mt-3 mx-5 flex-row items-center justify-between space-x-5">
             <View className="space-y-3">
               <View className="flex-row items-center space-x-1">
                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-sm">Mode:</Text>
@@ -85,7 +85,7 @@ const LoseTab = () => {
             </View>
           </View>
 
-          <View className="mt-3 mx-5 flex-row items-center justify-between">
+          <View className="mt-3 mx-5 flex-row items-center justify-between space-x-5">
             <View className="space-y-3">
               <View className="flex-row items-center space-x-1">
                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-sm">Mode:</Text>
@@ -139,7 +139,7 @@ const LoseTab = () => {
             </View>
           </View>
 
-          <View className="mt-3 mx-5 flex-row items-center justify-between">
+          <View className="mt-3 mx-5 flex-row items-center justify-between space-x-5">
             <View className="space-y-3">
               <View className="flex-row items-center space-x-1">
                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-sm">Mode:</Text>
@@ -193,7 +193,7 @@ const LoseTab = () => {
             </View>
           </View>
 
-          <View className="mt-3 mx-5 flex-row items-center justify-between">
+          <View className="mt-3 mx-5 flex-row items-center justify-between space-x-5">
             <View className="space-y-3">
               <View className="flex-row items-center space-x-1">
                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-sm">Mode:</Text>

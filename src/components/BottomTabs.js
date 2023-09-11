@@ -33,7 +33,7 @@ const BottomTabs = () => {
 
     const Tab = createBottomTabNavigator();
     // const theme = { mode: 'light' };
-    const {theme} = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     let activeColors = colors[theme.mode];
 
     const { height, width } = Dimensions.get('window');

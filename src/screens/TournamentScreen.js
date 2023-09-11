@@ -64,6 +64,7 @@ const TournamentScreen = ({ navigation }) => {
                 mode='outlined'
                 placeholder='Search users'
                 placeholderTextColor={colors.textPrimary}
+                textColor={colors.textPrimary}
                 style={{ backgroundColor: acticeColors.cardBackground, paddingLeft: 32 }}
               />
 

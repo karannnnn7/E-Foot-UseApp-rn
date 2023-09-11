@@ -3,7 +3,8 @@ import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboar
 import { LinearGradient } from 'expo-linear-gradient';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
-import LightSvg from '../../assets/svg/Light.svg';
+import LightIconSvg from '../../assets/svg/LightIcon.svg';
+import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import { TextInput, Switch } from 'react-native-paper';
@@ -63,14 +64,14 @@ const RegisterScreen = ({ navigation }) => {
             useNativeDriver: true,
         }).start();
     };
-    
+
     const hideModal = () => {
         setCountryModalVisible(false);
         setWlRankModalVisible(false);
         setanimationValue(new Animated.Value(1));
     };
 
-    
+
     //Validation
     const handleUserNameChanged = (text) => {
         setUserName(text);
@@ -168,7 +169,7 @@ const RegisterScreen = ({ navigation }) => {
                                                     <FlagSvg />
                                                 </TouchableOpacity>
                                                 <TouchableOpacity>
-                                                    <LightSvg />
+                                                    {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
                                                 </TouchableOpacity>
                                             </View>
                                         </View>

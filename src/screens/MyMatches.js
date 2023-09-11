@@ -69,12 +69,13 @@ const MyMatches = ({ navigation }) => {
                     </View>
 
                     <View className="mt-3">
-                        <View className="flex-row items-center justify-between">
-                            <View className="w-[295px]">
+                        <View>
+                            <View>
                                 <TextInput
                                     mode='outlined'
                                     placeholder='Search users'
-                                    placeholderTextColor={'#D1CBD8'}
+                                    placeholderTextColor={colors.textPrimary}
+                                    textColor={colors.textPrimary}
                                     style={{ backgroundColor: activeColors.cardBackground, paddingLeft: 32 }}
                                 />
 
@@ -83,9 +84,9 @@ const MyMatches = ({ navigation }) => {
                                 </View>
                             </View>
 
-                            <TouchableOpacity onPress={() => console.log('pressed')} style={{ backgroundColor: activeColors.cardBackground }} className="p-4 rounded-lg mt-1">
+                            {/* <TouchableOpacity onPress={() => console.log('pressed')} style={{ backgroundColor: activeColors.cardBackground }} className="p-4 rounded-lg mt-1">
                                 {theme.mode === 'dark' ? (<FilterSvg />) : (<FilterLightSvg />)}
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
 
                         </View>

@@ -3,11 +3,12 @@ import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
-import LightSvg from '../../assets/svg/Light.svg';
+import LightIconSvg from '../../assets/svg/LightIcon.svg';
+import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 import { TextInput } from 'react-native-paper';
 import CButton from '../components/CButton';
 
-const ForgotPasswordScreen = ({navigation}) => {
+const ForgotPasswordScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
@@ -56,7 +57,7 @@ const ForgotPasswordScreen = ({navigation}) => {
                                     <FlagSvg />
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <LightSvg />
+                                    {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
                                 </TouchableOpacity>
                             </View>
                         </View>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Animated, KeyboardAvoidingView, Keyboard, Dimensions, Modal } from 'react-native';
 import { Switch, TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -194,6 +194,10 @@ const MyProfileScreen = ({ navigation }) => {
     setanimationValue(new Animated.Value(1));
   };
 
+
+
+
+
   return (
     <>
       <View style={{ backgroundColor: activeColors.background }} className="h-full">
@@ -249,12 +253,10 @@ const MyProfileScreen = ({ navigation }) => {
                         </TouchableOpacity>
                       </View>
                     </View>
-
-
                   </View>
 
-                  <View className={`bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center ${isSmallScreen ? 'space-x-7' : 'space-x-3'}`}>
-                    <Text className="font-ChakraPetchMedium text-base text-[#D1CBD8]">https://myprofilelink.efoot.NL.098.Win...</Text>
+                  <View className={`bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center md: max-lg: ${isSmallScreen ? 'space-x-5' : 'space-x-3'}`}>
+                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">https://myprofilelink.efoot.NL.098.Win...</Text>
                     <TouchableOpacity>
                       <CopyLinkSvg />
                     </TouchableOpacity>
@@ -284,7 +286,7 @@ const MyProfileScreen = ({ navigation }) => {
                           <View className="items-center mt-3">
                             <EditDPSvg />
 
-                            <TouchableOpacity className="absolute top-10">
+                            <TouchableOpacity onPress={pickImageFromGallry} className="absolute top-10">
                               <EditSvg />
                             </TouchableOpacity>
                           </View>
@@ -454,7 +456,7 @@ const MyProfileScreen = ({ navigation }) => {
 
                           <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchSemiBold text-base mt-5">WL Rank</Text>
                           <TouchableOpacity onPress={() => setWlRankModalVisible(!wlRankModalvisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
-                            <Text style={{ color: activeColors.texxtTernory }}>{selectRank}</Text>
+                            <Text style={{ color: activeColors.textTernory }}>{selectRank}</Text>
                             <DownArrowSvg />
                           </TouchableOpacity>
 
@@ -471,10 +473,10 @@ const MyProfileScreen = ({ navigation }) => {
                               <View className="h-full w-full bg-[#000000bf]" />
                             </TouchableOpacity>
 
-                            <View style={{ backgroundColor: activeColors.cardBackground }} className={`absolute bottom-64 w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
+                            <View style={{ backgroundColor: activeColors.cardBackground }} className={`absolute bottom-64 w-[370px] ${isSmallScreen ? 'left-4' : 'left-1'} rounded-2xl`} >
                               <View className="p-3 mt-3">
                                 <View className="flex-row items-center justify-between mx-5">
-                                  <Text style={{ color: activeColors.texxtTernory }} className="text-xl font-ChakraPetchBold">WL Rank</Text>
+                                  <Text style={{ color: activeColors.textTernory }} className="text-xl font-ChakraPetchBold">WL Rank</Text>
                                   <TouchableOpacity onPress={() => hideModal()}>
                                     {theme.mode === 'dark' ? (<CloseSvg />) : (<CloseLightSvg />)}
                                   </TouchableOpacity>
@@ -676,8 +678,8 @@ const MyProfileScreen = ({ navigation }) => {
                     {isUserPreferencesOpen && (
                       <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                         <View>
-                          <View className={`flex-row items-center justify-between ${isSmallScreen ? 'w-[345px]' : 'w-[276px]'} ${isLargeScreen ? 'w-[345px]' : 'w-[277px]'} space-x-4`}>
-                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-[17px]">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
+                          <View className={`flex-row items-center justify-between mr-2`}>
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-base w-60">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
 
                             <Switch
                               value={isSwitchOneOn}
@@ -686,8 +688,8 @@ const MyProfileScreen = ({ navigation }) => {
                             />
                           </View>
 
-                          <View className="mt-5 flex-row items-center justify-between w-[285px] space-x-3">
-                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-[17px]">Challenge (You will get notification for challenge invite challenge accepted and result)</Text>
+                          <View className="mt-5 flex-row items-center justify-between mr-2">
+                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-base w-60">Challenge (You will get notification for challenge invite challenge accepted and result)</Text>
 
                             <Switch
                               value={isSwitchTwoOn}

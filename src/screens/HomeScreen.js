@@ -105,7 +105,7 @@ const HomeScreen = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold md: max-lg ${isSmallScreen ? 'text-base' : 'text-sm'} `}>FREE play 1Vs1 (training)</Text>
+                            <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold md: max-lg ${isSmallScreen ? 'lg: max-lg: text-base' : 'text-sm'} `}>FREE play 1Vs1 (training)</Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-base' : 'text-sm'}`}>Admin efoot | PS5 </Text>
                             <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchMedium ${isSmallScreen ? 'text-sm' : 'text-xs'}`}>26-05-23; 04:56</Text>
 
@@ -153,6 +153,7 @@ const HomeScreen = ({ navigation }) => {
                                 placeholder='Search users'
                                 placeholderTextColor={colors.textPrimary}
                                 style={{ backgroundColor: activeColors.cardBackground, paddingLeft: 32 }}
+                                textColor={colors.textPrimary}
                             />
 
                             <View className="absolute top-5 left-4">
