@@ -93,9 +93,9 @@ const HowToPlay = ({ navigation }) => {
                             </View>
 
                             <View style={{ backgroundColor: activeColors.cardBackground }} className={`mt-5 ${isSmallScreen ? 'mx-4' : 'mx-1'} h-auto p-5 rounded-lg`}>
-                                <Text className="font-ChakraPetchMedium text-lg text-[#4A00E8]">What is a FREE Play 1vs1?</Text>
+                                <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchMedium text-lg">What is a FREE Play 1vs1?</Text>
                                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-2">This match is a training mode, you can play as many FREE games as you want, no points can be won with this game mode.</Text>
-                                <Text className="font-ChakraPetchMedium text-lg text-[#4A00E8] mt-5">What is E-FOOT ARENA 1vs1?</Text>
+                                <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchMedium text-lg mt-5">What is E-FOOT ARENA 1vs1?</Text>
                                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base mt-2">sing this game mode you can win points when you win or draw a game. Play. Each month (1st day of the month) your points will be set to zero. You can only play the same opponent once in 24 hours.</Text>
                             </View>
                         </View>
