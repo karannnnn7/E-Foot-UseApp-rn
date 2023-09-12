@@ -260,7 +260,7 @@ const HomeScreen = ({ navigation }) => {
                                     </TouchableOpacity>
 
                                     {isSmallScreen ? (<View className="my-10 mx-5 flex-row items-center justify-between">
-                                        <TouchableOpacity onPress={() => hideModal(true)} className=" items-center border border-[#D1CBD8] p-3 rounded-lg w-40">
+                                        <TouchableOpacity onPress={() => hideModal(true)} className="items-center border border-[#D1CBD8] p-3 rounded-lg w-40">
                                             <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Cancel</Text>
                                         </TouchableOpacity>
 
