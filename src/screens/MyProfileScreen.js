@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
 import { Button } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import CommonHeader from '../components/CommonHeader';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MyProfileSvg from '../../assets/svg/MyProfile.svg';
@@ -41,6 +42,12 @@ import InstagramLightSvg from '../../assets/svg/InstagramLight.svg';
 import HideLine from '../../assets/svg/HideLine.svg';
 
 const MyProfileScreen = ({ navigation }) => {
+
+
+  const removeUser = async () => {
+    await AsyncStorage.removeItem('EMAIL');
+    await AsyncStorage.removeItem('PASSWORD');
+  }
 
   const [isGeneralOpen, setIsGeneralOpen] = useState(false);
   const [isGameIDOpen, setIsGameIDOpen] = useState(false);
@@ -731,7 +738,7 @@ const MyProfileScreen = ({ navigation }) => {
                   </View>
 
                   <View className="items-center">
-                    <TouchableOpacity onPress={() => setVisible(true)} className='h-14 items-center justify-center w-60 mt-10'>
+                    <TouchableOpacity onPress={() => {setVisible(true)}} className='h-14 items-center justify-center w-60 mt-10'>
                       <LinearGradient
                         colors={['#4A00E8', '#3B3EFF']}
                         className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
@@ -769,7 +776,10 @@ const MyProfileScreen = ({ navigation }) => {
                               <Text style={{ color: activeColors.textPrimary }} className="font-InterSemiBold text-lg">Cancle</Text>
                             </Button>
 
-                            <TouchableOpacity onPress={() => navigation.navigate('login')} className='h-14 rounded-3xl items-center justify-center w-40'>
+                            <TouchableOpacity onPress={() => {
+                              navigation.navigate('login')
+                              removeUser()
+                              }} className='h-14 rounded-3xl items-center justify-center w-40'>
                               <LinearGradient
                                 colors={['#4A00E8', '#3B3EFF']}
                                 className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"

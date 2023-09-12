@@ -14,7 +14,7 @@ import CButton from '../components/CButton';
 const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
-    checkLoggedIn()
+    checkLoggedIn();
   }, []);
 
   const [showPassword, setShowPassword] = useState(true);
@@ -75,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
     } else {
       navigation.navigate('login');
     }
-  }
+  };
 
 
   return (

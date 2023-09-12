@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
+import { useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GameSvg from '../../assets/svg/Game.svg';
 import GameLightSvg from '../../assets/svg/GameLight.svg';
@@ -27,14 +28,18 @@ import CommonHeader from '../components/CommonHeader';
 
 const HomeScreen = ({ navigation }) => {
 
+    const isFocused = useIsFocused();
+
     useEffect(() => {
         getData();
-    }, []);
+    }, [isFocused]);
 
     const getData = async () => {
         const email = await AsyncStorage.getItem('EMAIL');
         const password = await AsyncStorage.getItem('PASSWORD');
+        const newUsers = await AsyncStorage.getItem('NEWUSER');
         console.log(email + ' ' + password);
+        console.log(JSON.parse(newUsers));
     };
 
     const isSmallScreen = Dimensions.get('screen').height > 850;

@@ -1,17 +1,43 @@
 import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { TextInput, Switch } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
-import { TextInput, Switch } from 'react-native-paper';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+let newUser = [];
+
 const RegisterScreen = ({ navigation }) => {
+
+
+    const addNewUser = async () => {
+        try {
+            let tempNewUser = [];
+            let x = await AsyncStorage.getItem('NEWUSER');
+
+            if (x) {
+                tempNewUser = JSON.parse(x);
+                tempNewUser.map(item => {
+                    newUser.push(item);
+                });
+            }
+
+            newUser.push({ userName: userName, email: email, password: password });
+
+            await AsyncStorage.setItem('NEWUSER', JSON.stringify(newUser));
+            navigation.navigate('drawer');
+        } catch (error) {
+            // Handle any errors that may occur during AsyncStorage operations.
+            console.error(error);
+        }
+    };
 
     const [showPassword, setShowPassword] = useState(true);
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -169,7 +195,7 @@ const RegisterScreen = ({ navigation }) => {
                                                     <FlagSvg />
                                                 </TouchableOpacity>
                                                 <TouchableOpacity>
-                                                    {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
+                                                    <LightIconSvg />
                                                 </TouchableOpacity>
                                             </View>
                                         </View>
@@ -714,7 +740,10 @@ const RegisterScreen = ({ navigation }) => {
                                         </View>
 
                                         <View className="mt-7">
-                                            <CButton btnText={'Sign Up'} onPress={() => navigation.navigate('home')} />
+                                            <CButton btnText={'Sign Up'} onPress={() => {
+                                                addNewUser();
+                                                navigation.navigate('drawer');
+                                            }} />
                                         </View>
 
                                         <TouchableOpacity onPress={() => navigation.navigate('login')} className="flex-row items-center justify-center mt-5">
