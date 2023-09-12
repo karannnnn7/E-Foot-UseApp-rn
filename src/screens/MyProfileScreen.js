@@ -286,7 +286,7 @@ const MyProfileScreen = ({ navigation }) => {
                           <View className="items-center mt-3">
                             <EditDPSvg />
 
-                            <TouchableOpacity onPress={pickImageFromGallry} className="absolute top-10">
+                            <TouchableOpacity onPress={() => console.log('pressed')} className="absolute top-10">
                               <EditSvg />
                             </TouchableOpacity>
                           </View>
