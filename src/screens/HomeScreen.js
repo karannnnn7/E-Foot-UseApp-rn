@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Dimensions, Modal, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import GameSvg from '../../assets/svg/Game.svg';
 import GameLightSvg from '../../assets/svg/GameLight.svg';
 import RightArrowSvg from '../../assets/svg/RightArrow.svg';
@@ -25,6 +26,16 @@ import PPic3Svg from '../../assets/svg/PPic-3.svg';
 import CommonHeader from '../components/CommonHeader';
 
 const HomeScreen = ({ navigation }) => {
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const getData = async () => {
+        const email = await AsyncStorage.getItem('EMAIL');
+        const password = await AsyncStorage.getItem('PASSWORD');
+        console.log(email + ' ' + password);
+    };
 
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [visible, setVisible] = useState(false);

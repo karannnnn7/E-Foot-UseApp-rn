@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
-import { colors } from '../config/Theme';
-import { ThemeContext } from '../context/ThemeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
@@ -15,15 +13,17 @@ import CButton from '../components/CButton';
 
 const LoginScreen = ({ navigation }) => {
 
+  useEffect(() => {
+    checkLoggedIn()
+  }, []);
+
   const [showPassword, setShowPassword] = useState(true);
-  const isSmallScreen = Dimensions.get('screen').height > 850;
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  // const theme = { mode: "light" }
-  const { theme } = useContext(ThemeContext);
-  let activeColors = colors[theme.mode]
+  const isSmallScreen = Dimensions.get('screen').height > 850;
+
 
   const handleDismissKeyboard = () => {
     Keyboard.dismiss();
@@ -59,28 +59,28 @@ const LoginScreen = ({ navigation }) => {
     return passwordRegex.test(text);
   };
 
+
   const handleLogin = async () => {
-    if (emailError || passwordError) {
-      Alert.alert('incorrect userName and password or create a new account');
-    };
-
-    //Validation succeeded, you can now store user data and password
-
     try {
-      //Store userData and password in Async Storage
-      await AsyncStorage.setItem('userData', JSON.stringify({ email, password }));
-
-      navigation.navigate('drawer')
+      await AsyncStorage.setItem('EMAIL', email);
+      await AsyncStorage.setItem('PASSWORD', password);
     } catch (error) {
-      console.log('Error storing Data: ', error);
-    };
+      console.error('cannot stroing data', error);
+    }
   };
-  
+
+  const checkLoggedIn = async () => {
+    if (email !== null || email !== undefined || email !== '') {
+      navigation.navigate('drawer');
+    } else {
+      navigation.navigate('login');
+    }
+  }
 
 
   return (
     <>
-      <View style={{ backgroundColor: activeColors.background }} className="h-full">
+      <View className="bg-[#0B0711] h-full">
         <KeyboardAvoidingView
           keyboardVerticalOffset={50}
           behavior={Platform.OS === 'android' ? 'height' : 'padding'}
@@ -105,7 +105,7 @@ const LoginScreen = ({ navigation }) => {
               </View>
 
               <View className="z-10">
-                <View className="-mt-44 mx-5 rounded-3xl p-5" style={{ height: 750, backgroundColor: activeColors.cardBackground }}>
+                <View className="-mt-44 mx-5 rounded-3xl p-5 bg-[#261D37]" style={{ height: 750 }}>
                   <View className="flex-row justify-between items-center">
                     <LogoSvg />
                     <View className="flex-row items-center space-x-3">
@@ -113,20 +113,20 @@ const LoginScreen = ({ navigation }) => {
                         <FlagSvg />
                       </TouchableOpacity>
                       <TouchableOpacity >
-                        {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
+                        <LightIconSvg />
                       </TouchableOpacity>
                     </View>
                   </View>
 
-                  <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchBold text-2xl mt-10">Welcome! Log In to Start .</Text>
+                  <Text className="font-ChakraPetchBold text-2xl mt-10 text-white">Welcome! Log In to Start .</Text>
 
                   <View className="mt-5">
-                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchSemiBold text-base">Email/Username</Text>
+                    <Text className="font-ChakraPetchSemiBold text-white text-base">Email/Username</Text>
                     <TextInput
                       value={email}
                       onChangeText={handleEmailChanged}
                       mode='outlined'
-                      style={{ marginTop: 4, backgroundColor: activeColors.cardBackground }}
+                      className="mt-1 bg-[#261D37]"
                       placeholder='Enter your email/username'
                       activeOutlineColor='#D1CBD8'
                       outlineColor='#D1CBD8'
@@ -139,13 +139,13 @@ const LoginScreen = ({ navigation }) => {
                       null
                     )}
 
-                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchSemiBold text-base mt-5">Password</Text>
+                    <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">Password</Text>
                     <TextInput
                       value={password}
                       onChangeText={handlePasswordChanged}
                       mode='outlined'
                       placeholder='**********'
-                      style={{ marginTop: 4, backgroundColor: activeColors.cardBackground }}
+                      className="mt-1 bg-[#261D37]"
                       activeOutlineColor='#D1CBD8'
                       outlineColor='#D1CBD8'
                       keyboardType='email-address'
@@ -166,38 +166,40 @@ const LoginScreen = ({ navigation }) => {
                     )}
 
                     <TouchableOpacity onPress={() => navigation.navigate('forgotPassword')} className="mt-3 items-end">
-                      <Text style={{ color: activeColors.textTernory }} className="text-base font-ChakraPetchSemiBold underline">Forgot password?</Text>
+                      <Text className="text-base text-white font-ChakraPetchSemiBold underline">Forgot password?</Text>
                     </TouchableOpacity>
                   </View>
 
                   <View className="mt-10">
-                    <CButton btnText={'Log In'} onPress={() => navigation.navigate('home')} />
+                    <CButton btnText={'Log In'} onPress={() => {
+                      handleLogin()
+                    }} />
                   </View>
 
                   <TouchableOpacity onPress={() => navigation.navigate('register')} className="flex-row items-center mt-5">
-                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchMedium text-base">New on our platform? </Text>
-                    <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchMedium text-base underline">Create  a new account </Text>
+                    <Text className="font-ChakraPetchMedium text-white text-base">New on our platform? </Text>
+                    <Text className="font-ChakraPetchMedium text-white text-base underline">Create  a new account </Text>
                   </TouchableOpacity>
 
                   <View className="flex-row items-center justify-between mt-7">
                     <TouchableOpacity onPress={() => console.log('pressed')} className="flex-row items-center border border-[#D1CBD8] p-3 rounded-lg space-x-2">
-                      <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchSemiBold text-base">Login with </Text>
+                      <Text className="font-ChakraPetchSemiBold text-base text-white">Login with </Text>
                       <GoogleSvg />
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => console.log('pressed')} className="flex-row items-center border border-[#D1CBD8] p-3 rounded-lg space-x-2">
-                      <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchSemiBold  text-base">Login with </Text>
+                      <Text className="font-ChakraPetchSemiBold text-white text-base">Login with </Text>
                       <FaceBookSvg />
                     </TouchableOpacity>
                   </View>
 
                   {isSmallScreen ? (
                     <View className="absolute bottom-7 right-6">
-                      <Text style={{ color: activeColors.textTernory }} className="font-ChakraPetchLight text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
+                      <Text className="font-ChakraPetchLight text-white text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
                     </View>
                   ) : (
                     <View className="absolute bottom-7 right-7">
-                      <Text style={{ color: activeColors.textTernory }} className="font-PlayRegular text-sm">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
+                      <Text className="font-PlayRegular text-white text-sm">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
                     </View>
                   )}
                 </View>
