@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
-import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 import GoogleSvg from '../../assets/svg/Google.svg';
 import FaceBookSvg from '../../assets/svg/FaceBook.svg';
 import CButton from '../components/CButton';
