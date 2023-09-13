@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }) => {
 
     const isFocused = useIsFocused();
 
+    //For getting Data from AsyncStorage.
     useEffect(() => {
         getData();
     }, [isFocused]);
