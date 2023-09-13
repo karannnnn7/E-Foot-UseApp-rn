@@ -107,7 +107,7 @@ const ChatingScreen = ({ navigation }) => {
                                 <ChatPhotoSvg />
                             </View>
 
-                            <View style={{ backgroundColor: activeColors.cardBackground }} className="p-4 rounded-t-2xl rounded-br-2xl w-80">
+                            <View style={{ backgroundColor: activeColors.cardBackground }} className="p-4 rounded-t-2xl rounded-br-2xl w-auto">
                                 <Text style={{ color: activeColors.textPrimary }}>Great! Thanks. </Text>
                                 <Text style={{ color: activeColors.textPrimary, marginTop: 10 }}>6:27 PM</Text>
                             </View>
@@ -192,7 +192,7 @@ const ChatingScreen = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
 
-                        <TouchableOpacity className="p-3 items-center justify-center">
+                        <TouchableOpacity className="p-3 items-center justify-center -ml-2">
                             <LinearGradient
                                 colors={['#4A00E8', '#3B3EFF']}
                                 className="h-auto absolute top-0 bottom-0 left-0 right-0 rounded-full"
