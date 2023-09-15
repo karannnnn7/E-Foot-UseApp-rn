@@ -4,6 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
+import { responsiveWidth } from 'react-native-responsive-dimensions';
 import CommonHeader from '../components/CommonHeader';
 import CupSvg from '../../assets/svg/Cup.svg';
 import CupLightSvg from '../../assets/svg/CupLight.svg';
@@ -59,7 +60,7 @@ const TournamentScreen = ({ navigation }) => {
           </View>
 
           <View className="mt-5 mx-5 flex-row items-center justify-between">
-            <View className={`md: max-lg: w-3/4`}>
+            <View style={{ width: responsiveWidth(70) }}>
               <TextInput
                 mode='outlined'
                 placeholder='Search users'

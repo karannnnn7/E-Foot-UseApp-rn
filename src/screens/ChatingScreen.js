@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingVi
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 import BackArrowSvg from '../../assets/svg/BackArrow.svg';
 import BackArrowLightSvg from '../../assets/svg/BackArrowLight.svg';
 import ChatDp1Svg from '../../assets/svg/ChatDp1.svg';
@@ -176,18 +177,18 @@ const ChatingScreen = ({ navigation }) => {
                             <TextInput
                                 placeholder='Message'
                                 placeholderTextColor={colors.textPrimary}
-                                style={{ backgroundColor: activeColors.cardBackground, padding: 15, borderRadius: 7, paddingLeft: 45 }}
+                                style={{ backgroundColor: activeColors.cardBackground, height: responsiveHeight(7), borderRadius: 7, paddingLeft: 45 }}
                             />
 
-                            <TouchableOpacity className={`absolute left-3 ${isSmallScreen ? 'top-3' : 'top-4'}`}>
+                            <TouchableOpacity style={{ position: 'absolute', left: 12, top: responsiveHeight(2) }}>
                                 {theme.mode === 'dark' ? (<EmojisSvg />) : (<EmojisLightSvg />)}
                             </TouchableOpacity>
 
-                            <TouchableOpacity className="absolute right-14 top-5">
+                            <TouchableOpacity style={{ position: 'absolute', right: 56, top: responsiveHeight(2) }}>
                                 {theme.mode === 'dark' ? (<DocsSvg />) : (<DocsLightSvg />)}
                             </TouchableOpacity>
 
-                            <TouchableOpacity className="absolute right-4 top-5">
+                            <TouchableOpacity style={{ position: 'absolute', right: 16, top: responsiveHeight(2) }}>
                                 {theme.mode === 'dark' ? (<CamSvg />) : (<CamLightSvg />)}
                             </TouchableOpacity>
                         </View>

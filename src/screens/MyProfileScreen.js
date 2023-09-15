@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
 import { Button } from 'react-native-paper';
+import { responsiveWidth } from 'react-native-responsive-dimensions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CommonHeader from '../components/CommonHeader';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -704,7 +705,7 @@ const MyProfileScreen = ({ navigation }) => {
                       <Animated.View style={{ backgroundColor: activeColors.cardBackground }} className="h-auto rounded-b-lg p-3">
                         <View>
                           <View className={`flex-row items-center justify-between mr-2`}>
-                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-base w-60">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
+                            <Text style={{ color: activeColors.textPrimary, width: responsiveWidth(55) }} className="font-ChakraPetchLight text-base">Chat Notifications(You will get the notification for the chat request and unviewed messages)</Text>
 
                             <Switch
                               value={isSwitchOneOn}
@@ -714,7 +715,7 @@ const MyProfileScreen = ({ navigation }) => {
                           </View>
 
                           <View className="mt-5 flex-row items-center justify-between mr-2">
-                            <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchLight text-base w-60">Challenge (You will get notification for challenge invite challenge accepted and result)</Text>
+                            <Text style={{ color: activeColors.textPrimary, width: responsiveWidth(55) }} className="font-ChakraPetchLight text-base">Challenge (You will get notification for challenge invite challenge accepted and result)</Text>
 
                             <Switch
                               value={isSwitchTwoOn}

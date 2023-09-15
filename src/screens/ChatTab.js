@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Dimensions, ImageComponent, ScrollView } 
 import { TextInput } from 'react-native-paper';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
+import { responsiveWidth } from 'react-native-responsive-dimensions';
 import CommonHeader from '../components/CommonHeader';
 import ChatSvg from '../../assets/svg/Chat.svg';
 import ChatLightSvg from '../../assets/svg/ChatLight.svg';
@@ -170,7 +171,7 @@ const ChatTab = ({ navigation }) => {
             </View>
 
             <View className="mt-5 flex-row items-center justify-between space-x-5">
-              <View className={`md: max-lg: ${isSmallScreen ? 'w-7/12' : 'w-56'} `}>
+              <View style={{ width: responsiveWidth(55) }}>
                 <TextInput
                   mode='outlined'
                   placeholder='Search users'
