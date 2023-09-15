@@ -114,7 +114,7 @@ const BottomTabs = () => {
                                     icon={
                                         focused ? (
                                             <View>
-                                                {theme.mode === 'dark' ? (<ActiveCupSvg width={23} height={23} />) : (<ActiveCupLightSvg width={23} height={23} />)}
+                                                <ActiveCupLightSvg width={23} height={23} />
                                             </View>
                                         ) : (
                                             <View>
@@ -134,7 +134,7 @@ const BottomTabs = () => {
                                     icon={
                                         focused ? (
                                             <View>
-                                                {theme.mode === 'dark' ? (<ActiveChatSvg width={23} height={23} />) : (<ActiveChatLightSvg width={23} height={23} />)}
+                                                <ActiveChatLightSvg width={23} height={23} />
                                             </View>
                                         ) : (
                                             <View>

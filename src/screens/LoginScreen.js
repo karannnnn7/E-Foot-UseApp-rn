@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
+import { gql, useMutation } from '@apollo/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
@@ -9,6 +10,19 @@ import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import GoogleSvg from '../../assets/svg/Google.svg';
 import FaceBookSvg from '../../assets/svg/FaceBook.svg';
 import CButton from '../components/CButton';
+
+const LOGIN_MUTATION = gql`
+mutation userLogin($input: LoginInput){
+  userLogin(input:$input){  
+      success
+      statusCode
+      token
+      user{
+          ...UserDetail
+      }
+  }
+}
+`;
 
 const LoginScreen = ({ navigation }) => {
 
@@ -58,13 +72,30 @@ const LoginScreen = ({ navigation }) => {
     return passwordRegex.test(text);
   };
 
+  const [loginMutation, { loading, error, data }] = useMutation(LOGIN_MUTATION);
 
   const handleLogin = async () => {
+    // try {
+    //   await AsyncStorage.setItem('EMAIL', email);
+    //   await AsyncStorage.setItem('PASSWORD', password);
+    // } catch (error) {
+    //   console.error('cannot stroing data', error);
+    // }
+
     try {
-      await AsyncStorage.setItem('EMAIL', email);
-      await AsyncStorage.setItem('PASSWORD', password);
+      const response = await loginMutation({
+        variables: {
+          input: {
+            email,
+            password
+          }
+        }
+      });
+
+      //Handle the response data
+      console.log(response.data);
     } catch (error) {
-      console.error('cannot stroing data', error);
+      console.error('Login Failed', error);
     }
   };
 

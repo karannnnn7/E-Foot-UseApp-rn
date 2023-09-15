@@ -280,7 +280,7 @@ const MyProfileScreen = ({ navigation }) => {
                     </View>
                   </View>
 
-                  <View className={`bg-transparent bg-[#2c2544] border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center md: max-lg: ${isSmallScreen ? 'space-x-5' : 'space-x-3'}`}>
+                  <View style={{ backgroundColor: activeColors.cardBackground }} className={`bg-transparent border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center md: max-lg: ${isSmallScreen ? 'space-x-5' : 'space-x-3'}`}>
                     <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">https://myprofilelink.efoot.NL.098.Win...</Text>
                     <TouchableOpacity>
                       <CopyLinkSvg />
@@ -738,7 +738,7 @@ const MyProfileScreen = ({ navigation }) => {
                   </View>
 
                   <View className="items-center">
-                    <TouchableOpacity onPress={() => {setVisible(true)}} className='h-14 items-center justify-center w-60 mt-10'>
+                    <TouchableOpacity onPress={() => { setVisible(true) }} className='h-14 items-center justify-center w-60 mt-10'>
                       <LinearGradient
                         colors={['#4A00E8', '#3B3EFF']}
                         className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
@@ -779,7 +779,7 @@ const MyProfileScreen = ({ navigation }) => {
                             <TouchableOpacity onPress={() => {
                               navigation.navigate('login')
                               removeUser()
-                              }} className='h-14 rounded-3xl items-center justify-center w-40'>
+                            }} className='h-14 rounded-3xl items-center justify-center w-40'>
                               <LinearGradient
                                 colors={['#4A00E8', '#3B3EFF']}
                                 className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
