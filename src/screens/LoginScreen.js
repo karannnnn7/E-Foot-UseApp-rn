@@ -10,25 +10,14 @@ import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import GoogleSvg from '../../assets/svg/Google.svg';
 import FaceBookSvg from '../../assets/svg/FaceBook.svg';
 import CButton from '../components/CButton';
+import { loginMutation } from '../Connections/Mutations';
 
-const LOGIN_MUTATION = gql`
-mutation userLogin($input: LoginInput){
-  userLogin(input:$input){  
-      success
-      statusCode
-      token
-      user{
-          ...UserDetail
-      }
-  }
-}
-`;
 
 const LoginScreen = ({ navigation }) => {
 
-  useEffect(() => {
-    checkLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   checkLoggedIn();
+  // }, []);
 
   const [showPassword, setShowPassword] = useState(true);
   const [email, setEmail] = useState("");
@@ -72,38 +61,26 @@ const LoginScreen = ({ navigation }) => {
     return passwordRegex.test(text);
   };
 
-  const [loginMutation, { loading, error, data }] = useMutation(LOGIN_MUTATION);
+
+  const [loginUser] = useMutation(loginMutation);
 
   const handleLogin = async () => {
-    // try {
-    //   await AsyncStorage.setItem('EMAIL', email);
-    //   await AsyncStorage.setItem('PASSWORD', password);
-    // } catch (error) {
-    //   console.error('cannot stroing data', error);
-    // }
-
     try {
-      const response = await loginMutation({
+      const { data } = await loginUser({
         variables: {
-          input: {
-            email,
-            password
-          }
-        }
+          email,
+          password,
+        },
       });
 
-      //Handle the response data
-      console.log(response.data);
-    } catch (error) {
-      console.error('Login Failed', error);
-    }
-  };
+      //Handle the response  (e.g. store the token in AsyncStorage)
+      const token = data.loginUser.token;
+      await AsyncStorage.setItem('TOKEN', token);
 
-  const checkLoggedIn = async () => {
-    if (email !== null || email !== undefined || email !== '') {
+      //Naviagte to the next screen upon successful login
       navigation.navigate('drawer');
-    } else {
-      navigation.navigate('login');
+    } catch (error) {
+      console.log('Login  failed: ', error);
     }
   };
 

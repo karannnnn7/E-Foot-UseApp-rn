@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, Text, AppRegistry } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { ThemeContext } from './src/context/ThemeContext';
-import { persistCache } from 'apollo3-cache-persist';
 import * as Fonts from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Routes from './src/helpers/Routes';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   uri: 'http://13.36.254.232/graphql',
-  cache,
-  defaultOptions: { watchQuery: { fetchPolicy: 'cache-and-network' } },
+  cache: new InMemoryCache(),
 });
 
 
@@ -23,7 +18,6 @@ const App = () => {
 
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [theme, setTheme] = useState({ mode: 'dark' });
-  const [loadingCache, setLoadingCache] = useState(true);
 
 
   const updateTheme = (newTheme) => {
@@ -58,12 +52,7 @@ const App = () => {
     loadFonts();
   }, []);
 
-  useEffect(() => {
-    persistCache({
-      cache,
-      storage: AsyncStorage,
-    }).then(() => setLoadingCache(false));
-  }, []);
+
 
 
 
@@ -87,4 +76,8 @@ const App = () => {
   );
 }
 
+// Make sure to export the App component
 export default App;
+
+// Register the component using its name as a string
+AppRegistry.registerComponent('App', () => App);
