@@ -76,7 +76,10 @@ const CommonHeader = ({ navigation }) => {
 
                                 <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-1">Daniel Marvin</Text>
 
-                                <TouchableOpacity onPress={() => navigation.navigate('login')} className="flex-row items-center space-x-2 mt-2">
+                                <TouchableOpacity onPress={() => {
+                                    navigation.navigate('login')
+                                    setModalVisible(false)
+                                    }} className="flex-row items-center space-x-2 mt-2">
                                     <LogOutSvg />
 
                                     <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Log Out</Text>
