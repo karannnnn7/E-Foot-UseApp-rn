@@ -47,7 +47,7 @@ const TournamentScreen = ({ navigation }) => {
 
         <CommonHeader navigation={navigation} />
 
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 -z-10 h-full">
           <View className="mx-5 flex-row items-center justify-between">
             <View className="flex-row items-center space-x-3">
               {theme.mode === 'dark' ? (<CupSvg width={20} height={20} />) : (<CupLightSvg width={20} height={20} />)}

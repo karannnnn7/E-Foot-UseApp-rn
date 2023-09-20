@@ -73,11 +73,11 @@ const HomeScreen = ({ navigation }) => {
             <View className={`h-full`} style={{ backgroundColor: activeColors.background }}  >
 
                 {/* Header */}
-                <CommonHeader navigation={navigation} />
+                <CommonHeader navigation={navigation}  />
 
 
-                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
-                    <View className="mx-5 flex-row items-center space-x-2">
+                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 -z-10 h-full">
+                    <View className="mx-5 flex-row items-center space-x-2 ">
                         {theme.mode === 'dark' ? (<GameSvg />) : (<GameLightSvg />)}
                         <Text style={{ color: activeColors.textPrimary }} className={`font-ChakraPetchBold text-xl`}>Upcoming games</Text>
                     </View>

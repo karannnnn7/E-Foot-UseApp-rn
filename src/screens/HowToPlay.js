@@ -25,7 +25,7 @@ const HowToPlay = ({ navigation }) => {
             <View style={{ backgroundColor: activeColors.background }} className="h-full">
                 <CommonHeader navigation={navigation} />
 
-                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
+                <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 -z-10 h-full">
                     <View>
                         <View className="flex-row items-center space-x-3 mx-5">
                             {theme.mode === 'dark' ? (<HowToPlaySvg width={19.5} height={19.5} />) : (<HowToPlayLightSvg width={19.5} height={19.5} />)}

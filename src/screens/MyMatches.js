@@ -62,7 +62,7 @@ const MyMatches = ({ navigation }) => {
             <View style={{ backgroundColor: activeColors.background }} className="h-full">
                 <CommonHeader navigation={navigation} />
 
-                <View className="mx-5">
+                <View className="mx-5 -z-10">
                     <View className="flex-row items-center space-x-3 mt-3">
                         {theme.mode === 'dark' ? (<MyMatchSvg width={24} height={24} />) : (<MyMatchLightSvg width={24} height={24} />)}
                         <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-xl">My Matches</Text>

@@ -50,7 +50,7 @@ const DashBoardTab = ({ navigation }) => {
       <View style={{ backgroundColor: activeColors.background }} className="h-full">
         <CommonHeader navigation={navigation} />
 
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 -z-10 h-full">
           <View className="mx-6">
             <View className="flex-row items-center space-x-3">
               {theme.mode === 'dark' ? (<DashBoardSvg width={20} height={20} />) : (<DashBoardLightSvg width={20} height={20} />)}

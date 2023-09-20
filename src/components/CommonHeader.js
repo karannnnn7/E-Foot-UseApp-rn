@@ -8,10 +8,9 @@ import NotificationSvg from '../../assets/svg/Notification.svg';
 import NotificationLightSvg from '../../assets/svg/NotificationLight.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import ProfilePicSvg from '../../assets/svg/ProfilePic.svg';
-import ProfileIconSvg from '../../assets/svg/ProfileIcon.svg';
-import ProfileIconLightSvg from '../../assets/svg/ProfileIconLight.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
+import LogOutSvg from '../../assets/svg/LogOut.svg';
 
 const CommonHeader = ({ navigation }) => {
 
@@ -55,25 +54,33 @@ const CommonHeader = ({ navigation }) => {
                         <FlagSvg />
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => setModalVisible(true)}>
+                    <TouchableOpacity onPress={() => {
+                        handleTheme()
+                        setIsActive(!isActive)
+                        setModalVisible(false)
+                    }} className="my-3 items-center">
+                        {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
+                    </TouchableOpacity>
+
+                    <TouchableOpacity className="" onPress={() => setModalVisible(true)}>
                         <ProfilePicSvg />
                     </TouchableOpacity>
 
                     {modalVisible && (
-                        <View style={{ backgroundColor: activeColors.cardBackground }} className={`w-24 absolute right-0 top-11 rounded-lg flex-row items-center justify-around`}>
+                        <View style={{ backgroundColor: activeColors.cardBackground }} className={`w-24 absolute right-0 top-11  rounded-lg`}>
                             <TouchableOpacity onPress={() => {
                                 navigation.navigate('myProfile')
                                 setModalVisible(false)
                             }} className="items-center my-2">
-                                {theme.mode === 'dark' ? (<ProfileIconSvg />) : (<ProfileIconLightSvg />)}
-                            </TouchableOpacity>
+                                <ProfilePicSvg width={60} height={60} />
 
-                            <TouchableOpacity onPress={() => {
-                                handleTheme()
-                                setIsActive(!isActive)
-                                setModalVisible(false)
-                            }} className="my-3 items-center">
-                                {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
+                                <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-sm mt-1">Daniel Marvin</Text>
+
+                                <TouchableOpacity onPress={() => navigation.navigate('login')} className="flex-row items-center space-x-2 mt-2">
+                                    <LogOutSvg />
+
+                                    <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchBold text-base">Log Out</Text>
+                                </TouchableOpacity>
                             </TouchableOpacity>
                         </View>
                     )}

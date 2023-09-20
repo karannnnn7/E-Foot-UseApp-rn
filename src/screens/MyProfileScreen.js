@@ -4,7 +4,6 @@ import { Switch, TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
-import { Button } from 'react-native-paper';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CommonHeader from '../components/CommonHeader';
@@ -40,7 +39,6 @@ import ChatsSvg from '../../assets/svg/Chats.svg';
 import ChatsLightSvg from '../../assets/svg/ChatsLight.svg';
 import InstagramSvg from '../../assets/svg/Instagram.svg';
 import InstagramLightSvg from '../../assets/svg/InstagramLight.svg';
-import HideLine from '../../assets/svg/HideLine.svg';
 
 const MyProfileScreen = ({ navigation }) => {
 
@@ -76,8 +74,6 @@ const MyProfileScreen = ({ navigation }) => {
   const [animationValue, setanimationValue] = useState(new Animated.Value(1));
   const [isSwitchOneOn, setIsSwitchOneOn] = useState(false);
   const [isSwitchTwoOn, setIsSwitchTwoOn] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [animationValues, setanimationValues] = useState(new Animated.Value(1));
   const isSmallScreen = Dimensions.get('screen').height > 850;
   const isLargeScreen = Dimensions.get('screen').width > 480;
   // const theme = { mode: 'light' };
@@ -207,23 +203,6 @@ const MyProfileScreen = ({ navigation }) => {
   };
 
 
-
-  // For modal LogOut
-  const showModals = () => {
-    setVisible(true);
-    Animated.timing(animationValues, {
-      toValue: 0,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-  const hideModals = () => {
-    setVisible(false);
-    setanimationValues(new Animated.Value(1));
-  };
-
-
-
   return (
     <>
       <View style={{ backgroundColor: activeColors.background }} className="h-full">
@@ -246,7 +225,7 @@ const MyProfileScreen = ({ navigation }) => {
               className="flex-grow"
             >
 
-              <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
+              <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 -z-10 h-full">
                 <View className="mx-5">
                   <View className="flex-row items-center space-x-3">
                     {theme.mode === 'dark' ? (<MyProfileSvg width={23} height={23} />) : (<MyProfileLightSvg width={23} height={23} />)}
@@ -736,61 +715,6 @@ const MyProfileScreen = ({ navigation }) => {
                         </View>
                       </Animated.View>
                     )}
-                  </View>
-
-                  <View className="items-center">
-                    <TouchableOpacity onPress={() => { setVisible(true) }} className='h-14 items-center justify-center w-60 mt-10'>
-                      <LinearGradient
-                        colors={['#4A00E8', '#3B3EFF']}
-                        className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
-                      />
-                      <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Log Out</Text>
-                    </TouchableOpacity>
-
-                    <Modal
-                      // animationType="slide"
-                      transparent={true}
-                      visible={visible}
-                    // onRequestClose={() => {
-                    //   setVisible(!visible);
-                    // }}
-                    >
-
-                      <TouchableOpacity onPress={hideModal}>
-                        <View className="h-full w-full bg-[#000000bf]" />
-                      </TouchableOpacity>
-
-                      <View style={{ backgroundColor: activeColors.cardBackground }} className="absolute bottom-0 w-full rounded-t-2xl" >
-                        <View className="p-3 mt-3">
-                          <View className="items-center">
-                            <HideLine />
-                          </View>
-
-
-                          <View className=" w-full items-center mt-5">
-                            <Text style={{ color: activeColors.textTernory }} className="font-InterSemiBold text-lg">Logout?</Text>
-                            <Text style={{ color: activeColors.textPrimary }} className="font-InterMedium text-base mt-5">Are you sure do you wanna logout?</Text>
-                          </View>
-
-                          <View className="flex-row justify-around my-8">
-                            <Button mode="outlined" textColor='#fff' className="p-1 px-6 border border-[#D1CBD8]" onPress={() => hideModal()}>
-                              <Text style={{ color: activeColors.textPrimary }} className="font-InterSemiBold text-lg">Cancle</Text>
-                            </Button>
-
-                            <TouchableOpacity onPress={() => {
-                              navigation.navigate('login')
-                              removeUser()
-                            }} className='h-14 rounded-3xl items-center justify-center w-40'>
-                              <LinearGradient
-                                colors={['#4A00E8', '#3B3EFF']}
-                                className="h-full absolute top-0 bottom-0 left-0 right-0 rounded-lg"
-                              />
-                              <Text className="font-ChakraPetchBold text-sm text-[#FFFFFF]">Log Out</Text>
-                            </TouchableOpacity>
-                          </View>
-                        </View>
-                      </View>
-                    </Modal>
                   </View>
                 </View>
               </ScrollView>
