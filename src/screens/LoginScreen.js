@@ -1,23 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
-import { gql, useMutation } from '@apollo/client';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { gql, useQuery } from '@apollo/client';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import GoogleSvg from '../../assets/svg/Google.svg';
 import FaceBookSvg from '../../assets/svg/FaceBook.svg';
 import CButton from '../components/CButton';
-import { loginMutation } from '../Connections/Mutations';
 
 
 const LoginScreen = ({ navigation }) => {
 
-  // useEffect(() => {
-  //   checkLoggedIn();
-  // }, []);
 
   const [showPassword, setShowPassword] = useState(true);
   const [email, setEmail] = useState("");
@@ -62,23 +57,29 @@ const LoginScreen = ({ navigation }) => {
   };
 
 
-  const [loginUser] = useMutation(loginMutation);
+  //Fetching Data from server With Dynamic data.
+  const LOGIN_Query = gql`
+    query Users {
+      users {
+          data {
+              email
+          }
+      }
+  }
+    `
+
+  const { loading, error, data } = useQuery(LOGIN_Query);
+
+  //Access the data you fetched form the query
+  const userdata = data ? data.users.data : null;
+
 
   const handleLogin = async () => {
     try {
-      const { data } = await loginUser({
-        variables: {
-          email,
-          password,
-        },
-      });
+      console.log('User Data: ', userdata);
 
-      //Handle the response  (e.g. store the token in AsyncStorage)
-      const token = data.loginUser.token;
-      await AsyncStorage.setItem('TOKEN', token);
-
-      //Naviagte to the next screen upon successful login
-      navigation.navigate('drawer');
+      //Navigate to the next screen uponn success login
+      navigation.navigate('drawer')
     } catch (error) {
       console.log('Login  failed: ', error);
     }
