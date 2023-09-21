@@ -9,6 +9,9 @@ import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useMutation } from '@apollo/client';
+import { registerUserMutation } from '../../Graphql/Mutations';
+import client from '../../Graphql/Apollo';
 
 
 
@@ -131,6 +134,30 @@ const RegisterScreen = ({ navigation }) => {
         }
     };
 
+    const { loading, error, data } = useMutation(registerUserMutation);
+
+    const handleRegister = async () => {
+        try {
+            const input = {
+                userName,
+                email,
+                password,
+                firstName,
+                lastName,
+            }
+
+            const { data } = await client.mutate({
+                mutation: registerUserMutation,
+                variables: {
+                    input,
+                },
+            });
+
+            console.log('success', input);
+        } catch (error) {
+            console.log('Register error: ', error);
+        }
+    };
 
 
 
@@ -715,9 +742,7 @@ const RegisterScreen = ({ navigation }) => {
                                         </View>
 
                                         <View className="mt-7">
-                                            <CButton btnText={'Sign Up'} onPress={() => {
-                                                navigation.navigate('drawer');
-                                            }} />
+                                            <CButton btnText={'Sign Up'} onPress={handleRegister} />
                                         </View>
 
                                         <TouchableOpacity onPress={() => navigation.navigate('login')} className="flex-row items-center justify-center mt-5">
@@ -725,15 +750,11 @@ const RegisterScreen = ({ navigation }) => {
                                             <Text className="text-white font-ChakraPetchMedium text-base underline">Log in instead</Text>
                                         </TouchableOpacity>
 
-                                        {isSmallScreen ? (<View className="flex-row mt-5 w-[310px]">
+                                        <View className={`flex-row mt-5 ${isSmallScreen ? 'w-[310px]' : 'w-[289px]'}`}>
                                             <Text className="font-ChakraPetchBold -mt-1 text-sm text-[#1890FF]">Note:</Text>
 
                                             <Text className="font-ChakraPetchMedium text-xs text-[#1890FF]"> Players must have residence in any of the following territories: Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland, Türkiye, Ukraine, United Kingdom.</Text>
-                                        </View>) : (<View className="flex-row mt-5 w-[289px]">
-                                            <Text className="font-ChakraPetchBold -mt-1 text-sm text-[#1890FF]">Note:</Text>
-
-                                            <Text className="font-ChakraPetchMedium text-xs text-[#1890FF]"> Players must have residence in any of the following territories: Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland, Türkiye, Ukraine, United Kingdom.</Text>
-                                        </View>)}
+                                        </View>
 
                                     </View>
                                 </View>

@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, Text, AppRegistry } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { ThemeContext } from './src/context/ThemeContext';
+import client from './Graphql/Apollo';
 import * as Fonts from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Routes from './src/helpers/Routes';
-
-
-const client = new ApolloClient({
-  uri: 'http://13.36.254.232/graphql',
-  cache: new InMemoryCache(),
-});
 
 
 const App = () => {
