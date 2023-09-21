@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput, Switch } from 'react-native-paper';
+import { useMutation } from '@apollo/client';
+import { registerUserMutation } from '../Graphql/Mutations';
+import client from '../Graphql/Apollo';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
@@ -9,9 +12,6 @@ import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useMutation } from '@apollo/client';
-import { registerUserMutation } from '../../Graphql/Mutations';
-import client from '../../Graphql/Apollo';
 
 
 
