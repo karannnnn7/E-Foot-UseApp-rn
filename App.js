@@ -3,10 +3,10 @@ import { SafeAreaView, StatusBar, Text, AppRegistry } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeContext } from './src/context/ThemeContext';
-import client from './Graphql/Apollo';
 import * as Fonts from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Routes from './src/helpers/Routes';
+import client from './src/Graphql/Apollo';
 
 
 const App = () => {
