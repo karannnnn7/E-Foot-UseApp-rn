@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions } from 'react-native';
+import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput, Switch } from 'react-native-paper';
 import { useMutation } from '@apollo/client';
@@ -153,6 +153,14 @@ const RegisterScreen = ({ navigation }) => {
                     input,
                 },
             });
+
+            console.log('Successfully registered', input);
+
+            if (data.success) {
+                navigation.navigate('drawer');
+            } else {
+                Alert.alert('Please try agian !');
+            }
         } catch (error) {
             console.log('Register error: ', error);
         }
@@ -164,7 +172,7 @@ const RegisterScreen = ({ navigation }) => {
         <>
             <View className="bg-[#0B0711] h-full">
                 <KeyboardAvoidingView
-                    keyboardVerticalOffset={50}
+                    keyboardVerticalOffset={30}
                     behavior={Platform.OS === 'android' ? 'height' : 'padding'}
                 >
                     <ScrollView

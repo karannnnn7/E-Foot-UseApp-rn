@@ -12,7 +12,7 @@ const Routes = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName={'login'}
+            initialRouteName={'drawer'}
             screenOptions={{ headerShown: false }}
         >
             <Stack.Screen name="login" component={LoginScreen} />
