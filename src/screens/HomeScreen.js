@@ -6,7 +6,6 @@ import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
 import { useIsFocused } from '@react-navigation/native';
 import { responsiveFontSize, responsiveWidth } from 'react-native-responsive-dimensions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import GameSvg from '../../assets/svg/Game.svg';
 import GameLightSvg from '../../assets/svg/GameLight.svg';
 import RightArrowSvg from '../../assets/svg/RightArrow.svg';
@@ -32,17 +31,17 @@ const HomeScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
 
     //For getting Data from AsyncStorage.
-    useEffect(() => {
-        getData();
-    }, [isFocused]);
+    // useEffect(() => {
+    //     getData();
+    // }, [isFocused]);
 
-    const getData = async () => {
-        const email = await AsyncStorage.getItem('EMAIL');
-        const password = await AsyncStorage.getItem('PASSWORD');
-        const newUsers = await AsyncStorage.getItem('NEWUSER');
-        console.log(email + ' ' + password);
-        console.log(JSON.parse(newUsers));
-    };
+    // const getData = async () => {
+    //     const email = await AsyncStorage.getItem('EMAIL');
+    //     const password = await AsyncStorage.getItem('PASSWORD');
+    //     const newUsers = await AsyncStorage.getItem('NEWUSER');
+    //     console.log(email + ' ' + password);
+    //     console.log(JSON.parse(newUsers));
+    // };
 
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [visible, setVisible] = useState(false);

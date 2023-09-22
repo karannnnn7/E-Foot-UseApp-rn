@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { TextInput } from 'react-native-paper';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
-import { TextInput } from 'react-native-paper';
 import CButton from '../components/CButton';
 
 const ForgotPasswordScreen = ({ navigation }) => {

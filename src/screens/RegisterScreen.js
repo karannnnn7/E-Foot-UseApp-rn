@@ -59,6 +59,7 @@ const RegisterScreen = ({ navigation }) => {
 
 
 
+
     // For modal
     const showModal = () => {
         setVisible(true);
@@ -152,8 +153,6 @@ const RegisterScreen = ({ navigation }) => {
                     input,
                 },
             });
-
-            console.log('success', input);
         } catch (error) {
             console.log('Register error: ', error);
         }
