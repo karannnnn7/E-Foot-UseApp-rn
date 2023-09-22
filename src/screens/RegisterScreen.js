@@ -164,7 +164,7 @@ const RegisterScreen = ({ navigation }) => {
         <>
             <View className="bg-[#0B0711] h-full">
                 <KeyboardAvoidingView
-                    keyboardVerticalOffset={90}
+                    keyboardVerticalOffset={50}
                     behavior={Platform.OS === 'android' ? 'height' : 'padding'}
                 >
                     <ScrollView
