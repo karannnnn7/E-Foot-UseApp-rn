@@ -139,40 +139,42 @@ const RegisterScreen = ({ navigation }) => {
 
     const { loading, error, data } = useMutation(registerUserMutation);
 
+    NetInfo.fetch().then(state => {
+        console.log("Connection type", state.type);
+        console.log("Is connected?", state.isConnected);
+        console.log("Is internet reachable?", state.isInternetReachable);
+        console.log("Details", state.details);
+    });
+
     const handleRegister = async () => {
         try {
-            //Check for network connectivity
-            const netInfoState = await NetInfo.fetch();
 
-            if (netInfoState.isConnected) {
-                const input = {
-                    userName,
-                    email,
-                    password,
-                    firstName,
-                    lastName,
-                }
+            const input = {
+                userName,
+                email,
+                password,
+                firstName,
+                lastName,
+            }
 
-                const { data } = await client.mutate({
-                    mutation: registerUserMutation,
-                    variables: {
-                        input,
-                    },
-                });
+            const { data } = await client.mutate({
+                mutation: registerUserMutation,
+                variables: {
+                    input,
+                },
+            });
 
-                console.log('Successfully registered', input);
-            } else {
-                Alert.alert('No Internet connection', 'Please check your Internet connection!');
-            };
+            console.log('Successfully registered', input);
+
 
         } catch (error) {
             console.error('Error:', error); // Log the error for debugging purposes
 
-            // if (error.message) {
-            //     Alert.alert('Registration Error', error.message);
-            // } else {
-            //     Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
-            // };
+            if (error.message) {
+                Alert.alert('Registration Error', error.message);
+            } else {
+                Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
+            };
         };
     };
 
