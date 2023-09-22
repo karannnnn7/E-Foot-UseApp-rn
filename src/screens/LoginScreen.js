@@ -78,8 +78,17 @@ const LoginScreen = ({ navigation }) => {
     try {
       console.log('User Data: ', userdata);
 
-      //Navigate to the next screen uponn success login
-      navigation.navigate('drawer')
+      //Check if the entered email exists in the database
+      const isEmailValid = userdata.some(user => user.email === email);
+
+      if (isEmailValid) {
+        //Email exists in the database, then you can redirect to next screen
+        navigation.navigate('drawer');
+      } else {
+        Alert.alert('Invalid email', 'Please enter a valid email');
+      };
+
+      
     } catch (error) {
       console.log('Login  failed: ', error);
     }
