@@ -12,6 +12,8 @@ import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import NetInfo from '@react-native-netinfo/react-native-netinfo';
+
 
 
 
@@ -139,22 +141,29 @@ const RegisterScreen = ({ navigation }) => {
 
     const handleRegister = async () => {
         try {
-            const input = {
-                userName,
-                email,
-                password,
-                firstName,
-                lastName,
-            }
+            //Check for network connectivity
+            const netInfoState = await NetInfo.fetch();
 
-            const { data } = await client.mutate({
-                mutation: registerUserMutation,
-                variables: {
-                    input,
-                },
-            });
+            if (netInfoState.isConnected) {
+                const input = {
+                    userName,
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                }
 
-            console.log('Successfully registered', input);
+                const { data } = await client.mutate({
+                    mutation: registerUserMutation,
+                    variables: {
+                        input,
+                    },
+                });
+
+                console.log('Successfully registered', input);
+            } else {
+                Alert.alert('No Internet connection', 'Please check your Internet connection!');
+            };
 
         } catch (error) {
             console.error('Error:', error); // Log the error for debugging purposes
