@@ -12,7 +12,7 @@ import DownArrowSvg from '../../assets/svg/DownArrow.svg';
 import CloseSvg from '../../assets/svg/Close.svg';
 import CButton from '../components/CButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import NetInfo from '@react-native-netinfo/react-native-netinfo';
+import NetInfo from "@react-native-community/netinfo";
 
 
 
