@@ -146,6 +146,9 @@ const RegisterScreen = ({ navigation }) => {
         console.log("Details", state.details);
     });
 
+    const maxRetries = 3;
+    let retryCount = 0;
+
     const handleRegister = async () => {
         try {
 
@@ -170,11 +173,21 @@ const RegisterScreen = ({ navigation }) => {
         } catch (error) {
             console.error('Error:', error); // Log the error for debugging purposes
 
-            if (error.message) {
-                Alert.alert('Registration Error', error.message);
+            // if (error.message) {
+            //     Alert.alert('Registration Error', error.message);
+            // } else {
+            //     Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
+            // };
+
+            if (retryCount < maxRetries) {
+                retryCount ++;
+                console.log('Retrying...');
+                setTimeout(handleRegister, 1000); //Retry after a second delay
             } else {
-                Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
-            };
+                //Handle the error after max retries
+                console.error('Max retries reached. unable to register');
+                Alert.alert('Registration Error: ', 'An error occurred while registering. Please try again later.')
+            }
         };
     };
 
