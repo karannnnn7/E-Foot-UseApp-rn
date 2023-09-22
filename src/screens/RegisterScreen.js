@@ -186,7 +186,7 @@ const RegisterScreen = ({ navigation }) => {
             } else {
                 //Handle the error after max retries
                 console.error('Max retries reached. unable to register');
-                Alert.alert('Registration Error: ', 'An error occurred while registering. Please try again later.')
+                Alert.alert('Registration Error: ', 'An error occurred while registering. Please try again later.');
             }
         };
     };
