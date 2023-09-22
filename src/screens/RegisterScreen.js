@@ -157,10 +157,8 @@ const RegisterScreen = ({ navigation }) => {
             console.log('Successfully registered', input);
 
         } catch (error) {
-            Alert.alert('fatching error: ', error);
-            <View>
-                <Text className="font-ChakraPetchBold text-xl text-white">{error}</Text>
-            </View>
+            console.error('Error:', error); // Log the error for debugging purposes
+            Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
         }
     };
 
