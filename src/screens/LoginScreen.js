@@ -74,7 +74,7 @@ const LoginScreen = ({ navigation }) => {
   const userdata = data ? data.users.data : null;
 
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     try {
       console.log('User Data: ', userdata);
 
@@ -83,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
 
       if (isEmailValid) {
         //Email exists in the database, then you can redirect to next screen
+        console.log('successfully logged in', isEmailValid);
         navigation.navigate('drawer');
       } else {
         Alert.alert('Invalid email', 'Please enter a valid email');
