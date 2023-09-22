@@ -5,7 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../config/Theme';
 import { ThemeContext } from '../context/ThemeContext';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import CommonHeader from '../components/CommonHeader';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MyProfileSvg from '../../assets/svg/MyProfile.svg';
@@ -43,10 +42,6 @@ import InstagramLightSvg from '../../assets/svg/InstagramLight.svg';
 const MyProfileScreen = ({ navigation }) => {
 
 
-  const removeUser = async () => {
-    await AsyncStorage.removeItem('EMAIL');
-    await AsyncStorage.removeItem('PASSWORD');
-  }
 
   const [isGeneralOpen, setIsGeneralOpen] = useState(false);
   const [isGameIDOpen, setIsGameIDOpen] = useState(false);
