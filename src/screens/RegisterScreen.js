@@ -158,8 +158,13 @@ const RegisterScreen = ({ navigation }) => {
 
         } catch (error) {
             console.error('Error:', error); // Log the error for debugging purposes
-            Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
-        }
+
+            if (error.message) {
+                Alert.alert('Registration Error', error.message);
+            } else {
+                Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
+            };
+        };
     };
 
 
