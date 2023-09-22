@@ -156,13 +156,11 @@ const RegisterScreen = ({ navigation }) => {
 
             console.log('Successfully registered', input);
 
-            if (data.success) {
-                navigation.navigate('drawer');
-            } else {
-                Alert.alert('Please try agian !');
-            }
         } catch (error) {
-            console.log('Register error: ', error);
+            Alert.alert('fatching error: ', error);
+            <View>
+                <Text className="font-ChakraPetchBold text-xl text-white">{error}</Text>
+            </View>
         }
     };
 
