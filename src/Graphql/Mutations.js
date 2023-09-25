@@ -16,6 +16,7 @@ mutation userLogin($input: LoginInput){
 export const registerUserMutation = gql`
   mutation registerUser($input: RegisterInput) {
     registerUser: registerUser(input: $input) {
+      _id
       userName
       firstName
       lastName
@@ -24,7 +25,20 @@ export const registerUserMutation = gql`
       createdAt
       updatedAt
       verificationToken
+      esportsArenaId
+      eTeam
+      rank
       country
     }
   }
 `;
+
+export const forgotPassMutation = gql`
+  mutation forgotPassword($email:String){
+    forgotPassword(email:$email){
+      statusCode
+      success
+      message
+    }
+  }
+`

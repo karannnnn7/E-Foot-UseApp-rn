@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import LogoSvg from '../../assets/svg/Logo.svg';
@@ -7,6 +7,9 @@ import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
 import DarkIconSvg from '../../assets/svg/DarkIcon.svg';
 import CButton from '../components/CButton';
+import { useMutation } from '@apollo/client';
+import { forgotPassMutation } from '../Graphql/Mutations';
+import client from '../Graphql/Apollo';
 
 const ForgotPasswordScreen = ({ navigation }) => {
 
@@ -33,6 +36,39 @@ const ForgotPasswordScreen = ({ navigation }) => {
         return emailRegex.test(email);
     };
 
+    const { loading, error, data } = useMutation(forgotPassMutation);
+
+    const handleForgotPass = async () => {
+        try {
+            const { data } = await client.mutate({
+                mutation: forgotPassMutation,
+                variables: {
+                    email,
+                }
+            });
+
+            //Check if the email was successfullysent.
+            if (data && data.email) {
+                //Email sent successfully, you can show a success message or navigate to another screen.
+                console.log('Email sent' ,data);
+            } else {
+                //Email not registered or some other error occurred
+                console.error('Error Occured or email not registered');
+                Alert.alert(
+                    'Error',
+                    'Email not registered or an error occurred. Please check your email address or try again.'
+                    [
+                        {Text: 'OK', onPress: () => console.log('OK Pressed')}
+                    ],
+                )
+            };
+
+            console.log('Email Verified', data);
+        } catch (error) {
+            console.error('Error occured email not registered', error);
+        }
+    };
+
     return (
         <View className="bg-[#0B0711] h-full">
             <TouchableOpacity
@@ -57,7 +93,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
                                     <FlagSvg />
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
+                                    <LightIconSvg />
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -88,7 +124,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
                         </View>
 
                         <View className="mt-10">
-                            <CButton btnText={'Send reset link'} onPress={() => navigation.navigate('home')} />
+                            <CButton btnText={'Send reset link'} onPress={handleForgotPass} />
                         </View>
 
                         <TouchableOpacity onPress={() => navigation.navigate('login')} className="mt-8 items-center">

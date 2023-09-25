@@ -15,18 +15,17 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
-
 const RegisterScreen = ({ navigation }) => {
 
     const [showPassword, setShowPassword] = useState(true);
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [birthDate, setBirthDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [wlRankModalvisible, setWlRankModalVisible] = useState(false);
-    const [selectRank, setSelectRank] = useState("No Score");
+    const [rank, setRank] = useState("No Score");
     const [countryModalvisible, setCountryModalVisible] = useState(false);
-    const [selectCountry, setSelectCountry] = useState("Select Country");
+    const [country, setCountry] = useState("Select Country");
     const [animationValue, setanimationValue] = useState(new Animated.Value(1));
-    const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+    const [isProPlayer, setIsProPlayer] = useState(false);
     const isSmallScreen = Dimensions.get('screen').height > 850;
     const [userName, setUserName] = useState("");
     const [userNameError, setUserNameError] = useState("");
@@ -38,10 +37,11 @@ const RegisterScreen = ({ navigation }) => {
     const [firstNameError, setFirstNameError] = useState("");
     const [lastName, setLastName] = useState("");
     const [lastNameError, setLastNameError] = useState("");
-    const [EAid, setEAid] = useState("");
+    const [esportsArenaId, setEsportsArenaId] = useState("");
     const [EAidError, setEAidError] = useState("");
+    const [eTeam, seteTeam] = useState("");
 
-    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+    const onToggleSwitch = () => setIsProPlayer(!isProPlayer);
 
     const handleDismissKeyboard = () => {
         Keyboard.dismiss();
@@ -49,9 +49,9 @@ const RegisterScreen = ({ navigation }) => {
 
 
     const handleDateChange = (event, selected) => {
-        const currentDate = selected || selectedDate;
+        const currentDate = selected || birthDate;
         setShowDatePicker(Platform.OS === 'ios'); // Hide the picker on iOS after selecting
-        setSelectedDate(currentDate);
+        setBirthDate(currentDate);
     };
 
     const showDatepicker = () => {
@@ -147,6 +147,11 @@ const RegisterScreen = ({ navigation }) => {
                 password,
                 firstName,
                 lastName,
+                birthDate,
+                esportsArenaId,
+                eTeam,
+                rank,
+                country,
             }
 
             const { data } = await client.mutate({
@@ -157,7 +162,6 @@ const RegisterScreen = ({ navigation }) => {
             });
 
             console.log('Successfully registered', input);
-
 
         } catch (error) {
             console.error('Error:', error); // Log the error for debugging purposes
@@ -313,12 +317,12 @@ const RegisterScreen = ({ navigation }) => {
 
                                             <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">Birth Date</Text>
                                             <TouchableOpacity onPress={showDatepicker} className="p-4 border border-[#D1CBD8] mt-1 rounded-sm">
-                                                <Text className="text-white">{selectedDate.toDateString()}</Text>
+                                                <Text className="text-white">{birthDate.toDateString()}</Text>
                                             </TouchableOpacity>
                                             {showDatePicker && (
                                                 <DateTimePicker
                                                     testID="dateTimePicker"
-                                                    value={selectedDate}
+                                                    value={birthDate}
                                                     mode="date"
                                                     display='default'
                                                     onChange={handleDateChange}
@@ -327,8 +331,8 @@ const RegisterScreen = ({ navigation }) => {
 
                                             <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">EA ID</Text>
                                             <TextInput
-                                                value={EAid}
-                                                onChangeText={setEAid}
+                                                value={esportsArenaId}
+                                                onChangeText={setEsportsArenaId}
                                                 error={!!EAidError}
                                                 mode='outlined'
                                                 className="bg-[#261D37]"
@@ -346,6 +350,8 @@ const RegisterScreen = ({ navigation }) => {
 
                                             <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">E-sports Team</Text>
                                             <TextInput
+                                                value={eTeam}
+                                                onChangeText={seteTeam}
                                                 mode='outlined'
                                                 className="bg-[#261D37]"
                                                 placeholder='Team E-Foot'
@@ -356,11 +362,11 @@ const RegisterScreen = ({ navigation }) => {
 
                                             <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">WL Rank</Text>
                                             <TouchableOpacity onPress={() => setWlRankModalVisible(!wlRankModalvisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
-                                                <Text className="text-white">{selectRank}</Text>
+                                                <Text className="text-white">{rank}</Text>
                                                 <DownArrowSvg />
                                             </TouchableOpacity>
 
-                                            {isSmallScreen ? (<Modal
+                                            <Modal
                                                 // animationType="slide"
                                                 transparent={true}
                                                 visible={wlRankModalvisible}
@@ -373,7 +379,7 @@ const RegisterScreen = ({ navigation }) => {
                                                     <View className="h-full w-full bg-[#000000bf]" />
                                                 </TouchableOpacity>
 
-                                                <View className={`absolute bottom-64 bg-[#261D37] w-96 left-4 rounded-2xl`} >
+                                                <View className={`absolute bottom-64 bg-[#261D37] w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
                                                     <View className="p-3 mt-3">
                                                         <View className="flex-row items-center justify-between mx-5">
                                                             <Text className="text-white text-xl font-ChakraPetchBold">WL Rank</Text>
@@ -384,35 +390,35 @@ const RegisterScreen = ({ navigation }) => {
 
                                                         <View className="my-5 mx-5">
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectRank('NO WINS')
+                                                                setRank('NO WINS')
                                                                 hideModal()
                                                             }}>
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">NO WINS</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectRank('0 - 5 WINS')
+                                                                setRank('0 - 5 WINS')
                                                                 hideModal()
                                                             }} className="mt-4">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">0 - 5 WINS</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectRank('5 - 10 WINS')
+                                                                setRank('5 - 10 WINS')
                                                                 hideModal()
                                                             }} className="mt-4">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">5 - 10 WINS</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectRank('10 - 15 WINS')
+                                                                setRank('10 - 15 WINS')
                                                                 hideModal()
                                                             }} className="mt-4">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">10 - 15 WINS</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectRank('15+ WINS')
+                                                                setRank('15+ WINS')
                                                                 hideModal()
                                                             }} className="mt-4">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">15+ WINS</Text>
@@ -421,76 +427,15 @@ const RegisterScreen = ({ navigation }) => {
 
                                                     </View>
                                                 </View>
-                                            </Modal>) : (<Modal
-                                                // animationType="slide"
-                                                transparent={true}
-                                                visible={wlRankModalvisible}
-                                            // onRequestClose={() => {
-                                            //   setVisible(!visible);
-                                            // }}
-                                            >
-
-                                                <TouchableOpacity onPress={hideModal}>
-                                                    <View className="h-full w-full bg-[#000000bf]" />
-                                                </TouchableOpacity>
-
-                                                <View className={`absolute bottom-64 bg-[#261D37] w-96 left-[5px] rounded-2xl`} >
-                                                    <View className="p-3 mt-3">
-                                                        <View className="flex-row items-center justify-between mx-5">
-                                                            <Text className="text-white text-xl font-ChakraPetchBold">WL Rank</Text>
-                                                            <TouchableOpacity onPress={() => hideModal()}>
-                                                                <CloseSvg />
-                                                            </TouchableOpacity>
-                                                        </View>
-
-                                                        <View className="my-5 mx-5">
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectRank('NO WINS')
-                                                                hideModal()
-                                                            }}>
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">NO WINS</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectRank('0 - 5 WINS')
-                                                                hideModal()
-                                                            }} className="mt-4">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">0 - 5 WINS</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectRank('5 - 10 WINS')
-                                                                hideModal()
-                                                            }} className="mt-4">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">5 - 10 WINS</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectRank('10 - 15 WINS')
-                                                                hideModal()
-                                                            }} className="mt-4">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">10 - 15 WINS</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectRank('15+ WINS')
-                                                                hideModal()
-                                                            }} className="mt-4">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">15+ WINS</Text>
-                                                            </TouchableOpacity>
-                                                        </View>
-
-                                                    </View>
-                                                </View>
-                                            </Modal>)}
+                                            </Modal>
 
                                             <Text className="font-ChakraPetchSemiBold text-white text-base mt-5">Country</Text>
                                             <TouchableOpacity onPress={() => setCountryModalVisible(!countryModalvisible)} className="p-3 border border-[#D1CBD8] mt-1 rounded-sm flex-row items-center justify-between">
-                                                <Text className="text-white">{selectCountry}</Text>
+                                                <Text className="text-white">{country}</Text>
                                                 <DownArrowSvg />
                                             </TouchableOpacity>
 
-                                            {isSmallScreen ? (<Modal
+                                            <Modal
                                                 // animationType="slide"
                                                 transparent={true}
                                                 visible={countryModalvisible}
@@ -503,7 +448,7 @@ const RegisterScreen = ({ navigation }) => {
                                                     <View className="h-full w-full bg-[#000000bf]" />
                                                 </TouchableOpacity>
 
-                                                <View className="absolute bottom-12 bg-[#261D37] w-96 left-4 rounded-2xl" >
+                                                <View className={`absolute bottom-12 bg-[#261D37] w-96 ${isSmallScreen ? 'left-4' : 'left-[5px]'} rounded-2xl`} >
                                                     <View className="p-3 mt-3">
                                                         <View className="flex-row items-center justify-between mx-5">
                                                             <Text className="text-white text-xl font-ChakraPetchBold">Country</Text>
@@ -514,98 +459,98 @@ const RegisterScreen = ({ navigation }) => {
 
                                                         <View className="my-5 mx-5">
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Afghanistan')
+                                                                setCountry('Afghanistan')
                                                                 hideModal()
                                                             }}>
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Afghanistan</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Algeria')
+                                                                setCountry('Algeria')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Algeria</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Argentina')
+                                                                setCountry('Argentina')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Argentina</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Bahamas')
+                                                                setCountry('Bahamas')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Bahamas</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Bangladesh')
+                                                                setCountry('Bangladesh')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Bangladesh</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Canada')
+                                                                setCountry('Canada')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Canada</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Denmark')
+                                                                setCountry('Denmark')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Denmark</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Egypt')
+                                                                setCountry('Egypt')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Egypt</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Fiji')
+                                                                setCountry('Fiji')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Fiji</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Finland')
+                                                                setCountry('Finland')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Finland</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Germany')
+                                                                setCountry('Germany')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Germany</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('India')
+                                                                setCountry('India')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">India</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Netherlands')
+                                                                setCountry('Netherlands')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Netherlands</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('New Zealand')
+                                                                setCountry('New Zealand')
                                                                 hideModal()
                                                             }} className="mt-5">
                                                                 <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">New Zealand</Text>
@@ -614,131 +559,7 @@ const RegisterScreen = ({ navigation }) => {
 
                                                     </View>
                                                 </View>
-                                            </Modal>) : (<Modal
-                                                // animationType="slide"
-                                                transparent={true}
-                                                visible={countryModalvisible}
-                                            // onRequestClose={() => {
-                                            //   setVisible(!visible);
-                                            // }}
-                                            >
-
-                                                <TouchableOpacity onPress={hideModal}>
-                                                    <View className="h-full w-full bg-[#000000bf]" />
-                                                </TouchableOpacity>
-
-                                                <View className="absolute top-1  bg-[#261D37] w-96 left-[5px] rounded-2xl">
-                                                    <View className="p-3 mt-3">
-                                                        <View className="flex-row items-center justify-between mx-5">
-                                                            <Text className="text-white text-xl font-ChakraPetchBold">Country</Text>
-                                                            <TouchableOpacity onPress={() => hideModal()}>
-                                                                <CloseSvg />
-                                                            </TouchableOpacity>
-                                                        </View>
-
-                                                        <View className="my-5 mx-5">
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Afghanistan')
-                                                                hideModal()
-                                                            }}>
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Afghanistan</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Algeria')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Algeria</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Argentina')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Argentina</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Bahamas')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Bahamas</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Bangladesh')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Bangladesh</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Canada')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Canada</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Denmark')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Denmark</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Egypt')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Egypt</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Fiji')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Fiji</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Finland')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Finland</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Germany')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Germany</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('India')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">India</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('Netherlands')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">Netherlands</Text>
-                                                            </TouchableOpacity>
-
-                                                            <TouchableOpacity onPress={() => {
-                                                                setSelectCountry('New Zealand')
-                                                                hideModal()
-                                                            }} className="mt-5">
-                                                                <Text className="font-ChakraPetchSemiBold text-lg text-[#D1CBD8]">New Zealand</Text>
-                                                            </TouchableOpacity>
-                                                        </View>
-
-                                                    </View>
-                                                </View>
-                                            </Modal>)}
+                                            </Modal>
 
                                         </View>
 
@@ -746,7 +567,7 @@ const RegisterScreen = ({ navigation }) => {
                                             <Text className="font-ChakraPetchBold text-base text-white">Pro Player?</Text>
 
                                             <Switch
-                                                value={isSwitchOn}
+                                                value={isProPlayer}
                                                 onValueChange={onToggleSwitch}
                                                 color={'#3B3EFF'}
                                             />
