@@ -3,6 +3,8 @@ import { SafeAreaView, StatusBar, Text, AppRegistry } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeContext } from './src/context/ThemeContext';
+import { Provider } from 'react-redux';
+import store from './src/Redux/Store';
 import client from './src/Graphql/Apollo';
 import * as Fonts from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -52,22 +54,24 @@ const App = () => {
 
 
   return (
-    <ApolloProvider client={client}>
-      <ThemeContext.Provider value={{ theme, updateTheme }}>
-        <SafeAreaView className="bg-[#0B0711] flex-1">
-          <StatusBar backgroundColor={'#261D37'} />
-          {isFontLoaded ? (
-            <NavigationContainer>
-              <Routes />
-            </NavigationContainer>
-          ) : (
-            <Text className="items-center justify-center">
-              Lagecy Can't be Load!
-            </Text>
-          )}
-        </SafeAreaView>
-      </ThemeContext.Provider>
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <ThemeContext.Provider value={{ theme, updateTheme }}>
+          <SafeAreaView className="bg-[#0B0711] flex-1">
+            <StatusBar backgroundColor={'#261D37'} />
+            {isFontLoaded ? (
+              <NavigationContainer>
+                <Routes />
+              </NavigationContainer>
+            ) : (
+              <Text className="items-center justify-center">
+                Lagecy Can't be Load!
+              </Text>
+            )}
+          </SafeAreaView>
+        </ThemeContext.Provider>
+      </ApolloProvider>
+    </Provider>
   );
 }
 

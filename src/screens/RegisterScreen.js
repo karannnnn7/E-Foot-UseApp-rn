@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity, Keyboard, Animated, Modal, Platform, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput, Switch } from 'react-native-paper';
-import { useMutation } from '@apollo/client';
-import { registerUserMutation } from '../Graphql/Mutations';
-import client from '../Graphql/Apollo';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGraphQlData, registerUserRequest, registerUserSuccess } from '../Redux/GraphqlSlice';
 import LogoSvg from '../../assets/svg/Logo.svg';
 import FlagSvg from '../../assets/svg/Flag.svg';
 import LightIconSvg from '../../assets/svg/LightIcon.svg';
@@ -81,8 +80,8 @@ const RegisterScreen = ({ navigation }) => {
     //Validation
     const handleUserNameChanged = (text) => {
         setUserName(text);
-        if (text.length < 6) {
-            setUserNameError('userName must be at least 6 characters');
+        if (text.length < 5) {
+            setUserNameError('userName must be at least 5 characters');
         } else {
             setUserNameError("");
         }
@@ -136,43 +135,78 @@ const RegisterScreen = ({ navigation }) => {
         }
     };
 
-    const { loading, error, data } = useMutation(registerUserMutation);
+    const [users, setUsers] = useState({
+        userName,
+        email,
+        firstName,
+        lastName,
+        birthDate,
+        esportsArenaId,
+        eTeam,
+        rank,
+        country,
+    });
+
+    const dispatch = useDispatch();
+    // const registerUser = useSelector((state) => state.user);
+
+    useEffect(() => {
+        //Dispatch the action to fatch GraphQl data when the component mounts
+        dispatch(fetchGraphQlData(registerUser));
+    }, [dispatch]);
 
     const handleRegister = async () => {
+        // e.preventDefault();
+
+        //Dispatch the registerUserRequest action to set loading state
+        dispatch(registerUserRequest());
+
         try {
+            // Dispatch the async action to register the user
+            const response = await fetchGraphQlData(registerUser());
 
-            const input = {
-                userName,
-                email,
-                password,
-                firstName,
-                lastName,
-                birthDate,
-                esportsArenaId,
-                eTeam,
-                rank,
-                country,
-            }
-
-            const { data } = await client.mutate({
-                mutation: registerUserMutation,
-                variables: {
-                    input,
-                },
-            });
-
-            console.log('Successfully registered', input);
-
+            //Handle  the success case
+            dispatch(registerUserSuccess(response.toString()));
         } catch (error) {
-            console.error('Error:', error); // Log the error for debugging purposes
-
-            if (error.message) {
-                Alert.alert('Registration Error', error.message);
-            } else {
-                Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
-            };
-        };
+            //Handle the error case
+            console.error('Error Occurred', error.message);
+        }
     };
+
+
+    // try {
+
+    //     // const input = {
+    //     //     userName,
+    //     //     email,
+    //     //     password,
+    //     //     firstName,
+    //     //     lastName,
+    //     //     birthDate,
+    //     //     esportsArenaId,
+    //     //     eTeam,
+    //     //     rank,
+    //     //     country,
+    //     // }
+
+    //     // const { data } = await client.mutate({
+    //     //     mutation: registerUserMutation,
+    //     //     variables: {
+    //     //         input,
+    //     //     },
+    //     // });
+
+    //     // console.log('Successfully registered', input);
+
+    // } catch (error) {
+    //     console.error('Error:', error); // Log the error for debugging purposes
+
+    //     if (error.message) {
+    //         Alert.alert('Registration Error', error.message);
+    //     } else {
+    //         Alert.alert('Registration Error', 'An error occurred while registering. Please try again later.');
+    //     };
+    // };
 
 
 
@@ -321,10 +355,10 @@ const RegisterScreen = ({ navigation }) => {
                                             </TouchableOpacity>
                                             {showDatePicker && (
                                                 <DateTimePicker
-                                                    testID="dateTimePicker"
+                                                    testID="datetimepicker"
                                                     value={birthDate}
                                                     mode="date"
-                                                    display='default'
+                                                    display='calendar'
                                                     onChange={handleDateChange}
                                                 />
                                             )}
@@ -574,7 +608,10 @@ const RegisterScreen = ({ navigation }) => {
                                         </View>
 
                                         <View className="mt-7">
-                                            <CButton btnText={'Sign Up'} onPress={handleRegister} />
+                                            <CButton btnText={'Sign Up'} onPress={() => {
+                                                handleRegister()
+                                                navigation.navigate('drawer')
+                                                }} />
                                         </View>
 
                                         <TouchableOpacity onPress={() => navigation.navigate('login')} className="flex-row items-center justify-center mt-5">

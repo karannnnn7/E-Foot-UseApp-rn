@@ -211,15 +211,10 @@ const LoginScreen = ({ navigation }) => {
                     </TouchableOpacity>
                   </View>
 
-                  {isSmallScreen ? (
-                    <View className="absolute bottom-7 right-6">
+
+                    <View className={`absolute bottom-7 ${isSmallScreen ? 'right-6' : 'right-7'}`}>
                       <Text className="font-ChakraPetchLight text-white text-base">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
                     </View>
-                  ) : (
-                    <View className="absolute bottom-7 right-7">
-                      <Text className="font-PlayRegular text-white text-sm">Play FIFA and WIN PRIZES -Play like a PRO 💙</Text>
-                    </View>
-                  )}
                 </View>
               </View>
             </TouchableOpacity>

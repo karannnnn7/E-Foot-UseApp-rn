@@ -232,7 +232,7 @@ const MyProfileScreen = ({ navigation }) => {
                     <View className="absolute top-10">
                       <DpSvg />
 
-                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-2xl text-center mt-5">Darshit Shah</Text>
+                      <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-2xl text-center mt-5">Kevin de Vries</Text>
 
                       <View className="bg-[#FFC1071F] border border-[#FFC107] mx-5 p-2 flex-row items-center justify-center space-x-3 rounded-lg mt-3">
                         <TrophySvg />

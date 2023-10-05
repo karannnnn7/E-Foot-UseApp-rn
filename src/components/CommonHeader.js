@@ -32,8 +32,6 @@ const CommonHeader = ({ navigation }) => {
     };
 
 
-
-
     return (
         <View>
             <View className="flex-row items-center justify-between mx-5 my-5">
@@ -62,7 +60,7 @@ const CommonHeader = ({ navigation }) => {
                         {theme.mode === 'dark' ? (<LightIconSvg />) : (<DarkIconSvg />)}
                     </TouchableOpacity>
 
-                    <TouchableOpacity className="" onPress={() => setModalVisible(true)}>
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <ProfilePicSvg />
                     </TouchableOpacity>
 
