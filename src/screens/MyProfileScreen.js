@@ -206,7 +206,7 @@ const MyProfileScreen = ({ navigation }) => {
         <KeyboardAvoidingView
           keyboardVerticalOffset={50}
           behavior={Platform.OS === 'android' ? 'height' : 'padding'}
-          className="flex-1"
+          className="flex-1 -z-10"
         >
           <ScrollView
             keyboardShouldPersistTaps="handled"
@@ -220,7 +220,7 @@ const MyProfileScreen = ({ navigation }) => {
               className="flex-grow"
             >
 
-              <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 -z-10 h-full">
+              <ScrollView showsVerticalScrollIndicator={false} bounces={false} className="mt-3 h-full">
                 <View className="mx-5">
                   <View className="flex-row items-center space-x-3">
                     {theme.mode === 'dark' ? (<MyProfileSvg width={23} height={23} />) : (<MyProfileLightSvg width={23} height={23} />)}
@@ -255,7 +255,7 @@ const MyProfileScreen = ({ navigation }) => {
                     </View>
                   </View>
 
-                  <View style={{ backgroundColor: activeColors.cardBackground }} className={`bg-transparent border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center md: max-lg: ${isSmallScreen ? 'space-x-5' : 'space-x-3'}`}>
+                  <View style={{ backgroundColor: activeColors.cardBackground }} className={`bg-transparent border border-[#3B3EFF] rounded-xl p-3 mt-5 flex-row items-center space-x-3`}>
                     <Text style={{ color: activeColors.textPrimary }} className="font-ChakraPetchMedium text-base">https://myprofilelink.efoot.NL.098.Win...</Text>
                     <TouchableOpacity>
                       <CopyLinkSvg />
